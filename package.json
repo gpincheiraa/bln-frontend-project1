@@ -15,6 +15,7 @@
     "babel-preset-stage-3": "^6.24.1",
     "cypress": "^2.1.0",
     "cypress-cucumber-preprocessor": "^0.3.0",
+    "wait-on": "^2.1.0",
     "webpack": "^2.5.1",
     "webpack-dev-server": "^2.4.5"
   },

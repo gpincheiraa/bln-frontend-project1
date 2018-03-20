@@ -6,3 +6,5 @@ jobs:
   include:
     - stage: Build 
       script: npm run build
+    - stage: Functional Test
+      script: npm start & (wait-on http://localhost:3000 && cypress run)

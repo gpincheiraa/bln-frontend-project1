@@ -3,4 +3,4 @@ Feature: Home
 
   Scenario: Searching Home
     Given I open Home page
-    Then I see "Home" in the title
+    Then I see "Tarea 1" in the title
