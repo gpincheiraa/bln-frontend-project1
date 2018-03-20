@@ -1,4 +1,3 @@
-
 const apiUrl = 'https://blockchain.info/es/ticker';
 
 export const ApiRequest = () => {
