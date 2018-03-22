@@ -14,9 +14,7 @@ function createColumns(columnNames) {
     }); 
     return row;
 }
-function createTable(responseData){
-    const tableData = responseData;
-    
+function createTable(tableData){    
     console.log(tableData);
 
     //Parte 1 Tarea
@@ -30,8 +28,26 @@ function createTable(responseData){
     const columnNames = Object.keys(parsedData[sampleKey]).map(formatColumnName);
 
     theadRow.appendChild(createColumns(columnNames));
-}
 
+    //Parte 2 Tarea
+    //Implementar código para crear las filas de la tabla basada en la data acá
+    const tableBody = table.querySelector('tbody');
+    currencyNames.forEach((currencyName) => {
+        const rowData = parsedData[currencyName];
+        const rowColumns = document.createElement('tr');
+        
+        let columnDataValue = document.createElement('td');
+        columnDataValue.textContent = currencyName;
+        rowColumns.appendChild(columnDataValue);
+        
+        Object.keys(rowData).forEach(currencyType => {
+            columnDataValue = document.createElement('td');
+            columnDataValue.textContent = rowData[currencyType];
+            rowColumns.appendChild(columnDataValue);
+        });
+        tableBody.appendChild(rowColumns);
+    });
+}
 /*
 Ayuda 1:
 En este trozo de código estamos ejecutando la petición al servidor, obteniendo la respuesta 
