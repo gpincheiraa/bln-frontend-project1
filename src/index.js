@@ -4,27 +4,45 @@ import { ApiRequest } from './dataRequest';
 function createTable(responseData){
     const tableData = JSON.parse(responseData);
 
-    //console.log(tableData);
+    console.log(tableData);
 
     //comienzo prueba
 
-    let info = document.getElementById("tabla");
-    let tmp = "<tr><th>15m</th><th>last</th><th>buy</th><th>sell</th><th>symbol</th></tr>" ;
+    const tableRow = document.querySelector('table thead tr');
+    const tableColumn = '<th>Currency</th><th>15m</th><th>Last</th><th>Buy</th><th>Sell</th><th>Symbol</th>';
 
-    for (let i in tableData) {
-      tmp += "<tr><th colspan='5' align='left'>" + i + "</th></tr><tr>";
-      for (let j in tableData[i]) {
-          tmp += "<td align='right'>" + tableData [i][j] + "</td>";
-      }
-      tmp += "</tr>";
+    tableRow.innerHTML = tableColumn;
+
+    const tableBody = document.querySelector('table tbody');
+    let tabledataHtml = '';
+
+    const currencyNames =  Object.keys(tableData);
+
+    //console.log(currencyNames);
+
+      //['USD', 'AUD', 'BRL', 'CAD', 'CHF', 'CLP', 'CNY', 'DKK', 'EUR', 'GBP', 'HKD', 'INR', 'ISK', 'JPY', 'KRW', 'NZD', 'PLN', 'RUB', 'SEK', 'SGD', 'THB', 'TWD']
+
+    for(let i = 0; i < currencyNames.length; i++ ){
+
+      const currencyName = currencyNames[i]
+
+      tabledataHtml += '<tr><td>' + currencyName + '</td>';
+      tabledataHtml += '<td>' + tableData[currencyName]['15m'] + '</td>';
+      tabledataHtml += '<td>' + tableData[currencyName].buy + '</td>';
+      tabledataHtml += '<td>' + tableData[currencyName].last + '</td>';
+      tabledataHtml += '<td>' + tableData[currencyName].sell + '</td>';
+      tabledataHtml += '<td>' + tableData[currencyName].symbol + '</td></tr>';
+
     }
 
-    info.innerHTML = tmp;
+    tableBody.innerHTML = tabledataHtml;
+
 
     }
 
 
     //fin prueba
+
 
 
     //Parte 1 Tarea
