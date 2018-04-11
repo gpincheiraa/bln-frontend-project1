@@ -9,7 +9,7 @@ function createTable(responseData){
     //comienzo prueba
 
     const tableRow = document.querySelector('table thead tr');
-    const tableColumn = '<td>Currency</td><td>15m</td><td>Last</td><td>Buy</td><td>Sell</td><td>Symbol</td>';
+    const tableColumn = '<th>Currency</th><th>15m</th><th>Last</th><th>Buy</th><th>Sell</th><th>Symbol</th>';
 
     tableRow.innerHTML = tableColumn;
 
