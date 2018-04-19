@@ -38,7 +38,7 @@ given('I open Home page', () => {
 });
 
 then(`I see Currency, 15m, Last, Sell and Buy column names on the table`, () => {
-  const columnNamesSelector = '.home-table__region thead tr th';
+  const columnNamesSelector = '.home__table thead tr th';
   cy.get(columnNamesSelector).should($th => {
     expectedColumnNames.forEach((currencyTypeName, index) => {
       expect($th.eq(index).text()).to.eq(currencyTypeName)
@@ -47,14 +47,14 @@ then(`I see Currency, 15m, Last, Sell and Buy column names on the table`, () => 
 });
 
 then(`I see the data response rendered as row on the table`, () => {
-  const rowsSelector = '.home-table__region tbody tr';
+  const rowsSelector = '.home__table tbody tr';
   cy.get(rowsSelector).should($trList => {
     const rowsList = $trList.toArray();
     currencyNamesList.forEach((currencyName, index) => {
       const columnElements = rowsList[index].querySelectorAll('td');
 
       expect(columnElements[0].textContent).to.eq(currencyName);
-      
+
       currencyTypesList.forEach((key, index) => {
           const targetValue = btcTickerResponse[currencyName][key];
           expect(columnElements[index + 1].textContent).to.eq(`${targetValue}`);
