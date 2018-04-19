@@ -5,7 +5,8 @@
     "start": "webpack-dev-server --hot",
     "dev": "npm start -- --watch",
     "build": "webpack",
-    "test:e2e": "cypress open"
+    "test:e2e": "cypress open",
+    "heroku-prebuild": "npm run build && ./ci/deploy"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",
@@ -23,6 +24,8 @@
     "node": ">=8.4.0"
   },
   "dependencies": {
+    "ejs": "^2.5.9",
+    "express": "^4.16.3",
     "whatwg-fetch": "^2.0.3"
   }
 }

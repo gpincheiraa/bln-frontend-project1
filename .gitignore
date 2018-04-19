@@ -2,3 +2,7 @@
 node_modules
 test/e2e/videos
 test/e2e/screenshots
+public/
+dist/
+views/
+/server.js
