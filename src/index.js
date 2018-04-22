@@ -21,7 +21,7 @@ function createTable(tableData){
     //Parte 1 Tarea
     //Implementar código para crear la tabla basada en la data acá
     //No olvidar agregar el código HTML necesario en el archivo index.html
-    const table = document.querySelector('.home-table__region');
+    const table = document.querySelector('.home__table');
     const theadRow = table.querySelector('thead tr');
     const parsedData = JSON.parse(tableData);
     const currencyNames = Object.keys(parsedData);
@@ -51,9 +51,9 @@ function createTable(tableData){
 }
 /*
 Ayuda 1:
-En este trozo de código estamos ejecutando la petición al servidor, obteniendo la respuesta 
-con los datos necesarios. Una vez ocurrido esto, le decimos 
-a la función "apiRequest" que "luego que" (then) 
+En este trozo de código estamos ejecutando la petición al servidor, obteniendo la respuesta
+con los datos necesarios. Una vez ocurrido esto, le decimos
+a la función "apiRequest" que "luego que" (then)
 ocurra lo que tenga que suceder con la petición al servidor ejecute la función "createTable"
 */
 ApiRequest()
