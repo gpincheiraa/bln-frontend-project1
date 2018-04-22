@@ -62,3 +62,13 @@ then(`I see the data response rendered as row on the table`, () => {
     });
   });
 });
+
+then(`I see the currency selector with the currencies given in the data requested`, () => {
+  const selectBoxSelector = '.home__select--currency';
+  cy.get(selectBoxSelector).should($select => {
+    const selectBoxElement = $select[0];
+    const optionElements = Array.from(selectBoxElement.querySelectorAll('option'));
+    
+    optionElements.forEach(optionEl => expect(currencyNamesList).to.include(optionEl.textContent));
+  });
+});
