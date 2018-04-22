@@ -21,6 +21,6 @@ jobs:
       script: ./ci/deploy
       deploy: &heroku
         provider: heroku
-        app: seba-caro
+        app: $HEROKU_APP_NAME
         api_key:
           secure: "$HEROKU_KEY"

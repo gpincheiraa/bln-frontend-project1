@@ -8,16 +8,18 @@ Contruir una pequeña aplicación que es capaz de de consultar el precio del bit
 ### Requerimientos:
 - NodeJS >= 8.4 instalado a través de NVM. Instrucciones [acá](docs/nvm-install.md)
 - Git
+- Crear un proyecto en [GITHUB](https://github.com). Instrucciones [acá]
+- Crear una cuenta [TRAVIS](https://travis-ci.org) y linkear el repositorio al proyecto github. Instrucciones [acá]
 
-###Contexto
+### Contexto
 La aplicación posee una funcionalidad ya desarrollada que utiliza la siguiente url para obtener una lista `https://blockchain.info/es/ticker` y devuelve un objeto JSON el cual utilizaremos en este proyecto.
 
-###Instalación
+### Instalación
 - ejecutar `npm i`
 - ejecutar `npm start`
 - abrir `http://localhost:3000/` en el navegador
 
-###Parte 1: Crear las columnas de la tabla basado en data proveniente de una petición HTTP
+### Parte 1: Crear las columnas de la tabla basado en data proveniente de una petición HTTP
 
 En el archivo `./src/index.js` hay una función llamada `createTable()`. Implementar el código que sea capaz de dibujar las columnas de una tabla basada en la data provista en la variable `tableData`.
 
@@ -31,7 +33,7 @@ En el archivo `./src/index.js` hay una función llamada `createTable()`. Impleme
 
 ![Alt text](docs/part1/img.png?raw=true "Column names")
 
-###Parte 2: Crear las filas de la tabla basado en data proveniente de una petición HTTP
+### Parte 2: Crear las filas de la tabla basado en data proveniente de una petición HTTP
 
 En el archivo `./src/index.js` hay una función llamada `createTable()`. Implementar el código que sea capaz de dibujar los datos de una tabla basada en la data provista en la variable `tableData`.
 
@@ -74,3 +76,18 @@ Se debe agregar una clase al tag `<select>` llamada `home__select--currency`. El
 
 
 
+
+Ya tenemos nuestra primera funcionalidad: Somos capaces de dibujar una lista de monedas provenientes de una API REST y somos capaces de darle la posibilidad al usuario a que encuentre dentro de la lista la moneda que más le interese. 
+Ahora estamos en condiciones de entregar al usuario una version de nuestra aplicación y lo que haremos será publicar en un servidor nuestra aplicación. No veremos los detalles de este proceso por ahora, solo explicaremos cuales son los requisitos para concretar esto.
+
+El 1er requisito será crear una cuenta en HEROKU, una plataforma que permite publicar de manera gratuita una aplicación. Instrucciones [acá]
+
+El 2do requisito será ir a nuestra cuenta Travis y crear 2 variable de ambiente.
+    - HEROKU_APP_NAME: debe ser el nombre de la aplicación creada en Heroku
+    - HEROKU_KEY: debe ser la key generada por heroku para nuestra app de la cuál hablamos en las instrucciones anteriores.
+
+## Parte 5: Agregar estilos utilizando las propiedades de SASS
+
+
+
+## Parte 6: Agregar animaciones 
