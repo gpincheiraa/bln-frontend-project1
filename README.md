@@ -72,6 +72,12 @@ Se debe agregar una clase al tag `<select>` llamada `home__select--currency`. El
 
 *Resultado esperado:*
 
+*Selector de moneda cerrado*
+![Alt text](docs/part3/img2.png?raw=true "select closed")
+
+*Selector de moneda abierto*
+![Alt text](docs/part3/img1.png?raw=true "select opened")
+
 ## Parte 4: Scroll que deje centrado en la pantalla y marcado con un color la moneda buscada
 
 
