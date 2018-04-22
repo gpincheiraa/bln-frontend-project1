@@ -48,6 +48,17 @@ function createTable(tableData){
         });
         tableBody.appendChild(rowColumns);
     });
+
+    //Parte 3 Tarea
+    //Implementar código para crear selector de moneda acá
+    const select = document.querySelector('.home__select--currency');
+
+    currencyNames.forEach(currencyName => {
+        const option = document.createElement('option');
+        option.textContent = currencyName;
+        option.value = currencyName;
+        select.appendChild(option);
+    });
 }
 /*
 Ayuda 1:
