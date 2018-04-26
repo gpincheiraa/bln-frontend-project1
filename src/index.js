@@ -2,55 +2,54 @@
 import 'whatwg-fetch';
 import { ApiRequest } from './dataRequest';
 
-function createTable(responseData){
-    const tableData = JSON.parse(responseData);
+function formatColumnName(name) {
+    return `${name[0].toUpperCase()}${name.slice(1)}`;
+}
+function createColumns(columnNames) {
+    const row = document.createDocumentFragment();
+    let thead;
+    ['Currency', ...columnNames].forEach(name => {
+        thead = document.createElement('th');
+        thead.textContent = name;
+        row.appendChild(thead);
+    }); 
+    return row;
+}
+function createTable(tableData){    
+    const table = document.querySelector('.home__table');
+    const select = document.querySelector('.home__select--currency');
+    const theadRow = table.querySelector('thead tr');
+    const parsedData = JSON.parse(tableData);
+    const currencyNames = Object.keys(parsedData);
+    const sampleKey = currencyNames[0];
+    const columnNames = Object.keys(parsedData[sampleKey]).map(formatColumnName);
 
-    console.log(tableData);
+    theadRow.appendChild(createColumns(columnNames));
 
-    //comienzo prueba
+    //Parte 2 Tarea
+    //Implementar código para crear las filas de la tabla basada en la data acá
+    const tableBody = table.querySelector('tbody');
+    currencyNames.forEach(currencyName => {
+        const rowData = parsedData[currencyName];
+        const rowColumns = document.createElement('tr');
+        const option = document.createElement('option');
+        
+        let columnDataValue = document.createElement('td');
+        columnDataValue.textContent = currencyName;
+        rowColumns.appendChild(columnDataValue);
+        
+        Object.keys(rowData).forEach(currencyType => {
+            columnDataValue = document.createElement('td');
+            columnDataValue.textContent = rowData[currencyType];
+            rowColumns.appendChild(columnDataValue);
+        });
+        tableBody.appendChild(rowColumns);
 
-    const tableRow = document.querySelector('table thead tr');
-    const tableColumn = '<th>Currency</th><th>15m</th><th>Last</th><th>Buy</th><th>Sell</th><th>Symbol</th>';
-
-    tableRow.innerHTML = tableColumn;
-
-    const tableBody = document.querySelector('table tbody');
-    let tabledataHtml = '';
-
-    const currencyNames =  Object.keys(tableData);
-
-    //console.log(currencyNames);
-
-      //['USD', 'AUD', 'BRL', 'CAD', 'CHF', 'CLP', 'CNY', 'DKK', 'EUR', 'GBP', 'HKD', 'INR', 'ISK', 'JPY', 'KRW', 'NZD', 'PLN', 'RUB', 'SEK', 'SGD', 'THB', 'TWD']
-
-    for(let i = 0; i < currencyNames.length; i++ ){
-
-      const currencyName = currencyNames[i]
-
-      tabledataHtml += '<tr><td>' + currencyName + '</td>';
-      tabledataHtml += '<td>' + tableData[currencyName]['15m'] + '</td>';
-      tabledataHtml += '<td>' + tableData[currencyName].buy + '</td>';
-      tabledataHtml += '<td>' + tableData[currencyName].last + '</td>';
-      tabledataHtml += '<td>' + tableData[currencyName].sell + '</td>';
-      tabledataHtml += '<td>' + tableData[currencyName].symbol + '</td></tr>';
-
-    }
-
-    tableBody.innerHTML = tabledataHtml;
-
-
-    }
-
-
-    //fin prueba
-
-
-
-    //Parte 1 Tarea
-    //Implementar código para crear la tabla basada en la data acá
-    //No olvidar agregar el código HTML necesario en el archivo index.html
-
-
+        option.textContent = currencyName;
+        option.value = currencyName;
+        select.appendChild(option);
+    });
+}
 /*
 Ayuda 1:
 En este trozo de código estamos ejecutando la petición al servidor, obteniendo la respuesta

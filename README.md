@@ -33,7 +33,7 @@ En el archivo `./src/index.js` hay una función llamada `createTable()`. Impleme
 
 ![Alt text](docs/part1/img.png?raw=true "Column names")
 
-### Parte 2: Crear las filas de la tabla basado en data proveniente de una petición HTTP
+###Parte 2: Crear las filas de la tabla basado en data proveniente de una petición HTTP
 
 En el archivo `./src/index.js` hay una función llamada `createTable()`. Implementar el código que sea capaz de dibujar los datos de una tabla basada en la data provista en la variable `tableData`.
 
@@ -80,8 +80,7 @@ Se debe agregar una clase al tag `<select>` llamada `home__select--currency`. El
 
 ## Parte 4: Scroll que deje centrado en la pantalla y marcado con un color la moneda buscada
 
-
-
+---------------------------------------------------------------------------------------------
 
 Ya tenemos nuestra primera funcionalidad: Somos capaces de dibujar una lista de monedas provenientes de una API REST y somos capaces de darle la posibilidad al usuario a que encuentre dentro de la lista la moneda que más le interese. 
 Ahora estamos en condiciones de entregar al usuario una version de nuestra aplicación y lo que haremos será publicar en un servidor nuestra aplicación. No veremos los detalles de este proceso por ahora, solo explicaremos cuales son los requisitos para concretar esto.
