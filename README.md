@@ -33,7 +33,7 @@ En el archivo `./src/index.js` hay una función llamada `createTable()`. Impleme
 
 ![Alt text](docs/part1/img.png?raw=true "Column names")
 
-###Parte 2: Crear las filas de la tabla basado en data proveniente de una petición HTTP
+### Parte 2: Crear las filas de la tabla basado en data proveniente de una petición HTTP
 
 En el archivo `./src/index.js` hay una función llamada `createTable()`. Implementar el código que sea capaz de dibujar los datos de una tabla basada en la data provista en la variable `tableData`.
 
@@ -68,6 +68,7 @@ utilizar la primera columna para escribir el código de la moneda y en las sigui
 ## Parte 3: Buscador de moneda
 
 En el archivo `./src/index.js` hay una función llamada `createTable()`. Implementar el código que sea capaz de crear una lista de tags `<option>` y `<select>` utilizando la estructura recomendada en [este link](https://www.w3schools.com/tags/tag_select.asp).
+Cada option debe contener el texto con el código de la moneda. Adicionalmente, tal y como está descrito en el link de referencia, cada `<option>` debe tener el atributo `value` también con el código de la moneda.
 Se debe agregar una clase al tag `<select>` llamada `home__select--currency`. El agregar esta clase es sumamente importante ya que los test automatizados se basarán en esto para corroborar que el selector de moneda cumple con los requisitos de esta tarea.
 
 *Resultado esperado:*
@@ -78,7 +79,11 @@ Se debe agregar una clase al tag `<select>` llamada `home__select--currency`. El
 *Selector de moneda abierto*
 ![Alt text](docs/part3/img1.png?raw=true "select opened")
 
-## Parte 4: Scroll que deje centrado en la pantalla y marcado con un color la moneda buscada
+## Parte 4: Agregar una clase a la fila de la tabla que contiene la moneda seleccionada en el select
+
+Agregar al select una nueva opción que sea "TODOS" y que no tenga el atributo `value`. Cuando se seleccione una opción que no sea eata última, se debe buscar en la tabla la fila que este asociada a la moneda y agregar la clase `row__currency--selected`. Cuando se seleccione la opción "TODOS" debe quitarse la clase agregada y nunca fila de la tabla debe tener esta clase.
+
+*Resultado esperado:*
 
 ---------------------------------------------------------------------------------------------
 

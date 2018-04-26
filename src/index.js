@@ -15,9 +15,36 @@ function createColumns(columnNames) {
     }); 
     return row;
 }
+function createOption(label, value) {
+    const option = document.createElement('option');
+    option.textContent = label;
+    if(value) {
+        option.value = value;
+    }
+    return option;
+}
+function handleSelectChange(event) {
+    const select = event.target;
+    const selectedIndex = select.selectedIndex;
+    const optionValue = select.options[selectedIndex].getAttribute('value');
+
+    const tableRows = document.querySelectorAll('.home__table tbody tr');
+    const selectedClass = 'row__currency--selected'
+    
+    Array.from(tableRows).forEach(row => {
+        const currencyColumn = row.querySelector('td:nth-child(1)')
+        if(row.classList.contains(selectedClass)) {
+            row.classList.remove(selectedClass);
+        }
+        if(currencyColumn.textContent === optionValue) {
+            row.classList.add(selectedClass);
+        } 
+    });
+}
 function createTable(tableData){    
     const table = document.querySelector('.home__table');
     const select = document.querySelector('.home__select--currency');
+    const tableBody = table.querySelector('tbody');
     const theadRow = table.querySelector('thead tr');
     const parsedData = JSON.parse(tableData);
     const currencyNames = Object.keys(parsedData);
@@ -25,15 +52,12 @@ function createTable(tableData){
     const columnNames = Object.keys(parsedData[sampleKey]).map(formatColumnName);
 
     theadRow.appendChild(createColumns(columnNames));
+    select.appendChild(createOption('TODOS'));
 
-    //Parte 2 Tarea
-    //Implementar código para crear las filas de la tabla basada en la data acá
-    const tableBody = table.querySelector('tbody');
     currencyNames.forEach(currencyName => {
         const rowData = parsedData[currencyName];
         const rowColumns = document.createElement('tr');
-        const option = document.createElement('option');
-        
+
         let columnDataValue = document.createElement('td');
         columnDataValue.textContent = currencyName;
         rowColumns.appendChild(columnDataValue);
@@ -44,11 +68,10 @@ function createTable(tableData){
             rowColumns.appendChild(columnDataValue);
         });
         tableBody.appendChild(rowColumns);
-
-        option.textContent = currencyName;
-        option.value = currencyName;
-        select.appendChild(option);
+        select.appendChild(createOption(currencyName, currencyName));
     });
+
+    select.addEventListener('change', handleSelectChange);
 }
 /*
 Ayuda 1:
