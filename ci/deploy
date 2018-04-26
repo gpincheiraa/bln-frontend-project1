@@ -9,5 +9,6 @@ echo "============================================================="
 mkdir -p views && cp index.html ./views/index.ejs
 mkdir -p public && cp dist/* ./public/
 cp server/server.js .
+ls -lha
 
 echo "============================================================="

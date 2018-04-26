@@ -8,7 +8,7 @@ install: npm install
 stages:
   - name: functional-test
   - name: deploy
-    # if: branch = master
+    if: branch = master
 jobs:
   include:
     - stage: functional-test
