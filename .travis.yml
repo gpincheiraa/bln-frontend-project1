@@ -17,6 +17,7 @@ jobs:
       script: ./ci/deploy
       deploy: &heroku
         provider: heroku
+        skip_cleanup: true
         app: $HEROKU_APP_NAME
         api_key:
           secure: "$HEROKU_KEY"
