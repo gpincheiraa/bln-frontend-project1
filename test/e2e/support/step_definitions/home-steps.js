@@ -23,7 +23,7 @@ const btcTickerResponse = {
   }
 };
 const currencyNamesList = Object.keys(btcTickerResponse);
-const currencyNameSample = currencyNamesList[0];
+const currencyNameSample = currencyNamesList[1];
 const currencyTypeFormatter = name => `${name[0].toUpperCase()}${name.slice(1)}`;
 const currencyTypesList = Object.keys(btcTickerResponse[currencyNameSample]);
 const expectedColumnNames = [
@@ -69,6 +69,11 @@ then(`I see the currency selector with the currencies given in the data requeste
     const selectBoxElement = $select[0];
     const optionElements = Array.from(selectBoxElement.querySelectorAll('option'));
     
-    optionElements.forEach(optionEl => expect(currencyNamesList).to.include(optionEl.textContent));
+    expect(optionElements[0].textContent).to.eq('TODOS');
+    
+    optionElements.slice(1).forEach(optionEl => {
+      expect(currencyNamesList).to.include(optionEl.textContent);
+      expect(currencyNamesList).to.include(optionEl.getAttribute('value'));
+    });
   });
 });

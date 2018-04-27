@@ -1,3 +1,6 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { version } = require('./package.json');
+
 module.exports = {
     entry: [
       'whatwg-fetch',
@@ -12,6 +15,13 @@ module.exports = {
             { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'}
         ]
     },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: 'index.html',
+            version: `v${version}`,
+            inject: false
+        })
+    ],
     devtool: 'eval-source-map',
     devServer: {
         filename: 'index.bundle.js',

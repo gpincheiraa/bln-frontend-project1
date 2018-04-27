@@ -6,7 +6,6 @@ npm run build
 echo "============================================================="
 echo "      GENERAR ESTRUCTURA APLICACIÓN BACKEND                  "
 echo "============================================================="
-mkdir -p views && cp index.html ./views/index.ejs
 mkdir -p public && cp dist/* ./public/
 cp server/server.js .
 ls -lha
