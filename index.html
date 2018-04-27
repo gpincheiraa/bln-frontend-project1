@@ -9,9 +9,19 @@
     .row__currency--selected {
       background-color: darkgoldenrod;
     }
+    .home__version--fixed {
+      position: fixed;
+      right: 0;
+      padding: 0 1em;
+      color: green;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
+  <span class="home__version--fixed">
+    <pre><%= htmlWebpackPlugin.options.version %></pre>
+  </span>
   <select class="home__select--currency"></select>
   <table class="home__table">
     <thead>

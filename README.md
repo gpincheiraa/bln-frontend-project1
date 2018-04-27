@@ -85,6 +85,14 @@ Agregar al select una nueva opción que sea "TODOS" y que no tenga el atributo `
 
 *Resultado esperado:*
 
+
+
+## Parte 5: Agregar estilos utilizando las propiedades de SASS
+
+
+
+## Parte 6: Redondeo de valor
+
 ---------------------------------------------------------------------------------------------
 
 Ya tenemos nuestra primera funcionalidad: Somos capaces de dibujar una lista de monedas provenientes de una API REST y somos capaces de darle la posibilidad al usuario a que encuentre dentro de la lista la moneda que más le interese. 
@@ -96,8 +104,3 @@ El 2do requisito será ir a nuestra cuenta Travis y crear 2 variable de ambiente
     - HEROKU_APP_NAME: debe ser el nombre de la aplicación creada en Heroku
     - HEROKU_KEY: debe ser la key generada por heroku para nuestra app de la cuál hablamos en las instrucciones anteriores.
 
-## Parte 5: Agregar estilos utilizando las propiedades de SASS
-
-
-
-## Parte 6: Agregar animaciones 
