@@ -1,5 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { version } = require('./package.json');
+const { author, config , version } = require('./package.json');
 
 module.exports = {
     entry: [
@@ -18,6 +18,8 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: 'index.html',
+            author,
+            title: config.title,
             version: `v${version}`,
             inject: false
         })

@@ -21,6 +21,30 @@ La aplicación posee una funcionalidad ya desarrollada que utiliza la siguiente 
 - ejecutar `npm start`
 - abrir `http://localhost:3000/` en el navegador
 
+## Parte 0: Configurar proyecto
+
+- En al archivo `package.json` agregar o modificar las propiedades que cumplan con este formato:
+
+ ```
+    ...
+    "author": "nombre apellido <email>",
+    ...
+    "config": {
+        "title": "titulo del sitio web"
+    },
+    ...
+ ```
+
+- Escribir la información de git asociada al proyecto
+- Cambiarse a la rama dev utilizando `git checkout dev` ya que seguimos [gitflow]()
+- Crear version 0.0.0 utilizando el siguiente comando `npm version 0.0.0`
+- Ejecutar el siguiente comando `git push origin {--tags,dev}`
+
+*Resultado esperado:*
+
+<Foto tab de github mostrando head en 1 respecto de la rama master>
+
+
 ### Parte 1: Crear las columnas de la tabla basado en data proveniente de una petición HTTP
 
 En el archivo `./src/index.js` hay una función llamada `createTable()`. Implementar el código que sea capaz de dibujar las columnas de una tabla basada en la data provista en la variable `tableData`.
@@ -102,12 +126,9 @@ Esta funcionalidad debe seguir las siguientes reglas:
 
 ## Parte 5: Agregar estilos utilizando las propiedades de SASS
 
-## Parte 6: Redondeo de valor
 
-## Parte 7: Actualización cada 1 minuto
 
-## Parte 8: Guardar en caché la última petición exitosa
-
+## Primer release
 ---------------------------------------------------------------------------------------------
 
 Ya tenemos nuestra primera funcionalidad: Somos capaces de dibujar una lista de monedas provenientes de una API REST y somos capaces de darle la posibilidad al usuario a que encuentre dentro de la lista la moneda que más le interese. 
@@ -117,5 +138,15 @@ El 1er requisito será crear una cuenta en HEROKU, una plataforma que permite pu
 
 El 2do requisito será ir a nuestra cuenta Travis y crear 2 variable de ambiente.
     - HEROKU_APP_NAME: debe ser el nombre de la aplicación creada en Heroku
-    - HEROKU_KEY: debe ser la key generada por heroku para nuestra app de la cuál hablamos en las instrucciones anteriores.
+    - HEROKU_KEY: debe ser 
+la key generada por heroku para nuestra app de la cuál hablamos en las instrucciones anteriores.
+
+## Feedback, Issues, Changelog, Roadmap
+
+## Parte 6: Redondeo de valor
+
+## Parte 7: Actualización cada 1 minuto
+
+## Parte 8: Guardar en caché la última petición exitosa
+
 

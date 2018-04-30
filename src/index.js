@@ -41,7 +41,7 @@ function handleSelectChange(event) {
         } 
     });
 }
-function createTable(tableData){    
+function initialize(tableData){    
     const table = document.querySelector('.home__table');
     const select = document.querySelector('.home__select--currency');
     const tableBody = table.querySelector('tbody');
@@ -78,7 +78,7 @@ Ayuda 1:
 En este trozo de código estamos ejecutando la petición al servidor, obteniendo la respuesta
 con los datos necesarios. Una vez ocurrido esto, le decimos
 a la función "apiRequest" que "luego que" (then)
-ocurra lo que tenga que suceder con la petición al servidor ejecute la función "createTable"
+ocurra lo que tenga que suceder con la petición al servidor ejecute la función "initialize"
 */
 ApiRequest()
-    .then(createTable);
+    .then(initialize);

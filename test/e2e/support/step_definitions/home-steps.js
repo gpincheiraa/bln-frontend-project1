@@ -37,6 +37,10 @@ given('I open Home page', () => {
   cy.visit(url);
 });
 
+when(`select the {string} currency in the currency selector`, currencySelected => {
+  cy.get('.home__select--currency').select(currencySelected);
+});
+
 then(`I see Currency, 15m, Last, Sell and Buy column names on the table`, () => {
   const columnNamesSelector = '.home__table thead tr th';
   cy.get(columnNamesSelector).should($th => {
@@ -76,4 +80,18 @@ then(`I see the currency selector with the currencies given in the data requeste
       expect(currencyNamesList).to.include(optionEl.getAttribute('value'));
     });
   });
+});
+
+then(`I see the right row {string} with the class in the table`, currencySelected => {
+  cy.get('.row__currency--selected td:nth-child(1)')
+    .should($row => expect($row[0].textContent).to.eq(currencySelected));
+});
+
+then(`I see that the class is not applied to neither row`, () => {
+  const rowSelectedClass = 'row__currency--selected';
+  cy.get('table tbody')
+    .should($tBody => {
+      Array.from($tBody[0].querySelectorAll('tr'))
+        .forEach(row => expect(row.classList.contains(rowSelectedClass)).to.be.false)
+    });
 });
