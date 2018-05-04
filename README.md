@@ -143,6 +143,8 @@ la key generada por heroku para nuestra app de la cuál hablamos en las instrucc
 
 ## Feedback, Issues, Changelog, Roadmap
 
+
+
 ## Parte 6: Redondeo de valor
 
 ## Parte 7: Actualización cada 1 minuto

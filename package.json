@@ -1,7 +1,10 @@
 {
   "name": "frontend-project-1",
   "version": "0.2.4",
-  "author": "Gonzalo Pincheira <g.pincheira.a@gmail.com>",
+  "author": {
+    "name": "Gonzalo Pincheira",
+    "email": "g.pincheira.a@gmail.com"
+  },
   "scripts": {
     "start": "webpack-dev-server --hot",
     "dev": "npm start -- --watch",

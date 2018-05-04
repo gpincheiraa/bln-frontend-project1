@@ -1,4 +1,3 @@
-
 import 'whatwg-fetch';
 import { ApiRequest } from './dataRequest';
 
@@ -33,12 +32,11 @@ function handleSelectChange(event) {
     
     Array.from(tableRows).forEach(row => {
         const currencyColumn = row.querySelector('td:nth-child(1)')
-        if(row.classList.contains(selectedClass)) {
+        if(currencyColumn.textContent === optionValue) { 
+            row.classList.add(selectedClass);
+        } else if(row.classList.contains(selectedClass)) {
             row.classList.remove(selectedClass);
         }
-        if(currencyColumn.textContent === optionValue) {
-            row.classList.add(selectedClass);
-        } 
     });
 }
 function initialize(tableData){    

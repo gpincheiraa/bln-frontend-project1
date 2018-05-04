@@ -1,6 +1,5 @@
-// __dirname it's from feature file
-const { pageTitleRegex } = require('../support/utils');
 
 then(`I see the title based on the title and author information from package.json`, title => {
-    cy.title().should(title => expect(title).match(pageTitleRegex));
+    const { author, version, config } = require(`../../../package.json`);
+    cy.title().should(title => expect(title).eq(`${config.title} v${version} | ${author.name}`));
 });

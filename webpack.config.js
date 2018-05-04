@@ -18,7 +18,7 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: 'index.html',
-            author,
+            author: author.name,
             title: config.title,
             version: `v${version}`,
             inject: false
