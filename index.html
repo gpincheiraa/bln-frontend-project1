@@ -4,49 +4,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title><%= htmlWebpackPlugin.options.title %> | <%= htmlWebpackPlugin.options.author %></title>
-  <style>
-    .row__currency--selected {
-      background-color: darkgoldenrod;
-    }
-    .home__version--fixed {
-      position: fixed;
-      right: 0;
-      padding: 0 1em;
-      color: green;
-      font-weight: bold;
-    }
-  </style>
+  <title><%= htmlWebpackPlugin.options.title %> <%= htmlWebpackPlugin.options.version %> | <%= htmlWebpackPlugin.options.author %></title>
 </head>
 <body>
   <span class="home__version--fixed">
     <pre><%= htmlWebpackPlugin.options.version %></pre>
   </span>
-  <select class="home__select--currency"></select>
-  <table class="home__table">
-    <thead>
-      <tr>
-
-      </tr>
-    </thead>
-      <tbody>
-
-      </tbody>
-  </table>
-
-  <table class="home__table">
-    <thead>
-      <tr>
-
-      </tr>
-    </thead>
-      <tbody>
-
-      </tbody>
-  </table>
-
-  <!-- Escribir acá código HTML de la tabla solicitada en la parte 1 -->
-
+  <div class="home__dashboard">
+    <div class="dashboard__panel">
+        <h3>BTC value for Country</h3>
+        <form>
+          <label for="currency">Currency</label>
+          <select class="home__select--currency" name="currency"></select>
+        </form>
+        <table class="home__table">
+          <thead>
+            <tr></tr>
+          </thead>
+            <tbody></tbody>
+        </table>
+    </div> 
+    <div class="dashboard__panel">  
+      <h3>My bitcoins</h3>
+    </div>
+  </div>
   <script src="/index.bundle.js"></script>
 </body>
 </html>

@@ -1,0 +1,59 @@
+.row__currency--selected {
+    background-color: darkgoldenrod;
+}
+.home__version--fixed {
+    position: fixed;
+    right: 0;
+    padding: 0 1em;
+    color: green;
+    font-weight: bold;
+}
+.home__dashboard {
+    border: royalblue 1px dotted;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    .dashboard__panel {
+        border: salmon 1px dashed;
+        margin: 1rem;
+        display: flex;
+        flex-direction: row;
+        flex-grow: 1;
+        flex-wrap: wrap;
+    }
+    .dashboard__panel h3 {
+        border: darkblue 1px solid;
+        text-align: center;
+        width: 100%;
+    }
+    .dashboard__panel form {
+        border: rebeccapurple 1px solid;
+        padding: 0.3em;
+        flex-basis: 20%;
+        box-sizing: border-box;
+    }
+    .dashboard__panel table {
+        border: aquamarine 1px solid;
+        box-sizing: border-box;
+        padding: 0.3em;
+        flex-basis: 80%;
+    }
+    .dashboard__panel table td{
+        text-align: right;
+        border: black 1px solid;
+    }
+    .dashboard__panel table th{
+        text-align: center;
+        height: 3em;
+        border: black 1px solid;
+    }
+}
+
+// TASK: https://css-tricks.com/approaches-media-queries-sass/
+// For tablet, cell phone, desktop, retina
+$breakpoint-desktop: 983px;
+@media (max-width: $breakpoint-desktop) {
+    .dashboard__panel:nth-child(1){ order: 2;  }
+    .dashboard__panel:nth-child(2){ order: 1;  }
+}

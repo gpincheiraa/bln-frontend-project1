@@ -3,6 +3,7 @@ const { author, config , version } = require('./package.json');
 
 module.exports = {
     entry: [
+      './src/index.scss',
       'whatwg-fetch',
       './src/index.js'
     ],
@@ -12,13 +13,25 @@ module.exports = {
     },
     module: {
         rules: [
-            { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'}
+            {
+                test: /\.scss$/,
+                use: [
+                    "style-loader", // creates style nodes from JS strings
+                    "css-loader", // translates CSS into CommonJS
+                    "sass-loader" // compiles Sass to CSS
+                ]
+            },
+            { 
+                test: /\.js$/, 
+                exclude: /node_modules/, 
+                loader: 'babel-loader'
+            }
         ]
     },
     plugins: [
         new HtmlWebpackPlugin({
             template: 'index.html',
-            author,
+            author: author.name,
             title: config.title,
             version: `v${version}`,
             inject: false
