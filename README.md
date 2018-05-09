@@ -1,4 +1,6 @@
-## Proyecto 1 Curso FrontEnd Básico
+### Proyecto 1 Curso FrontEnd Básico
+
+# Monitor de valor del Bitcoin
 
 ### Objetivo:
 Contruir una pequeña aplicación que es capaz de de consultar el precio del bitcoin en distintas monedas y desplegar una tabla con la lista de monedas. Tambien contempla un filtro. En esta primera versión debemos contruir un prototipo como el de la siguiente imagen:
@@ -18,6 +20,30 @@ La aplicación posee una funcionalidad ya desarrollada que utiliza la siguiente 
 - ejecutar `npm i`
 - ejecutar `npm start`
 - abrir `http://localhost:3000/` en el navegador
+
+## Parte 0: Configurar proyecto
+
+- En al archivo `package.json` agregar o modificar las propiedades que cumplan con este formato:
+
+ ```
+    ...
+    "author": "nombre apellido <email>",
+    ...
+    "config": {
+        "title": "titulo del sitio web"
+    },
+    ...
+ ```
+
+- Escribir la información de git asociada al proyecto
+- Cambiarse a la rama dev utilizando `git checkout dev` ya que seguimos [gitflow]()
+- Crear version 0.0.0 utilizando el siguiente comando `npm version 0.0.0`
+- Ejecutar el siguiente comando `git push origin {--tags,dev}`
+
+*Resultado esperado:*
+
+<Foto tab de github mostrando head en 1 respecto de la rama master>
+
 
 ### Parte 1: Crear las columnas de la tabla basado en data proveniente de una petición HTTP
 
@@ -65,34 +91,64 @@ utilizar la primera columna para escribir el código de la moneda y en las sigui
 
 // @TODO: Pauta puntajes items anteriores
 
-## Parte 3: Buscador de moneda
+## Parte 3: Selector de moneda
 
 En el archivo `./src/index.js` hay una función llamada `createTable()`. Implementar el código que sea capaz de crear una lista de tags `<option>` y `<select>` utilizando la estructura recomendada en [este link](https://www.w3schools.com/tags/tag_select.asp).
 Cada option debe contener el texto con el código de la moneda. Adicionalmente, tal y como está descrito en el link de referencia, cada `<option>` debe tener el atributo `value` también con el código de la moneda.
+Agregar al select una nueva opción que contenga el texto `TODOS` y que no tenga el atributo `value`. Esta opción debe ser la primera de la lista.
 Se debe agregar una clase al tag `<select>` llamada `home__select--currency`. El agregar esta clase es sumamente importante ya que los test automatizados se basarán en esto para corroborar que el selector de moneda cumple con los requisitos de esta tarea.
 
 *Resultado esperado:*
 
 *Selector de moneda cerrado*
-![Alt text](docs/part3/img2.png?raw=true "select closed")
+![Alt text](docs/part3/img1.png?raw=true "select closed")
 
 *Selector de moneda abierto*
-![Alt text](docs/part3/img1.png?raw=true "select opened")
+![Alt text](docs/part3/img2.png?raw=true "select opened")
 
 ## Parte 4: Agregar una clase a la fila de la tabla que contiene la moneda seleccionada en el select
 
-Agregar al select una nueva opción que sea "TODOS" y que no tenga el atributo `value`. Cuando se seleccione una opción que no sea eata última, se debe buscar en la tabla la fila que este asociada a la moneda y agregar la clase `row__currency--selected`. Cuando se seleccione la opción "TODOS" debe quitarse la clase agregada y nunca fila de la tabla debe tener esta clase.
+El selector debe ser capaz de agregar la clase `row__currency--selected` a la fila correspondiente a la moneda seleccionada por el usuario en el selector.
+Esta funcionalidad debe seguir las siguientes reglas:
+-  Solo una fila puede contener la clase `row__currency--selected`
+- Al seleccionar la opción `TODOS`, ninguna fila puede contener la clase `row__currency--selected`
 
 *Resultado esperado:*
 
+*Selector de moneda opción **CNY***
+![Alt text](docs/part4/img1.png?raw=true "select closed")
+
+*Selector de moneda opción **CLP***
+![Alt text](docs/part4/img2.png?raw=true "select opened")
+
+*Selector de moneda opción **TODOS**. (opción por defecto)*
+![Alt text](docs/part4/img3.png?raw=true "select opened")
+
+## Parte 5: Agregar estilos utilizando las ventajas de SASS y flexbox a través del estándar BEM
+
+***5.a Crear paneles del dashboard***
+Crear un `<div>` con la clase `home__dashboard`, luego en su interior crear otro `div` con la clase `dashboard__panel` que servirá para envolver la tabla y el selector de moneda.
+A modo de maquetación incluiremos la propiedade `border` para demarcar el área de los elementos y reconocer las distintas secciones de la página. 
+Ambos div deben cumplir la siguientes reglas de estilo para la propiedad `border`:
+
+-   `home__dashboard`: tamaño `1.5px`, color `salmon` y estilo de borde `dashed`.
+-   `dashboard__panel`: tamaño `1.5px`, color `salmon` y estilo de borde `dotted`. 
+
+Seguir como referencia [este link](https://www.w3schools.com/css/css_border.asp)
+
+*Resultado esperado:*
+
+Para mejor referencia del porque del nombre de las clases utilizados en todos los ejercicios de esta tarea revisar [este link](http://getbem.com/introduction/)
+Para mejor referencia del porque estas unidades utilizadas en esta tarea revisar [este link](https://gist.github.com/basham/2175a16ab7c60ce8e001)
+
+***5.b Ordernar los paneles con flexbox***
+
+***5.c Reordenar paneles colapsados***
+Utilizar las propiedad order cuando flexbox colapsa los elementos
+En el archivo `./src/index.scss` utilizar la propiedad `order` en la clase https://www.w3schools.com/cssref/css3_pr_order.asp
 
 
-## Parte 5: Agregar estilos utilizando las propiedades de SASS
-
-
-
-## Parte 6: Redondeo de valor
-
+## Primer release
 ---------------------------------------------------------------------------------------------
 
 Ya tenemos nuestra primera funcionalidad: Somos capaces de dibujar una lista de monedas provenientes de una API REST y somos capaces de darle la posibilidad al usuario a que encuentre dentro de la lista la moneda que más le interese. 
@@ -102,5 +158,15 @@ El 1er requisito será crear una cuenta en HEROKU, una plataforma que permite pu
 
 El 2do requisito será ir a nuestra cuenta Travis y crear 2 variable de ambiente.
     - HEROKU_APP_NAME: debe ser el nombre de la aplicación creada en Heroku
-    - HEROKU_KEY: debe ser la key generada por heroku para nuestra app de la cuál hablamos en las instrucciones anteriores.
+    - HEROKU_KEY: debe ser 
+la key generada por heroku para nuestra app de la cuál hablamos en las instrucciones anteriores.
+
+## Feedback, Issues, Changelog, Roadmap
+
+## Parte 6: Redondeo de valor
+
+## Parte 7: Actualización cada 1 minuto
+
+## Parte 8: Guardar en caché la última petición exitosa
+
 

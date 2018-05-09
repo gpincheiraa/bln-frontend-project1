@@ -1,4 +1,3 @@
-
 import 'whatwg-fetch';
 import { ApiRequest } from './dataRequest';
 
@@ -33,29 +32,27 @@ function handleSelectChange(event) {
     
     Array.from(tableRows).forEach(row => {
         const currencyColumn = row.querySelector('td:nth-child(1)')
-        if(row.classList.contains(selectedClass)) {
+        if(currencyColumn.textContent === optionValue) { 
+            row.classList.add(selectedClass);
+        } else if(row.classList.contains(selectedClass)) {
             row.classList.remove(selectedClass);
         }
-        if(currencyColumn.textContent === optionValue) {
-            row.classList.add(selectedClass);
-        } 
     });
 }
-function createTable(tableData){    
+function initialize(tableData){
     const table = document.querySelector('.home__table');
     const select = document.querySelector('.home__select--currency');
     const tableBody = table.querySelector('tbody');
     const theadRow = table.querySelector('thead tr');
-    const parsedData = JSON.parse(tableData);
-    const currencyNames = Object.keys(parsedData);
+    const currencyNames = Object.keys(tableData);
     const sampleKey = currencyNames[0];
-    const columnNames = Object.keys(parsedData[sampleKey]).map(formatColumnName);
+    const columnNames = Object.keys(tableData[sampleKey]).map(formatColumnName);
 
     theadRow.appendChild(createColumns(columnNames));
     select.appendChild(createOption('TODOS'));
 
     currencyNames.forEach(currencyName => {
-        const rowData = parsedData[currencyName];
+        const rowData = tableData[currencyName];
         const rowColumns = document.createElement('tr');
 
         let columnDataValue = document.createElement('td');
@@ -78,7 +75,6 @@ Ayuda 1:
 En este trozo de código estamos ejecutando la petición al servidor, obteniendo la respuesta
 con los datos necesarios. Una vez ocurrido esto, le decimos
 a la función "apiRequest" que "luego que" (then)
-ocurra lo que tenga que suceder con la petición al servidor ejecute la función "createTable"
+ocurra lo que tenga que suceder con la petición al servidor ejecute la función "initialize"
 */
-ApiRequest()
-    .then(createTable);
+ApiRequest().then(initialize);
