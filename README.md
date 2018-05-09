@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/gpincheiraa/proyecto_1.svg?branch=master)](https://travis-ci.org/gpincheiraa/proyecto_1)
+
 ### Proyecto 1 Curso FrontEnd Básico
 
 # Monitor de valor del Bitcoin
@@ -138,15 +140,17 @@ Seguir como referencia [este link](https://www.w3schools.com/css/css_border.asp)
 
 *Resultado esperado:*
 
-Para mejor referencia del porque del nombre de las clases utilizados en todos los ejercicios de esta tarea revisar [este link](http://getbem.com/introduction/)
-Para mejor referencia del porque estas unidades utilizadas en esta tarea revisar [este link](https://gist.github.com/basham/2175a16ab7c60ce8e001)
 
 ***5.b Ordernar los paneles con flexbox***
+
 
 ***5.c Reordenar paneles colapsados***
 Utilizar las propiedad order cuando flexbox colapsa los elementos
 En el archivo `./src/index.scss` utilizar la propiedad `order` en la clase https://www.w3schools.com/cssref/css3_pr_order.asp
 
+
+Para mejor referencia del porque del nombre de las clases utilizados en todos los ejercicios de esta tarea revisar [este link que explica la metodología BEM](http://getbem.com/introduction/)
+Para mejor referencia del porque de las unidades utilizadas en esta tarea revisar [este link con un artículo que habla de ello](https://gist.github.com/basham/2175a16ab7c60ce8e001)
 
 ## Primer release
 ---------------------------------------------------------------------------------------------
