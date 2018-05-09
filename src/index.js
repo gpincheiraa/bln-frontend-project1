@@ -39,21 +39,20 @@ function handleSelectChange(event) {
         }
     });
 }
-function initialize(tableData){    
+function initialize(tableData){
     const table = document.querySelector('.home__table');
     const select = document.querySelector('.home__select--currency');
     const tableBody = table.querySelector('tbody');
     const theadRow = table.querySelector('thead tr');
-    const parsedData = JSON.parse(tableData);
-    const currencyNames = Object.keys(parsedData);
+    const currencyNames = Object.keys(tableData);
     const sampleKey = currencyNames[0];
-    const columnNames = Object.keys(parsedData[sampleKey]).map(formatColumnName);
+    const columnNames = Object.keys(tableData[sampleKey]).map(formatColumnName);
 
     theadRow.appendChild(createColumns(columnNames));
     select.appendChild(createOption('TODOS'));
 
     currencyNames.forEach(currencyName => {
-        const rowData = parsedData[currencyName];
+        const rowData = tableData[currencyName];
         const rowColumns = document.createElement('tr');
 
         let columnDataValue = document.createElement('td');
@@ -78,5 +77,4 @@ con los datos necesarios. Una vez ocurrido esto, le decimos
 a la función "apiRequest" que "luego que" (then)
 ocurra lo que tenga que suceder con la petición al servidor ejecute la función "initialize"
 */
-ApiRequest()
-    .then(initialize);
+ApiRequest().then(initialize);
