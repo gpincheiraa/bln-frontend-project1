@@ -18,12 +18,13 @@ module.exports = {
                 use: [
                     "style-loader", // creates style nodes from JS strings
                     "css-loader", // translates CSS into CommonJS
-                    "sass-loader" // compiles Sass to CSS
-                ]
+                    "sass-loader", // compiles Sass to CSS
+                    "postcss-loader" // add vendor prefixes (see postcss.config.js file)
+                ],
             },
             { 
                 test: /\.js$/, 
-                exclude: /node_modules/, 
+                exclude: /node_modules/,
                 loader: 'babel-loader'
             }
         ]
