@@ -29,7 +29,10 @@ La aplicación posee una funcionalidad ya desarrollada que utiliza la siguiente 
 
  ```
     ...
-    "author": "nombre apellido <email>",
+    "author": {
+        "name": "nombre apellido",
+        "email": "email"
+    },
     ...
     "config": {
         "title": "titulo del sitio web"
@@ -167,7 +170,7 @@ la key generada por heroku para nuestra app de la cuál hablamos en las instrucc
 
 ## Feedback, Issues, Changelog, Roadmap
 
-## Parte 6: Redondeo de valor
+## Parte 6: Formateo de valor
 
 ## Parte 7: Actualización cada 1 minuto
 
