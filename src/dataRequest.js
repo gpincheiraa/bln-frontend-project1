@@ -5,4 +5,5 @@ export const ApiRequest = () => {
     return fetch(apiUrl)
       .then(response => response.text())
       .then(response => JSON.parse(response));
+      //  .then(response => );
 };

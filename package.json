@@ -1,6 +1,6 @@
 {
   "name": "frontend-project-1",
-  "version": "0.2.4",
+  "version": "0.3.0",
   "author": {
     "name": "Gonzalo Pincheira",
     "email": "g.pincheira.a@gmail.com"
@@ -17,8 +17,8 @@
   "browserslist": [
     "> 0.3%",
     "last 7 versions",
-    "Android >= 4", 
-    "Firefox >= 20", 
+    "Android >= 4",
+    "Firefox >= 20",
     "iOS >= 8"
   ],
   "engines": {
