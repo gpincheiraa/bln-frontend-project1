@@ -21,9 +21,8 @@
         border: 1px dashed salmon;
         margin: 1rem;
         display: flex;
-        flex-direction: row;
+        flex-flow: row wrap;
         flex-grow: 1;
-        flex-wrap: wrap;
     
         h3 {
             border: 1px solid darkblue;
@@ -51,6 +50,16 @@
                 height: 3em;
                 border: 1px solid black;
             }
+        }
+    }
+}
+
+@media (max-width: $breakpoint-table-desktop) {
+    .dashboard__panel {
+        flex-direction: column;
+
+        form {
+            flex-basis: 100%;
         }
     }
 }

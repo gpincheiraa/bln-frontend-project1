@@ -17,8 +17,8 @@
   "browserslist": [
     "> 0.3%",
     "last 7 versions",
-    "Android >= 4", 
-    "Firefox >= 20", 
+    "Android >= 4",
+    "Firefox >= 20",
     "iOS >= 8"
   ],
   "engines": {
