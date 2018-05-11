@@ -15,10 +15,10 @@ const btcTickerResponse = {
     "symbol": "$"
   },
   "BRL": {
-    "15m": 29668.82,
-    "last": 29668.82,
-    "buy": 29668.82,
-    "sell": 29668.82,
+    "15m": 32529668.82,
+    "last": 32529668.82,
+    "buy": 32529668.82,
+    "sell": 32529668.82,
     "symbol": "R$"
   }
 };
@@ -101,20 +101,22 @@ then(`I see that the class is not applied to neither row`, () => {
 });
 
 then(`I see the data response currency values in the table within {string} format`, currency => {
-  cy.get('.dashboard__panel table tbody tr:nth-child(1)')
-    .should($tRow => {
-      const excludedColumnNames = {
-        'Currency': 0,
-        'Symbol': 5
-      };
-      Array.from($tRow[0].querySelectorAll('td'))
-        .forEach((td, columnIndex) => {
+  const rowsSelector = '.home__table tbody tr';
+  cy.get(rowsSelector).should($trList => {
+    const rowsList = $trList.toArray();
+    currencyNamesList.forEach((currencyName, index) => {
+      const columnElements = rowsList[index].querySelectorAll('td');
+
+      // On this test we will check only values that represent a number value
+      currencyPropsList
+        .filter(key => key !== 'symbol')
+        .forEach((key, index) => {
           const numberFormatRegexMap = {
             'CLP': /^\d{1,3}((\.\d{3})+(\,\d+)?)?$/
-          }
-          if(columnIndex !== excludedColumnNames['Currency'] && columnIndex !== excludedColumnNames['Symbol']) {
-            expect(td.textContent).to.match(numberFormatRegexMap[currency]);
-          }
+          };
+          expect(columnElements[index + 1].textContent).to.match(numberFormatRegexMap[currency]);
         });
-    })
+    });
+  });
+
 })
