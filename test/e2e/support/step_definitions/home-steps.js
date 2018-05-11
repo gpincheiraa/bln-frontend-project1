@@ -25,10 +25,10 @@ const btcTickerResponse = {
 const currencyNamesList = Object.keys(btcTickerResponse);
 const currencyNameSample = currencyNamesList[1];
 const currencyTypeFormatter = name => `${name[0].toUpperCase()}${name.slice(1)}`;
-const currencyTypesList = Object.keys(btcTickerResponse[currencyNameSample]);
+const currencyPropsList = Object.keys(btcTickerResponse[currencyNameSample]);
 const expectedColumnNames = [
   'Currency',
-  ...currencyTypesList.map(currencyTypeFormatter)
+  ...currencyPropsList.map(currencyTypeFormatter)
 ];
 
 given('I open Home page', () => {
@@ -59,10 +59,14 @@ then(`I see the data response rendered as row on the table`, () => {
 
       expect(columnElements[0].textContent).to.eq(currencyName);
 
-      currencyTypesList.forEach((key, index) => {
+      // On this test we will check only Currency and Symbol since that 
+      // in the next exercises we will test in a separate test the format of the currency values
+      currencyPropsList
+        .filter(key => key === 'Currency' || key === 'Symbol')
+        .forEach((key, index) => {
           const targetValue = btcTickerResponse[currencyName][key];
           expect(columnElements[index + 1].textContent).to.eq(`${targetValue}`);
-      });
+        });
     });
   });
 });
@@ -95,3 +99,22 @@ then(`I see that the class is not applied to neither row`, () => {
         .forEach(row => expect(row.classList.contains(rowSelectedClass)).to.be.false)
     });
 });
+
+then(`I see the data response currency values in the table within {string} format`, currency => {
+  cy.get('.dashboard__panel table tbody tr:nth-child(1)')
+    .should($tRow => {
+      const excludedColumnNames = {
+        'Currency': 0,
+        'Symbol': 5
+      };
+      Array.from($tRow[0].querySelectorAll('td'))
+        .forEach((td, columnIndex) => {
+          const numberFormatRegexMap = {
+            'CLP': /^\d{1,3}((\.\d{3})+(\,\d+)?)?$/
+          }
+          if(columnIndex !== excludedColumnNames['Currency'] && columnIndex !== excludedColumnNames['Symbol']) {
+            expect(td.textContent).to.match(numberFormatRegexMap[currency]);
+          }
+        });
+    })
+})
