@@ -26,3 +26,6 @@ Feature: Home
     When select the "TODOS" currency in the currency selector
     Then I see that the class is not applied to neither row 
   
+  Scenario: Currency values are showed in the right language currency format
+    Given I open Home page
+    Then I see the data response currency values in the table within "CLP" format
