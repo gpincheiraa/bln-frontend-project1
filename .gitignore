@@ -6,3 +6,6 @@ public/
 dist/
 views/
 /server.js
+
+npm-debug.log
+btc-config.json

@@ -1,5 +1,7 @@
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { author, config , version } = require('./package.json');
+const { address } = require('./btc-config.json');
 
 module.exports = {
     entry: [
@@ -30,6 +32,9 @@ module.exports = {
         ]
     },
     plugins: [
+        new webpack.DefinePlugin({ 
+            BITCOIN_CONFIG: JSON.stringify({ address: process.env.BITCOIN_ADDRESS || address })
+        }),
         new HtmlWebpackPlugin({
             template: 'index.html',
             author: author.name,
