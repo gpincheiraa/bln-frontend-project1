@@ -1,4 +1,10 @@
 echo "============================================================="
+echo "          CONFIGURANDO DATOS BILLETERA BITCOIN               "
+echo "============================================================="
+echo '{ "address": "$BITCOIN_ADDRESS" }' > btc-config.json
+
+
+echo "============================================================="
 echo "          CONSTRUYENDO APLICACIÓN FRONTEND                   "
 echo "============================================================="
 npm run build

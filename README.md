@@ -165,8 +165,9 @@ El 1er requisito será crear una cuenta en HEROKU, una plataforma que permite pu
 
 El 2do requisito será ir a nuestra cuenta Travis y crear 2 variable de ambiente.
     - HEROKU_APP_NAME: debe ser el nombre de la aplicación creada en Heroku
-    - HEROKU_KEY: debe ser 
-la key generada por heroku para nuestra app de la cuál hablamos en las instrucciones anteriores.
+    - HEROKU_KEY: debe ser la key generada por heroku para nuestra app de la cuál hablamos en las instrucciones anteriores.
+    - BITCOIN_ADDRESS: tu dirección Bitcoin
+
 
 ## Feedback, Issues, Changelog, Roadmap
 
