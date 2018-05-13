@@ -1,6 +1,9 @@
 @import 'variables';
 @import 'table-transform';
 
+.row__currency--selected {
+    background-color: darkgoldenrod;
+}
 .home {
     &__version--fixed {
         position: fixed;
