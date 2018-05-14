@@ -1,0 +1,57 @@
+@font-face {
+    font-family: 'Mark';
+    src: url('../font/Mark-Bold.eot');
+    src: url('../font/Mark-Bold.eot?#iefix') format('embedded-opentype'),
+        url('../font/Mark-Bold.woff2') format('woff2'),
+        url('../font/Mark-Bold.woff') format('woff'),
+        url('../font/Mark-Bold.ttf') format('truetype'),
+        url('../font/Mark-Bold.svg#Mark-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'MarkWebW03';
+    src: url('../font/MarkWebW03-Medium.eot');
+    src: url('../font/MarkWebW03-Medium.eot?#iefix') format('embedded-opentype'),
+        url('../font/MarkWebW03-Medium.woff2') format('woff2'),
+        url('../font/MarkWebW03-Medium.woff') format('woff'),
+        url('../font/MarkWebW03-Medium.ttf') format('truetype'),
+        url('../font/MarkWebW03-Medium.svg#MarkWebW03-Medium') format('svg');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Mark';
+    src: url('../font/Mark-Book.eot');
+    src: url('../font/Mark-Book.eot?#iefix') format('embedded-opentype'),
+        url('../font/Mark-Book.woff2') format('woff2'),
+        url('../font/Mark-Book.woff') format('woff'),
+        url('../font/Mark-Book.ttf') format('truetype'),
+        url('../font/Mark-Book.svg#Mark-Book') format('svg');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'MarkWebW03';
+    src: url('../font/MarkWebW03-Light.eot');
+    src: url('../font/MarkWebW03-Light.eot?#iefix') format('embedded-opentype'),
+        url('../font/MarkWebW03-Light.woff2') format('woff2'),
+        url('../font/MarkWebW03-Light.woff') format('woff'),
+        url('../font/MarkWebW03-Light.ttf') format('truetype'),
+        url('../font/MarkWebW03-Light.svg#MarkWebW03-Light') format('svg');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'MarkWebPro-ExtraLightW01-Rg';
+    src: url('MarkWebPro-ExtraLightW01-Rg.eot');
+    src: url('MarkWebPro-ExtraLightW01-Rg.eot?#iefix') format('embedded-opentype'),
+        url('MarkWebPro-ExtraLightW01-Rg.woff2') format('woff2'),
+        url('MarkWebPro-ExtraLightW01-Rg.woff') format('woff'),
+        url('MarkWebPro-ExtraLightW01-Rg.ttf') format('truetype'),
+        url('MarkWebPro-ExtraLightW01-Rg.svg#MarkWebPro-ExtraLightW01-Rg') format('svg');
+    font-weight: 200;
+    font-style: normal;
+}
