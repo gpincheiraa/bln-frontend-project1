@@ -30,14 +30,25 @@ const expectedColumnNames = [
   'Currency',
   ...currencyPropsList.map(currencyTypeFormatter)
 ];
+let actualViewport = 'macbook-15';
+
+beforeEach(() => {
+  cy.viewport(actualViewport);
+  cy.server();
+  return cy.route('https://blockchain.info/es/ticker', btcTickerResponse);
+});
 
 given('I open Home page', () => {
-  cy.server();
-  cy.route('https://blockchain.info/es/ticker', btcTickerResponse);
   cy.visit(url);
 });
 
-when(`select the {string} currency in the currency selector`, currencySelected => {
+given('I open Home page on {string}', viewport => {
+  actualViewport = viewport;
+  cy.viewport(viewport);
+  cy.visit(url);
+});
+
+when(`select the {string} in the currency selector`, currencySelected => {
   cy.get('.home__select--currency').select(currencySelected);
 });
 

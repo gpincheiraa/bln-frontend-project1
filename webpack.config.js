@@ -3,6 +3,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { author, config , version } = require('./package.json');
 const { address } = require('./btc-config.json');
 
+const fontLocal = 'file-loader?name=[name].[ext]';
+
 module.exports = {
     entry: [
       './src/index.scss',
@@ -16,10 +18,14 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.(eot|ttf|woff|woff2)$/, loader: fontLocal
+            },
+            {
                 test: /\.scss$/,
                 use: [
                     "style-loader", // creates style nodes from JS strings
                     "css-loader", // translates CSS into CommonJS
+                    "resolve-url-loader", // load files on sass files like eot font files
                     "sass-loader", // compiles Sass to CSS
                     "postcss-loader" // add vendor prefixes (see postcss.config.js file)
                 ],

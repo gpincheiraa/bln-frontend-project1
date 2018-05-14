@@ -158,6 +158,7 @@ Para mejor referencia del porque de las unidades utilizadas en esta tarea revisa
 ## Primer release
 ---------------------------------------------------------------------------------------------
 
+
 Ya tenemos nuestra primera funcionalidad: Somos capaces de dibujar una lista de monedas provenientes de una API REST y somos capaces de darle la posibilidad al usuario a que encuentre dentro de la lista la moneda que más le interese. 
 Ahora estamos en condiciones de entregar al usuario una version de nuestra aplicación y lo que haremos será publicar en un servidor nuestra aplicación. No veremos los detalles de este proceso por ahora, solo explicaremos cuales son los requisitos para concretar esto.
 
