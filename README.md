@@ -29,7 +29,10 @@ La aplicación posee una funcionalidad ya desarrollada que utiliza la siguiente 
 
  ```
     ...
-    "author": "nombre apellido <email>",
+    "author": {
+        "name": "nombre apellido",
+        "email": "email"
+    },
     ...
     "config": {
         "title": "titulo del sitio web"
@@ -155,6 +158,7 @@ Para mejor referencia del porque de las unidades utilizadas en esta tarea revisa
 ## Primer release
 ---------------------------------------------------------------------------------------------
 
+
 Ya tenemos nuestra primera funcionalidad: Somos capaces de dibujar una lista de monedas provenientes de una API REST y somos capaces de darle la posibilidad al usuario a que encuentre dentro de la lista la moneda que más le interese. 
 Ahora estamos en condiciones de entregar al usuario una version de nuestra aplicación y lo que haremos será publicar en un servidor nuestra aplicación. No veremos los detalles de este proceso por ahora, solo explicaremos cuales son los requisitos para concretar esto.
 
@@ -162,12 +166,13 @@ El 1er requisito será crear una cuenta en HEROKU, una plataforma que permite pu
 
 El 2do requisito será ir a nuestra cuenta Travis y crear 2 variable de ambiente.
     - HEROKU_APP_NAME: debe ser el nombre de la aplicación creada en Heroku
-    - HEROKU_KEY: debe ser 
-la key generada por heroku para nuestra app de la cuál hablamos en las instrucciones anteriores.
+    - HEROKU_KEY: debe ser la key generada por heroku para nuestra app de la cuál hablamos en las instrucciones anteriores.
+    - BITCOIN_ADDRESS: tu dirección Bitcoin
+
 
 ## Feedback, Issues, Changelog, Roadmap
 
-## Parte 6: Redondeo de valor
+## Parte 6: Formateo de valor
 
 ## Parte 7: Actualización cada 1 minuto
 

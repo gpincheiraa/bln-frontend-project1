@@ -18,7 +18,9 @@ body {
   font-family: 'Mark';
   padding: 1.5rem;
 }
-
+.row__currency--selected {
+    background-color: darkgoldenrod;
+}
 .home {
     &__version--fixed {
         position: fixed;
@@ -57,6 +59,9 @@ body {
         display: flex;
         flex-flow: row wrap;
         flex-grow: 1;
+        &.center {
+            justify-content: center;
+        }
         .header {
           background: $pink;
           width: 100%;
@@ -96,6 +101,15 @@ body {
               }
           }
         }
+    }
+}
+
+.bitcoin {
+    &--balance{
+        font-size: 2.5rem;
+        text-align: center;
+
+        &:after{ content: "BTC"; font-size: 1.7rem; }
     }
 }
 

@@ -4,7 +4,7 @@ import { ApiRequest } from './dataRequest';
 function formatColumnName(name) {
     return `${name[0].toUpperCase()}${name.slice(1)}`;
 }
-function createColumns(columnNames) {
+function createHeaders(columnNames) {
     const row = document.createDocumentFragment();
     let thead;
     ['Currency', ...columnNames].forEach(name => {
@@ -39,7 +39,8 @@ function handleSelectChange(event) {
         }
     });
 }
-function initialize(tableData){
+function initialize({ tableData, balanceData }){
+    const balanceSpan = document.querySelector('.bitcoin--balance');
     const table = document.querySelector('.home__table');
     const select = document.querySelector('.home__select--currency');
     const tableBody = table.querySelector('tbody');
@@ -48,9 +49,14 @@ function initialize(tableData){
     const sampleKey = currencyNames[0];
     const columnNames = Object.keys(tableData[sampleKey]).map(formatColumnName);
 
-    theadRow.appendChild(createColumns(columnNames));
+    //  Set Balance
+    balanceSpan.textContent = balanceData.confirmed_balance;
+
+    // Populate table headers and select
+    theadRow.appendChild(createHeaders(columnNames));
     select.appendChild(createOption('TODOS'));
 
+    // Populate table
     currencyNames.forEach(currencyName => {
         const rowData = tableData[currencyName];
         const rowColumns = document.createElement('tr');

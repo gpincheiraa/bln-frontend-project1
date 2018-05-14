@@ -4,13 +4,13 @@
 @import 'variables';
 @media (max-width: $breakpoint-table-desktop) {
 	/* Force table to not be like tables anymore */
-	table, thead, tbody, th, td, tr { 
+	table, thead, tbody, th, td, tr {
 		display: flex; 
 		flex-direction: column;
 	}
 	
 	/* Hide table headers (but not display: none;, for accessibility) */
-	thead tr { 
+	thead tr {
 		position: absolute;
 		top: -9999px;
 		left: -9999px;
@@ -18,7 +18,7 @@
 	
 	tr { border: 1px solid #ccc; }
 	
-	td { 
+	td {
 		/* Behave  like a "row" */
 		border: none;
 		border-bottom: 1px solid #eee; 
@@ -36,7 +36,7 @@
 		padding-right: 10px; 
 		white-space: nowrap;
 	}
-	
+
 	/*
 	Label the data
 	*/
@@ -44,6 +44,6 @@
 	td:nth-of-type(2):before { content: "15m"; }
 	td:nth-of-type(3):before { content: "Last"; }
 	td:nth-of-type(4):before { content: "Buy"; }
-    td:nth-of-type(5):before { content: "Sell"; }
-    td:nth-of-type(6):before { content: "Symbol"; }
+  td:nth-of-type(5):before { content: "Sell"; }
+  td:nth-of-type(6):before { content: "Symbol"; }
 }
