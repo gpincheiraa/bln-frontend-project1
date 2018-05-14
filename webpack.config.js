@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { author, config , version } = require('./package.json');
 const { address } = require('./btc-config.json');
 
-const fontLocal = 'file-loader?name=[name].[ext]';
+const filesLocal = 'file-loader?name=[name].[ext]';
 
 module.exports = {
     entry: [
@@ -18,7 +18,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.(eot|ttf|woff|woff2)$/, loader: fontLocal
+                test: /\.(eot|ttf|woff|woff2|svg)$/, loader: filesLocal
             },
             {
                 test: /\.scss$/,

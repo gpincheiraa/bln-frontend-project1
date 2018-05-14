@@ -8,15 +8,18 @@
 </head>
 <body>
   <span class="home__version--fixed">
-    <pre><%= htmlWebpackPlugin.options.version %></pre>
+    <pre class="mono"><%= htmlWebpackPlugin.options.version %></pre>
   </span>
   <div class="home__dashboard">
-    <div class="dashboard__panel center">  
+    <div class="dashboard__header center">
       <h3>My bitcoins</h3>
       <span class="bitcoin--balance"></span>
     </div>
     <div class="dashboard__panel">
+      <div class="header">
         <h3>BTC value for Country</h3>
+      </div>
+      <div class="content">
         <form>
           <label for="currency">Currency</label>
           <select id="currency" class="home__select--currency" name="currency"></select>
@@ -27,7 +30,10 @@
           </thead>
             <tbody></tbody>
         </table>
-    </div> 
+      </div>
+
+
+    </div>
   </div>
   <script src="/index.bundle.js"></script>
 </body>
