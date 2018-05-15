@@ -22,6 +22,15 @@ const btcTickerResponse = {
     "symbol": "R$"
   }
 };
+const btcBalanceResponse = {
+  "status" : "success",
+  "data" : {
+    "network" : "BTC",
+    "address" : "1PJXd9572EDU7i1k2QD9WBujwpuy8pXqyV",
+    "confirmed_balance" : "2.25000",
+    "unconfirmed_balance" : "2.25000"
+  }
+};
 const currencyNamesList = Object.keys(btcTickerResponse);
 const currencyNameSample = currencyNamesList[1];
 const currencyTypeFormatter = name => `${name[0].toUpperCase()}${name.slice(1)}`;
@@ -33,9 +42,13 @@ const expectedColumnNames = [
 let actualViewport = 'macbook-15';
 
 beforeEach(() => {
-  cy.viewport(actualViewport);
-  cy.server();
-  return cy.route('https://blockchain.info/es/ticker', btcTickerResponse);
+  cy.getBitcoinInfo()
+    .should(bitcoinInfo => {
+      cy.viewport(actualViewport);
+      cy.server();
+      cy.route('https://blockchain.info/es/ticker', btcTickerResponse);
+      cy.route(`https://chain.so/api/v2/get_address_balance/BTC/${bitcoinInfo.address}`, btcBalanceResponse);
+    });
 });
 
 given('I open Home page', () => {
