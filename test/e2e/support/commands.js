@@ -23,3 +23,8 @@
 //
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+const packageJson  = require('../../../package.json');
+const bitcoinConfig = require('../../../btc-config.json');
+
+Cypress.Commands.add("getProjectInfo", () => packageJson);
+Cypress.Commands.add("getBitcoinInfo", () => bitcoinConfig);

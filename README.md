@@ -1,33 +1,76 @@
-##Proyecto 1 Curso FrontEnd Básico
+[![Build Status](https://travis-ci.org/gpincheiraa/proyecto_1.svg?branch=master)](https://travis-ci.org/gpincheiraa/proyecto_1)
 
-###Objetivo:
-Contruir una pequeña aplicación que es capaz de de consultar el precio del bitcoin
-a través de un buscador. En esta primera versión debemos contruir un prototipo como el de la siguiente imagen:
+### Proyecto 1 Curso FrontEnd Básico
 
-// TODO diagrama prototipo
+# Monitor de valor del Bitcoin
 
-###Requerimientos:
+### Objetivo:
+Contruir una pequeña aplicación que es capaz de de consultar el precio del bitcoin en distintas monedas y desplegar una tabla con la lista de monedas. Tambien contempla un filtro. En esta primera versión debemos contruir un prototipo como el de la siguiente imagen:
+
+// **@TODO**: diagrama prototipo
+
+Como se puede observar en el diagrama también necesitamos incluir el balance de nuestra billetera bitcoin. Para esto el proyecto ya cuenta con un mecanismo que realiza este trabajo en el cual solo con configurar nuestra dirección bitcoin podemos logar este objetivo. Más adelante se explica como realizar esta configuración.
+
+### Requerimientos:
 - NodeJS >= 8.4 instalado a través de NVM. Instrucciones [acá](docs/nvm-install.md)
 - Git
+- Crear un proyecto en [GITHUB](https://github.com). Instrucciones [acá]
+- Crear una cuenta [TRAVIS](https://travis-ci.org) y linkear el repositorio al proyecto github. Instrucciones [acá]
 
-###Contexto
+### Contexto
 La aplicación posee una funcionalidad ya desarrollada que utiliza la siguiente url para obtener una lista `https://blockchain.info/es/ticker` y devuelve un objeto JSON el cual utilizaremos en este proyecto.
 
-###Instalación
+### Instalación
 - ejecutar `npm i`
 - ejecutar `npm start`
 - abrir `http://localhost:3000/` en el navegador
 
-###Parte 1: Crear las columnas de la tabla basado en data proveniente de una petición HTTP
 
-En el archivo `./src/index.js` hay una función llamada `createTable()`. Implementar el código que sea capaz de dibujar una tabla basada en la data provista en la variable `tableData`.
+## Parte 0: Configurar proyecto
 
-- En el archivo `index.html` escribir el código HTML necesario. La tabla debe estar estructurada siguiendo la estructura recomendada en [este link](https://www.w3schools.com/tags/tag_thead.asp) utilizando los elementos <thead> y <th>. 
-- Los nombres de las columnas de la tabla deben estar basados en la estructura del objeto que representa el valor del Bitcoin para una divisa. Adicionalmente debe agregarse una columna extra al inicio de nombre "Currency"
-- Los nombres de las columnas deben comenzar con la primera letra en mayúscula
+- En al archivo `package.json` agregar o modificar las propiedades que cumplan con este formato:
+
+ ```
+    ...
+    "author": {
+        "name": "nombre apellido",
+        "email": "email"
+    },
+    ...
+    "config": {
+        "title": "titulo del sitio web"
+    },
+    ...
+ ```
+
+- Escribir la información de git asociada al proyecto
+- Cambiarse a la rama dev utilizando `git checkout dev` ya que seguimos [gitflow]()
+- Crear version 0.0.0 utilizando el siguiente comando `npm version 0.0.0`
+- Ejecutar el siguiente comando `git push origin {--tags,dev}`
 
 *Resultado esperado:*
 
-![Alt text](docs/part1/img.png?raw=true "Column names")
+<Foto tab de github mostrando head en 1 respecto de la rama master>
 
-###Parte 2: Crear las filas de la tabla basado en data proveniente de una petición HTTP
+// **@TODO**: Página de introducción a las Bitcoin Wallets
+- Crear archivo `btc-config.json` 
+
+## Indice Curso
+
+- [Parte 1: Crear las columnas de la tabla basado en data proveniente de una petición HTTP](docs/part1/part1.md)
+
+- [Parte 2: Crear las filas de la tabla basado en data proveniente de una petición HTTP](docs/part2/part2.md)
+
+- [Parte 3: Selector de moneda](docs/part3/part3.md)
+
+- [Parte 4: Agregar una clase a la fila de la tabla que contiene la moneda seleccionada en el select](docs/part4/part4.md)
+
+- [Parte 5: Agregar estilos utilizando las ventajas de SASS y flexbox a través del estándar BEM](docs/part5/part5.md)
+
+- [Parte 6: Formateo de valor](docs/part6/part6.md)
+
+- [Parte 7: Actualización cada 1 minuto](docs/part7/part7.md)
+
+- [Parte 8: Manejo offline guardando en caché las últimas peticiones exitosas](docs/part8/part8.md)
+
+// @TODO: Pauta puntajes

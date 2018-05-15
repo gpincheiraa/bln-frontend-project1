@@ -1,10 +1,26 @@
 language: node_js
 sudo: false
-node_js: 8.8.0
-install: npm install
+node_js: 
+  - "node"
+cache:
+  directories:
+    - node_modules
+install: 
+  - npm i -g npm@5.7.1
+  - npm ci
+stages:
+  - name: functional-test
+  - name: deploy
+    if: branch = master
 jobs:
   include:
-    - stage: Build 
-      script: npm run build
-    - stage: Functional Test
-      script: npm start & (wait-on http://localhost:3000 && cypress run)
+    - stage: functional-test
+      script: ./ci/functional-test
+    - stage: deploy 
+      script: ./ci/deploy
+      deploy: &heroku
+        provider: heroku
+        skip_cleanup: true
+        app: $HEROKU_APP_NAME
+        api_key:
+          secure: "$HEROKU_KEY"
