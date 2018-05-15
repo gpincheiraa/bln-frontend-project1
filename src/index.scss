@@ -1,56 +1,124 @@
 @import 'variables';
 @import 'table-transform';
 
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+.mono {
+  font-family: $mono;
+}
+body {
+  background: $lightgray;
+  font-family: 'Mark';
+  padding: 1.5rem;
+}
+.row__currency--selected {
+    background-color: darkgoldenrod;
+}
 .home {
     &__version--fixed {
         position: fixed;
+        top: 0;
         right: 0;
-        padding: 0 1em;
-        color: green;
-        font-weight: bold;
+        background: $black;
+        padding: 0 .5rem;
+        color: white;
+        font-size: 0.8rem;
+        font-weight: normal;
     }
     &__dashboard {
-        border: 1px dotted royalblue;
+        background: white;
+        // border: 1px dotted royalblue;
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
+        border-radius: 3px;
     }
 }
 .dashboard {
+    &__header {
+      display: flex;
+      justify-content: center;
+      background: $blue;
+      padding: 2rem 0;
+      border-radius: 3px 3px 0 0;
+      h3 {
+        color: white;
+        font-size: 2rem;
+      }
+    }
     &__panel {
         border: 1px dashed salmon;
         margin: 1rem;
         display: flex;
-        flex-direction: row;
+        flex-flow: row wrap;
         flex-grow: 1;
-        flex-wrap: wrap;
-    
-        h3 {
-            border: 1px solid darkblue;
-            text-align: center;
-            width: 100%;
+        &.center {
+            justify-content: center;
         }
-        form {
-            border: 1px solid rebeccapurple;
-            padding: 0.3em;
-            flex-basis: 20%;
-            box-sizing: border-box;
+        .header {
+          background: $pink;
+          width: 100%;
+          padding: 1rem;
+          display: flex;
+          justify-content: center;
+          h3 {
+              border: 1px solid darkblue;
+              text-align: center;
+          }
         }
-        table {
-            border: 1px solid aquamarine;
-            box-sizing: border-box;
-            padding: 0.3em;
-            flex-basis: 80%;
+        .content {
+          display: flex;
+          flex-basis: 100%;
 
-            td {
-                text-align: right;
-                border: 1px solid black;
-            }
-            th {
-                text-align: center;
-                height: 3em;
-                border: 1px solid black;
-            }
+          form {
+              border: 1px solid rebeccapurple;
+              padding: 0.3em;
+              flex-basis: 20%;
+              box-sizing: border-box;
+          }
+          table {
+              border: 1px solid aquamarine;
+              box-sizing: border-box;
+              padding: 0.3em;
+              flex-basis: 80%;
+
+              td {
+                  text-align: right;
+                  border: 1px solid black;
+                  font-family: $mono;
+              }
+              th {
+                  text-align: center;
+                  height: 3em;
+                  border: 1px solid black;
+              }
+          }
+        }
+    }
+}
+
+.bitcoin {
+    &--balance{
+        font-size: 2.5rem;
+        text-align: center;
+
+        &:after{ content: "BTC"; font-size: 1.7rem; }
+    }
+}
+
+@media (max-width: $breakpoint-table-desktop) {
+    .dashboard__panel {
+        flex-direction: column;
+
+        form {
+            flex-basis: 100%;
         }
     }
 }

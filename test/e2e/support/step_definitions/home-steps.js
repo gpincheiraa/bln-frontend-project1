@@ -15,29 +15,40 @@ const btcTickerResponse = {
     "symbol": "$"
   },
   "BRL": {
-    "15m": 29668.82,
-    "last": 29668.82,
-    "buy": 29668.82,
-    "sell": 29668.82,
+    "15m": 32529668.82,
+    "last": 32529668.82,
+    "buy": 32529668.82,
+    "sell": 32529668.82,
     "symbol": "R$"
   }
 };
 const currencyNamesList = Object.keys(btcTickerResponse);
 const currencyNameSample = currencyNamesList[1];
 const currencyTypeFormatter = name => `${name[0].toUpperCase()}${name.slice(1)}`;
-const currencyTypesList = Object.keys(btcTickerResponse[currencyNameSample]);
+const currencyPropsList = Object.keys(btcTickerResponse[currencyNameSample]);
 const expectedColumnNames = [
   'Currency',
-  ...currencyTypesList.map(currencyTypeFormatter)
+  ...currencyPropsList.map(currencyTypeFormatter)
 ];
+let actualViewport = 'macbook-15';
+
+beforeEach(() => {
+  cy.viewport(actualViewport);
+  cy.server();
+  return cy.route('https://blockchain.info/es/ticker', btcTickerResponse);
+});
 
 given('I open Home page', () => {
-  cy.server();
-  cy.route('https://blockchain.info/es/ticker', btcTickerResponse);
   cy.visit(url);
 });
 
-when(`select the {string} currency in the currency selector`, currencySelected => {
+given('I open Home page on {string}', viewport => {
+  actualViewport = viewport;
+  cy.viewport(viewport);
+  cy.visit(url);
+});
+
+when(`select the {string} in the currency selector`, currencySelected => {
   cy.get('.home__select--currency').select(currencySelected);
 });
 
@@ -59,10 +70,14 @@ then(`I see the data response rendered as row on the table`, () => {
 
       expect(columnElements[0].textContent).to.eq(currencyName);
 
-      currencyTypesList.forEach((key, index) => {
+      // On this test we will check only Currency and Symbol since that 
+      // in the next exercises we will test in a separate test the format of the currency values
+      currencyPropsList
+        .filter(key => key === 'Currency' || key === 'Symbol')
+        .forEach((key, index) => {
           const targetValue = btcTickerResponse[currencyName][key];
           expect(columnElements[index + 1].textContent).to.eq(`${targetValue}`);
-      });
+        });
     });
   });
 });
@@ -95,3 +110,24 @@ then(`I see that the class is not applied to neither row`, () => {
         .forEach(row => expect(row.classList.contains(rowSelectedClass)).to.be.false)
     });
 });
+
+then(`I see the data response currency values in the table within {string} format`, currency => {
+  const rowsSelector = '.home__table tbody tr';
+  cy.get(rowsSelector).should($trList => {
+    const rowsList = $trList.toArray();
+    currencyNamesList.forEach((currencyName, index) => {
+      const columnElements = rowsList[index].querySelectorAll('td');
+
+      // On this test we will check only values that represent a number value
+      currencyPropsList
+        .filter(key => key !== 'symbol')
+        .forEach((key, index) => {
+          const numberFormatRegexMap = {
+            'CLP': /^\d{1,3}((\.\d{3})+(\,\d+)?)?$/
+          };
+          expect(columnElements[index + 1].textContent).to.match(numberFormatRegexMap[currency]);
+        });
+    });
+  });
+
+})
