@@ -53,8 +53,12 @@ La aplicación posee una funcionalidad ya desarrollada que utiliza la siguiente 
 <Foto tab de github mostrando head en 1 respecto de la rama master>
 
 // **@TODO**: Página de introducción a las Bitcoin Wallets
-- Crear archivo `btc-config.json` 
-
+- Crear archivo `btc-config.json` con la siguiente estructura: 
+```
+{
+  "address": ""
+}
+```
 ## Indice Curso
 
 - [Parte 1: Crear las columnas de la tabla basado en data proveniente de una petición HTTP](docs/part1/part1.md)
