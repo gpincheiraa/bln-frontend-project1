@@ -16,10 +16,9 @@ html {
 body {
   background: $lightgray;
   font-family: 'Mark';
-  padding: 1.5rem;
 }
 .row__currency--selected {
-    background-color: darkgoldenrod;
+    background-color: rgba( $cream, .3 );
 }
 .home {
     &__version--fixed {
@@ -38,7 +37,6 @@ body {
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
-        border-radius: 3px;
     }
 }
 .dashboard {
@@ -54,8 +52,8 @@ body {
       }
     }
     &__panel {
-        border: 1px dashed salmon;
-        margin: 1rem;
+        margin: 0 1rem;
+        margin-bottom: 2rem;
         display: flex;
         flex-flow: row wrap;
         flex-grow: 1;
@@ -63,13 +61,11 @@ body {
             justify-content: center;
         }
         .header {
-          background: $pink;
           width: 100%;
-          padding: 1rem;
+          padding: 2rem;
           display: flex;
           justify-content: center;
           h3 {
-              border: 1px solid darkblue;
               text-align: center;
           }
         }
@@ -78,26 +74,36 @@ body {
           flex-basis: 100%;
 
           form {
-              border: 1px solid rebeccapurple;
-              padding: 0.3em;
+              display: flex;
+              flex-direction: column;
+              padding: 1em;
               flex-basis: 20%;
               box-sizing: border-box;
+              background: #f7f7f7;
           }
           table {
-              border: 1px solid aquamarine;
+              margin: 0 1rem;
+              background: #f7f7f7;
               box-sizing: border-box;
               padding: 0.3em;
               flex-basis: 80%;
+              border-collapse: collapse;
+              thead {
+                border-bottom: 1px solid #c7c7c7;
+              }
 
               td {
                   text-align: right;
-                  border: 1px solid black;
                   font-family: $mono;
+                  font-size: 0.9rem;
+                  padding: 0.15rem 0;
+
               }
+
               th {
+                  font-weight: normal;
                   text-align: center;
                   height: 3em;
-                  border: 1px solid black;
               }
           }
         }
