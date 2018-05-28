@@ -1,39 +1,44 @@
-/*  
+/*
     source: https://css-tricks.com/responsive-data-tables/
 */
 @import 'variables';
-@media (max-width: $breakpoint-table-desktop) {
+@media (max-width: $breakpoint-small-tablet) {
 	/* Force table to not be like tables anymore */
-	table, thead, tbody, th, td, tr {
-		display: flex; 
+	table, thead, tbody, th {
+		display: flex;
 		flex-direction: column;
 	}
-	
+
 	/* Hide table headers (but not display: none;, for accessibility) */
 	thead tr {
 		position: absolute;
 		top: -9999px;
 		left: -9999px;
 	}
-	
-	tr { border: 1px solid #ccc; }
-	
+
+	tr {
+		// border: 1px solid #ccc;
+		background: #f7f7f7;
+		display: grid;
+		margin-bottom: 1.5rem;
+	}
+
 	td {
 		/* Behave  like a "row" */
 		border: none;
-		border-bottom: 1px solid #eee; 
+		border-bottom: 1px solid #eee;
 		position: relative;
-		padding-left: 50%; 
+		padding-left: 50%;
 	}
-	
-	td:before { 
+
+	td:before {
 		/* Now like a table header */
 		position: absolute;
 		/* Top/left values mimic padding */
 		top: 6px;
 		left: 6px;
-		width: 45%; 
-		padding-right: 10px; 
+		width: 45%;
+		padding-right: 10px;
 		white-space: nowrap;
 	}
 

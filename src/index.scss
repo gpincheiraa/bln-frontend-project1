@@ -30,6 +30,7 @@ body {
         color: white;
         font-size: 0.8rem;
         font-weight: normal;
+        z-index: 9;
     }
     &__dashboard {
         background: white;
@@ -52,8 +53,10 @@ body {
       }
     }
     &__panel {
-        margin: 0 1rem;
+        // margin: 0 1rem;
+        padding: 1rem;
         margin-bottom: 2rem;
+        max-width: 1280px;
         display: flex;
         flex-flow: row wrap;
         flex-grow: 1;
@@ -62,31 +65,37 @@ body {
         }
         .header {
           width: 100%;
-          padding: 2rem;
+          // padding: 2rem;
           display: flex;
           justify-content: center;
+          align-items: center;
           h3 {
               text-align: center;
+              flex-basis: 50%;
           }
+          form {
+              display: flex;
+              padding: 1em;
+              margin: 2rem 0 3rem;
+              flex-basis: 50%;
+              box-sizing: border-box;
+              background: #f7f7f7;
+          }
+          .select-container {
+
+          }
+
         }
         .content {
           display: flex;
           flex-basis: 100%;
 
-          form {
-              display: flex;
-              flex-direction: column;
-              padding: 1em;
-              flex-basis: 20%;
-              box-sizing: border-box;
-              background: #f7f7f7;
-          }
           table {
-              margin: 0 1rem;
+              // margin: 0 1rem;
               background: #f7f7f7;
               box-sizing: border-box;
               padding: 0.3em;
-              flex-basis: 80%;
+              flex-basis: 100%;
               border-collapse: collapse;
               thead {
                 border-bottom: 1px solid #c7c7c7;
@@ -96,14 +105,20 @@ body {
                   text-align: right;
                   font-family: $mono;
                   font-size: 0.9rem;
-                  padding: 0.15rem 0;
+                  padding: 0.15rem 1rem;
 
               }
 
               th {
                   font-weight: normal;
-                  text-align: center;
+                  text-align: right;
                   height: 3em;
+                  width: 25%;
+                  padding: 0 1rem;
+                  &:nth-of-type(1),
+                  &:nth-of-type(6) {
+                    width: auto;
+                  }
               }
           }
         }
@@ -119,12 +134,34 @@ body {
     }
 }
 
-@media (max-width: $breakpoint-table-desktop) {
-    .dashboard__panel {
-        flex-direction: column;
-
-        form {
-            flex-basis: 100%;
+@media (max-width: $breakpoint-tablet) {
+  .dashboard__panel {
+    .content {
+      table {
+        td {
+          padding: 0.15rem 0.7rem;
         }
+        th {
+          padding: 0 0.7rem;
+        }
+      }
     }
+  }
+}
+
+@media (max-width: $breakpoint-small-tablet) {
+  .dashboard__panel {
+    flex-direction: column;
+    .content {
+      table {
+        background: white;
+        thead {
+          border: none;
+        }
+      }
+      form {
+        flex-basis: 100%;
+      }
+    }
+  }
 }

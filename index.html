@@ -18,12 +18,18 @@
     <div class="dashboard__panel">
       <div class="header">
         <h3>BTC value for Country</h3>
+        <form>
+          <div class="select-container">
+            <label for="currency">Currency</label>
+            <select id="currency" class="home__select--currency" name="currency"></select>
+          </div>
+          <div class="select-container">
+            <label for="other">Some other</label>
+            <select id="other" class="home__select--other" name="other"></select>
+          </div>
+        </form>
       </div>
       <div class="content">
-        <form>
-          <label for="currency">Currency</label>
-          <select id="currency" class="home__select--currency" name="currency"></select>
-        </form>
         <table class="home__table">
           <thead>
             <tr></tr>
