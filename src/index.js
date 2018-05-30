@@ -89,5 +89,5 @@ ApiRequest()
     .then(initializeTable);
 
 ApiRequest()
-    .getCurrenciesValues
+    .getBalance
     .then(initializeBalance);
