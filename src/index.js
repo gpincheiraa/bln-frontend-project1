@@ -39,8 +39,7 @@ function handleSelectChange(event) {
         }
     });
 }
-function initialize({ tableData, balanceData }){
-    const balanceSpan = document.querySelector('.bitcoin--balance');
+function initializeTable(tableData) {
     const table = document.querySelector('.home__table');
     const select = document.querySelector('.home__select--currency');
     const tableBody = table.querySelector('tbody');
@@ -49,8 +48,6 @@ function initialize({ tableData, balanceData }){
     const sampleKey = currencyNames[0];
     const columnNames = Object.keys(tableData[sampleKey]).map(formatColumnName);
 
-    //  Set Balance
-    balanceSpan.textContent = balanceData.confirmed_balance;
 
     // Populate table headers and select
     theadRow.appendChild(createHeaders(columnNames));
@@ -76,6 +73,10 @@ function initialize({ tableData, balanceData }){
 
     select.addEventListener('change', handleSelectChange);
 }
+function initializeBalance(balanceData) {
+    const balanceSpan = document.querySelector('.bitcoin--balance');
+    balanceSpan.textContent = balanceData.confirmed_balance;
+}
 /*
 Ayuda 1:
 En este trozo de código estamos ejecutando la petición al servidor, obteniendo la respuesta
@@ -83,4 +84,10 @@ con los datos necesarios. Una vez ocurrido esto, le decimos
 a la función "apiRequest" que "luego que" (then)
 ocurra lo que tenga que suceder con la petición al servidor ejecute la función "initialize"
 */
-ApiRequest().then(initialize);
+ApiRequest()
+    .getCurrenciesValues
+    .then(initializeTable);
+
+ApiRequest()
+    .getCurrenciesValues
+    .then(initializeBalance);

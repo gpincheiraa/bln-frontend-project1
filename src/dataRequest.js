@@ -1,7 +1,9 @@
 const currenciesUrl = 'https://blockchain.info/es/ticker';
 const balanceUrl = `https://chain.so/api/v2/get_address_balance/BTC/${BITCOIN_CONFIG.address}`;
+
+//Exercise
 const numberFormater = number => {
-  const numberSplitted = number.toString().split('.');
+  const numberSplitted = parseFloat(number.toString()).toFixed(2).split('.');
   const replaceChunksRegex = /[0-9](?=(?:[0-9]{3})+(?![0-9]))/g;
   
   return numberSplitted[0]
@@ -30,12 +32,5 @@ export const ApiRequest = () => {
     .then(response => response.text())
     .then(response => JSON.parse(response).data);
 
-  return Promise.all([
-    getCurrenciesValues,
-    getBalance
-  ])
-    .then(values => ({
-      tableData: values[0],
-      balanceData: values[1]
-    }));
+  return { getCurrenciesValues, getBalance }
 };

@@ -1,24 +1,24 @@
 const url = '/';
 const btcTickerResponse = {
   "USD": {
-    "15m": 9061.42,
-    "last": 9061.42,
-    "buy": 9061.42,
-    "sell": 9061.42,
+    "15m": 9061.4272472882,
+    "last": 9061.4272472882,
+    "buy": 9061.4272472882,
+    "sell": 9061.4272472882,
     "symbol": "$"
   },
   "AUD": {
-    "15m": 11690.58,
-    "last": 11690.58,
-    "buy": 11690.58,
-    "sell": 11690.58,
+    "15m": 11690.5836637,
+    "last": 11690.5836637,
+    "buy": 11690.5836637,
+    "sell": 11690.5836637,
     "symbol": "$"
   },
   "BRL": {
-    "15m": 32529668.82,
-    "last": 32529668.82,
-    "buy": 32529668.82,
-    "sell": 32529668.82,
+    "15m": 32529668.8295,
+    "last": 32529668.8295,
+    "buy": 32529668.8295,
+    "sell": 32529668.8295,
     "symbol": "R$"
   }
 };
@@ -130,17 +130,15 @@ then(`I see the data response currency values in the table within {string} forma
     const rowsList = $trList.toArray();
     currencyNamesList.forEach((currencyName, index) => {
       const columnElements = rowsList[index].querySelectorAll('td');
-
+      const numberFormatRegexMap = {
+        'CLP': /^\d{1,3}((\.\d{3})+(\,\d{1,2})?)?$/
+      };
       // On this test we will check only values that represent a number value
       currencyPropsList
         .filter(key => key !== 'symbol')
         .forEach((key, index) => {
-          const numberFormatRegexMap = {
-            'CLP': /^\d{1,3}((\.\d{3})+(\,\d+)?)?$/
-          };
           expect(columnElements[index + 1].textContent).to.match(numberFormatRegexMap[currency]);
         });
     });
   });
-
 })
