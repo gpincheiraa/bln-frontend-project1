@@ -16,10 +16,9 @@ html {
 body {
   background: $lightgray;
   font-family: 'Mark';
-  padding: 1.5rem;
 }
 .row__currency--selected {
-    background-color: darkgoldenrod;
+    background-color: rgba( $cream, .3 );
 }
 .home {
     &__version--fixed {
@@ -31,6 +30,7 @@ body {
         color: white;
         font-size: 0.8rem;
         font-weight: normal;
+        z-index: 9;
     }
     &__dashboard {
         background: white;
@@ -38,7 +38,6 @@ body {
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
-        border-radius: 3px;
     }
 }
 .dashboard {
@@ -54,8 +53,10 @@ body {
       }
     }
     &__panel {
-        border: 1px dashed salmon;
-        margin: 1rem;
+        // margin: 0 1rem;
+        padding: 1rem;
+        margin-bottom: 2rem;
+        max-width: 1280px;
         display: flex;
         flex-flow: row wrap;
         flex-grow: 1;
@@ -63,41 +64,61 @@ body {
             justify-content: center;
         }
         .header {
-          background: $pink;
           width: 100%;
-          padding: 1rem;
+          // padding: 2rem;
           display: flex;
           justify-content: center;
+          align-items: center;
           h3 {
-              border: 1px solid darkblue;
               text-align: center;
+              flex-basis: 50%;
           }
+          form {
+              display: flex;
+              padding: 1em;
+              margin: 2rem 0 3rem;
+              flex-basis: 50%;
+              box-sizing: border-box;
+              background: #f7f7f7;
+          }
+          .select-container {
+
+          }
+
         }
         .content {
           display: flex;
           flex-basis: 100%;
 
-          form {
-              border: 1px solid rebeccapurple;
-              padding: 0.3em;
-              flex-basis: 20%;
-              box-sizing: border-box;
-          }
           table {
-              border: 1px solid aquamarine;
+              // margin: 0 1rem;
+              background: #f7f7f7;
               box-sizing: border-box;
               padding: 0.3em;
-              flex-basis: 80%;
+              flex-basis: 100%;
+              border-collapse: collapse;
+              thead {
+                border-bottom: 1px solid #c7c7c7;
+              }
 
               td {
                   text-align: right;
-                  border: 1px solid black;
                   font-family: $mono;
+                  font-size: 0.9rem;
+                  padding: 0.15rem 1rem;
+
               }
+
               th {
-                  text-align: center;
+                  font-weight: normal;
+                  text-align: right;
                   height: 3em;
-                  border: 1px solid black;
+                  width: 25%;
+                  padding: 0 1rem;
+                  &:nth-of-type(1),
+                  &:nth-of-type(6) {
+                    width: auto;
+                  }
               }
           }
         }
@@ -113,12 +134,34 @@ body {
     }
 }
 
-@media (max-width: $breakpoint-table-desktop) {
-    .dashboard__panel {
-        flex-direction: column;
-
-        form {
-            flex-basis: 100%;
+@media (max-width: $breakpoint-tablet) {
+  .dashboard__panel {
+    .content {
+      table {
+        td {
+          padding: 0.15rem 0.7rem;
         }
+        th {
+          padding: 0 0.7rem;
+        }
+      }
     }
+  }
+}
+
+@media (max-width: $breakpoint-small-tablet) {
+  .dashboard__panel {
+    flex-direction: column;
+    .content {
+      table {
+        background: white;
+        thead {
+          border: none;
+        }
+      }
+      form {
+        flex-basis: 100%;
+      }
+    }
+  }
 }
