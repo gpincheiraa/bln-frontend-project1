@@ -6,9 +6,9 @@
     "email": "g.pincheira.a@gmail.com"
   },
   "scripts": {
-    "start": "webpack-dev-server --hot",
+    "start": "webpack-dev-server --hot --mode development",
     "dev": "npm start -- --watch",
-    "build": "webpack",
+    "build": "webpack --mode production",
     "test:e2e": "cypress open"
   },
   "config": {
