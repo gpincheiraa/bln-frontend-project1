@@ -6,7 +6,6 @@ const { address } = require('./btc-config.json');
 const filesLocal = 'file-loader?name=[name].[ext]';
 
 module.exports = {
-    mode: 'development',
     entry: [
       './src/index.scss',
       'whatwg-fetch',
