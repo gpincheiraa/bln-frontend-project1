@@ -1,6 +1,6 @@
 {
   "name": "frontend-project-1",
-  "version": "0.6.1",
+  "version": "0.7.2",
   "author": {
     "name": "Gonzalo Pincheira",
     "email": "g.pincheira.a@gmail.com"
@@ -32,12 +32,11 @@
     "autoprefixer": "^8.4.1",
     "babel-core": "^6.24.1",
     "babel-loader": "^7.0.0",
-    "babel-preset-env": "^1.4.0",
-    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-env": "^1.7.0",
     "babel-preset-stage-3": "^6.24.1",
     "css-loader": "^0.28.11",
-    "cypress": "^2.1.0",
-    "cypress-cucumber-preprocessor": "^0.3.0",
+    "cypress": "^3.0.1",
+    "cypress-cucumber-preprocessor": "^1.0.0",
     "file-loader": "^1.1.11",
     "html-webpack-plugin": "^3.2.0",
     "node-sass": "^4.9.0",

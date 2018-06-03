@@ -40,6 +40,7 @@ const expectedColumnNames = [
   ...currencyPropsList.map(currencyTypeFormatter)
 ];
 let actualViewport = 'macbook-15';
+let numberFormatter;
 
 beforeEach(() => {
   cy.getBitcoinInfo()
@@ -49,6 +50,8 @@ beforeEach(() => {
       cy.route('https://blockchain.info/es/ticker', btcTickerResponse);
       cy.route(`https://chain.so/api/v2/get_address_balance/BTC/${bitcoinInfo.address}`, btcBalanceResponse);
     });
+  cy.getNumberFormatter()
+    .should(formatter => numberFormatter = formatter);
 });
 
 given('I open Home page', () => {
@@ -80,16 +83,23 @@ then(`I see the data response rendered as row on the table`, () => {
     const rowsList = $trList.toArray();
     currencyNamesList.forEach((currencyName, index) => {
       const columnElements = rowsList[index].querySelectorAll('td');
-
-      expect(columnElements[0].textContent).to.eq(currencyName);
-
-      // On this test we will check only Currency and Symbol since that 
-      // in the next exercises we will test in a separate test the format of the currency values
-      currencyPropsList
-        .filter(key => key === 'Currency' || key === 'Symbol')
-        .forEach((key, index) => {
-          const targetValue = btcTickerResponse[currencyName][key];
-          expect(columnElements[index + 1].textContent).to.eq(`${targetValue}`);
+      const nonNumericColumns = {
+        CURRENCY: 0,
+        SYMBOL: expectedColumnNames.length - 1
+      };
+      Array.from(columnElements)
+        .forEach((tdElement, index) => {
+          let targetValue;
+          if(index === nonNumericColumns['CURRENCY']) {
+            targetValue = currencyName;
+            expect(tdElement.textContent).to.eq(targetValue);
+          } else if(index === nonNumericColumns['SYMBOL']) {
+            targetValue = btcTickerResponse[currencyName][currencyPropsList[index - 1]];
+            expect(tdElement.textContent).to.eq(targetValue);
+          } else {
+            targetValue = btcTickerResponse[currencyName][currencyPropsList[index - 1]];
+            expect(tdElement.textContent).to.eq(numberFormatter(targetValue));
+          }
         });
     });
   });
