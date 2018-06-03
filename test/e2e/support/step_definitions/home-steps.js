@@ -1,3 +1,4 @@
+const { numberFormatter } = require('../../../src/utils');
 const url = '/';
 const btcTickerResponse = {
   "USD": {
@@ -80,16 +81,23 @@ then(`I see the data response rendered as row on the table`, () => {
     const rowsList = $trList.toArray();
     currencyNamesList.forEach((currencyName, index) => {
       const columnElements = rowsList[index].querySelectorAll('td');
-
-      expect(columnElements[0].textContent).to.eq(currencyName);
-
-      // On this test we will check only Currency and Symbol since that 
-      // in the next exercises we will test in a separate test the format of the currency values
-      currencyPropsList
-        .filter(key => key === 'Currency' || key === 'Symbol')
-        .forEach((key, index) => {
-          const targetValue = btcTickerResponse[currencyName][key];
-          expect(columnElements[index + 1].textContent).to.eq(`${targetValue}`);
+      const nonNumericColumns = {
+        CURRENCY: 0,
+        SYMBOL: expectedColumnNames.length - 1
+      };
+      Array.from(columnElements)
+        .forEach((tdElement, index) => {
+          let targetValue;
+          if(index === nonNumericColumns['CURRENCY']) {
+            targetValue = currencyName;
+            expect(tdElement.textContent).to.eq(targetValue);
+          } else if(index === nonNumericColumns['SYMBOL']) {
+            targetValue = btcTickerResponse[currencyName][currencyPropsList[index - 1]];
+            expect(tdElement.textContent).to.eq(targetValue);
+          } else {
+            targetValue = btcTickerResponse[currencyName][currencyPropsList[index - 1]];
+            expect(tdElement.textContent).to.eq(numberFormatter(targetValue));
+          }
         });
     });
   });
