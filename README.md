@@ -80,3 +80,11 @@ La aplicación posee una funcionalidad ya desarrollada que utiliza la siguiente 
 - [Parte 8: Manejo offline guardando en caché las últimas peticiones exitosas](docs/part8/part8.md)
 
 // @TODO: Pauta puntajes
+
+## Nivel Intermedio
+
+- Guardar en caché la última petición exitosa
+- Aplicar patrones de diseño para reutilizar clases como number formater, modularizar, etc
+- Aplicar linter y buenas prácticas
+- Medir performance
+- aplicar TAD a todo el proyecto
