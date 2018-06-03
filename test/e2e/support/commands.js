@@ -25,6 +25,8 @@
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 const packageJson  = require('../../../package.json');
 const bitcoinConfig = require('../../../btc-config.json');
+const { numberFormatter } = require('../../../src/utils');
 
 Cypress.Commands.add("getProjectInfo", () => packageJson);
 Cypress.Commands.add("getBitcoinInfo", () => bitcoinConfig);
+Cypress.Commands.add("getNumberFormatter", () => numberFormatter);

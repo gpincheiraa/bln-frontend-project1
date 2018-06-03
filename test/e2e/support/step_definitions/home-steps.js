@@ -1,4 +1,3 @@
-const { numberFormatter } = require('../../../src/utils');
 const url = '/';
 const btcTickerResponse = {
   "USD": {
@@ -41,6 +40,7 @@ const expectedColumnNames = [
   ...currencyPropsList.map(currencyTypeFormatter)
 ];
 let actualViewport = 'macbook-15';
+let numberFormatter;
 
 beforeEach(() => {
   cy.getBitcoinInfo()
@@ -50,6 +50,8 @@ beforeEach(() => {
       cy.route('https://blockchain.info/es/ticker', btcTickerResponse);
       cy.route(`https://chain.so/api/v2/get_address_balance/BTC/${bitcoinInfo.address}`, btcBalanceResponse);
     });
+  cy.getNumberFormatter()
+    .should(formatter => numberFormatter = formatter);
 });
 
 given('I open Home page', () => {
