@@ -40,6 +40,7 @@ function handleSelectChange(event) {
     });
 }
 function initializeTable(tableData) {
+    
     const table = document.querySelector('.home__table');
     const select = document.querySelector('.home__select--currency');
     const tableBody = table.querySelector('tbody');
@@ -47,10 +48,15 @@ function initializeTable(tableData) {
     const currencyNames = Object.keys(tableData);
     const sampleKey = currencyNames[0];
     const columnNames = Object.keys(tableData[sampleKey]).map(formatColumnName);
+    let newTBody = document.createElement('tbody');
+    let newTHrow = document.createElement('thead');
 
     // Populate table headers and select
     theadRow.appendChild(createHeaders(columnNames));
     select.appendChild(createOption('TODOS'));
+
+    // Replace old thead with new thead
+    //theadRow.parentNode.replaceChild(newTHrow, theadRow);
 
     // Populate table
     currencyNames.forEach(currencyName => {
@@ -66,12 +72,16 @@ function initializeTable(tableData) {
             columnDataValue.textContent = rowData[currencyType];
             rowColumns.appendChild(columnDataValue);
         });
-        tableBody.appendChild(rowColumns);
+        newTBody.appendChild(rowColumns);
         select.appendChild(createOption(currencyName, currencyName));
     });
 
     select.addEventListener('change', handleSelectChange);
+
+    // Replace old tbody with new tbody
+    tableBody.parentNode.replaceChild(newTBody, tableBody);
 }
+
 function initializeBalance(balanceData) {
     const balanceSpan = document.querySelector('.bitcoin--balance');
     balanceSpan.textContent = balanceData.confirmed_balance;
@@ -89,6 +99,7 @@ let nIntervalBalanceId;
 const oneMinute = 60000;
 
 function intervalCurrencies() {
+    
     nIntervalCurrencyId = setInterval(apiRequestCurrencies, oneMinute);
 }
 
@@ -107,6 +118,7 @@ function apiRequestBalance() {
         .getBalance
         .then(initializeBalance);
 }
+
 
 apiRequestCurrencies();
 apiRequestBalance();
