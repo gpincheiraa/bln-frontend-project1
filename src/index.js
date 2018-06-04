@@ -84,15 +84,16 @@ a la función "apiRequest" que "luego que" (then)
 ocurra lo que tenga que suceder con la petición al servidor ejecute la función "initialize"
 */
 
-var nIntervalCurrencyId; 
-var nIntervalBalanceId; 
+let nIntervalCurrencyId; 
+let nIntervalBalanceId; 
+const oneMinute = 60000;
 
 function intervalCurrencies() {
-    nIntervalCurrencyId = setInterval(apiRequestCurrencies, 6000);
+    nIntervalCurrencyId = setInterval(apiRequestCurrencies, oneMinute);
 }
 
 function intervalBalance() {
-    nIntervalBalanceId = setInterval(apiRequestBalance, 60000);
+    nIntervalBalanceId = setInterval(apiRequestBalance, oneMinute);
 }
 
 function apiRequestCurrencies() {

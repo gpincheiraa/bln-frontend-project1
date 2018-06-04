@@ -65,6 +65,7 @@ beforeEach(() => {
 });
 
 given('I open Home page', () => {
+  cy.clock();
   cy.visit(url);
 });
 
@@ -165,16 +166,14 @@ then(`I see the data response currency values in the table within {string} forma
 
 then(`I see BTC balance with a different value after 60 seconds`, () => {
   const balanceSelector = '.bitcoin--balance';
-  cy.clock();
+  const oneMinute = 60000;
   cy.getBitcoinInfo()
     .should(bitcoinInfo => {
       cy.route(`https://chain.so/api/v2/get_address_balance/BTC/${bitcoinInfo.address}`, btcBalanceResponseAfter);
   });
 
   cy.clock().then((clock) => {
-  clock.tick(60000)
+    clock.tick(oneMinute)
+    cy.get(balanceSelector).should('have.text', '60.25000');
   });
-
-  cy.get(balanceSelector).should('have.text', '60.25000');
-
 });
