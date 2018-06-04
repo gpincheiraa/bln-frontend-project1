@@ -48,7 +48,6 @@ function initializeTable(tableData) {
     const sampleKey = currencyNames[0];
     const columnNames = Object.keys(tableData[sampleKey]).map(formatColumnName);
 
-
     // Populate table headers and select
     theadRow.appendChild(createHeaders(columnNames));
     select.appendChild(createOption('TODOS'));
@@ -89,7 +88,7 @@ var nIntervalCurrencyId;
 var nIntervalBalanceId; 
 
 function intervalCurrencies() {
-    nIntervalCurrencyId = setInterval(apiRequestCurrencies, 60000);
+    nIntervalCurrencyId = setInterval(apiRequestCurrencies, 6000);
 }
 
 function intervalBalance() {
