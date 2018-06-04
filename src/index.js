@@ -84,10 +84,32 @@ con los datos necesarios. Una vez ocurrido esto, le decimos
 a la función "apiRequest" que "luego que" (then)
 ocurra lo que tenga que suceder con la petición al servidor ejecute la función "initialize"
 */
-ApiRequest()
-    .getCurrenciesValues
-    .then(initializeTable);
 
-ApiRequest()
-    .getBalance
-    .then(initializeBalance);
+var nIntervalCurrencyId; 
+var nIntervalBalanceId; 
+
+function intervalCurrencies() {
+    nIntervalCurrencyId = setInterval(apiRequestCurrencies, 60000);
+}
+
+function intervalBalance() {
+    nIntervalBalanceId = setInterval(apiRequestBalance, 60000);
+}
+
+function apiRequestCurrencies() {
+    ApiRequest()
+        .getCurrenciesValues
+        .then(initializeTable);
+}
+
+function apiRequestBalance() {
+    ApiRequest()
+        .getBalance
+        .then(initializeBalance);
+}
+
+apiRequestCurrencies();
+apiRequestBalance();
+
+intervalCurrencies();
+intervalBalance();

@@ -1,4 +1,5 @@
 import { numberFormatter } from './utils';
+var BITCOIN_CONFIG = require('../btc-config');
 
 const currenciesUrl = 'https://blockchain.info/es/ticker';
 const balanceUrl = `https://chain.so/api/v2/get_address_balance/BTC/${BITCOIN_CONFIG.address}`;
