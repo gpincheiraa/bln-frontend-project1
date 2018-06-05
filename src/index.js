@@ -5,7 +5,9 @@ function formatColumnName(name) {
     return `${name[0].toUpperCase()}${name.slice(1)}`;
 }
 function createHeaders(columnNames) {
-    const row = document.createDocumentFragment();
+    const table = document.querySelector('.home__table');
+    const tableHead = table.querySelector('thead');
+    const row = tableHead.insertRow(0); 
     let thead;
     ['Currency', ...columnNames].forEach(name => {
         thead = document.createElement('th');
@@ -44,19 +46,19 @@ function initializeTable(tableData) {
     const table = document.querySelector('.home__table');
     const select = document.querySelector('.home__select--currency');
     const tableBody = table.querySelector('tbody');
-    const theadRow = table.querySelector('thead tr');
+    const tableHead = table.querySelector('thead');
     const currencyNames = Object.keys(tableData);
     const sampleKey = currencyNames[0];
     const columnNames = Object.keys(tableData[sampleKey]).map(formatColumnName);
     let newTBody = document.createElement('tbody');
-    let newTHrow = document.createElement('thead');
+    let newTHead = document.createElement('thead');
 
     // Populate table headers and select
-    theadRow.appendChild(createHeaders(columnNames));
+    newTHead.appendChild(createHeaders(columnNames));
     select.appendChild(createOption('TODOS'));
 
     // Replace old thead with new thead
-    //theadRow.parentNode.replaceChild(newTHrow, theadRow);
+    tableHead.parentNode.replaceChild(newTHead, tableHead);
 
     // Populate table
     currencyNames.forEach(currencyName => {
