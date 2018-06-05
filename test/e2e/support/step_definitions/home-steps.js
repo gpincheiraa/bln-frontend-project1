@@ -223,7 +223,7 @@ then(`I see currency values with differents values after a minute`, () => {
   const rowsSelector = '.home__table tbody tr';
   const oneMinute = 60000;
 
-  function checkTickerResponse(btcTickerResponses) {
+  const checkTickerResponse = btcTickerResponses => {
     let btcTicker = btcTickerResponses;
     cy.get(rowsSelector).should($trList => {
       const rowsList = $trList.toArray();

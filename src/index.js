@@ -60,7 +60,7 @@ function initializeTable(tableData) {
     select.appendChild(createOption('TODOS'));
 
     // Replace old thead with new thead
-    tableHead.parentNode.replaceChild(newTHead, tableHead);
+    table.replaceChild(newTHead, tableHead);
 
     // Populate table
     currencyNames.forEach(currencyName => {
@@ -83,7 +83,7 @@ function initializeTable(tableData) {
     select.addEventListener('change', handleSelectChange);
 
     // Replace old tbody with new tbody
-    tableBody.parentNode.replaceChild(newTBody, tableBody);
+    table.replaceChild(newTBody, tableBody);
 }
 
 function initializeBalance(balanceData) {
@@ -102,11 +102,10 @@ let nIntervalCurrencyId;
 let nIntervalBalanceId; 
 const oneMinute = 60000;
 
-function intervalCurrencies() {
+function setApiRequest() {
+    apiRequestCurrencies();
+    apiRequestBalance();
     nIntervalCurrencyId = setInterval(apiRequestCurrencies, oneMinute);
-}
-
-function intervalBalance() {
     nIntervalBalanceId = setInterval(apiRequestBalance, oneMinute);
 }
 
@@ -122,8 +121,4 @@ function apiRequestBalance() {
         .then(initializeBalance);
 }
 
-apiRequestCurrencies();
-apiRequestBalance();
-
-intervalCurrencies();
-intervalBalance();
+setApiRequest();
