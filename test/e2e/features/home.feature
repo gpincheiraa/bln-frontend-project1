@@ -37,6 +37,10 @@ Feature: Home
     Given I open Home page
     Then I see the data response currency values in the table within "CLP" format
 
-  Scenario: BTC balance should refresh data each 60 seconds
+  Scenario: BTC balance should refresh data each minute
     Given I open Home page
-    Then I see BTC balance with a different value after 60 seconds
+    Then I see BTC balance with a different value after a minute
+
+  Scenario: Currency values should refresh data each minute
+    Given I open Home page
+    Then I see currency values with differents values after a minute
