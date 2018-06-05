@@ -204,24 +204,18 @@ then(`I see BTC balance with a different value after a minute`, () => {
   const balanceSelector = '.bitcoin--balance';
   const oneMinute = 60000;
 
-  cy.clock().then((clock) => {
-    clock.tick(oneMinute)
-    cy.get(balanceSelector).should('have.text', '2.25000');
-  });
+  cy.tick(oneMinute)
+  cy.get(balanceSelector).should('have.text', '2.25000'); 
 
   cy.route(`https://chain.so/api/v2/get_address_balance/BTC/${bitcoinAddress}`, btcBalanceResponseAfter);
 
-  cy.clock().then((clock) => {
-    clock.tick(oneMinute)
-    cy.get(balanceSelector).should('have.text', '60.25000');
-  });
+  cy.tick(oneMinute)
+  cy.get(balanceSelector).should('have.text', '60.25000');
     
   cy.route(`https://chain.so/api/v2/get_address_balance/BTC/${bitcoinAddress}`, btcBalanceResponseAfterMin);
 
-  cy.clock().then((clock) => {
-    clock.tick(oneMinute)
-    cy.get(balanceSelector).should('have.text', '120.25000');
-  });
+  cy.tick(oneMinute)
+  cy.get(balanceSelector).should('have.text', '120.25000');
 
 });
 
@@ -257,16 +251,12 @@ then(`I see currency values with differents values after a minute`, () => {
     });
   }
 
-  cy.clock().then((clock) => {
-    clock.tick(oneMinute)
-    checkTickerResponse(btcTickerResponse);
-  });
+  cy.tick(oneMinute)
+  checkTickerResponse(btcTickerResponse);
   
   cy.route('https://blockchain.info/es/ticker', btcTickerResponseAfter);
 
-  cy.clock().then((clock) => {
-    clock.tick(oneMinute)
-    checkTickerResponse(btcTickerResponseAfter);
-  });
+  cy.tick(oneMinute)
+  checkTickerResponse(btcTickerResponseAfter);
   
 });
