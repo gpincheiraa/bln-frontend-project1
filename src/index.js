@@ -50,6 +50,8 @@ function initializeTable(tableData) {
     const currencyNames = Object.keys(tableData);
     const sampleKey = currencyNames[0];
     const columnNames = Object.keys(tableData[sampleKey]).map(formatColumnName);
+
+    // Create empty tbody and thead
     let newTBody = document.createElement('tbody');
     let newTHead = document.createElement('thead');
 
@@ -101,7 +103,6 @@ let nIntervalBalanceId;
 const oneMinute = 60000;
 
 function intervalCurrencies() {
-    
     nIntervalCurrencyId = setInterval(apiRequestCurrencies, oneMinute);
 }
 
@@ -120,7 +121,6 @@ function apiRequestBalance() {
         .getBalance
         .then(initializeBalance);
 }
-
 
 apiRequestCurrencies();
 apiRequestBalance();
