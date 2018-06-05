@@ -216,7 +216,6 @@ then(`I see BTC balance with a different value after a minute`, () => {
 
   cy.tick(oneMinute)
   cy.get(balanceSelector).should('have.text', '120.25000');
-
 });
 
 then(`I see currency values with differents values after a minute`, () => {
