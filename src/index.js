@@ -5,7 +5,9 @@ function formatColumnName(name) {
     return `${name[0].toUpperCase()}${name.slice(1)}`;
 }
 function createHeaders(columnNames) {
-    const row = document.createDocumentFragment();
+    const table = document.querySelector('.home__table');
+    const tableHead = table.querySelector('thead');
+    const row = tableHead.insertRow(0); 
     let thead;
     ['Currency', ...columnNames].forEach(name => {
         thead = document.createElement('th');
@@ -40,18 +42,25 @@ function handleSelectChange(event) {
     });
 }
 function initializeTable(tableData) {
+    
     const table = document.querySelector('.home__table');
     const select = document.querySelector('.home__select--currency');
     const tableBody = table.querySelector('tbody');
-    const theadRow = table.querySelector('thead tr');
+    const tableHead = table.querySelector('thead');
     const currencyNames = Object.keys(tableData);
     const sampleKey = currencyNames[0];
     const columnNames = Object.keys(tableData[sampleKey]).map(formatColumnName);
 
+    // Create empty tbody and thead
+    let newTBody = document.createElement('tbody');
+    let newTHead = document.createElement('thead');
 
     // Populate table headers and select
-    theadRow.appendChild(createHeaders(columnNames));
+    newTHead.appendChild(createHeaders(columnNames));
     select.appendChild(createOption('TODOS'));
+
+    // Replace old thead with new thead
+    table.replaceChild(newTHead, tableHead);
 
     // Populate table
     currencyNames.forEach(currencyName => {
@@ -67,12 +76,16 @@ function initializeTable(tableData) {
             columnDataValue.textContent = rowData[currencyType];
             rowColumns.appendChild(columnDataValue);
         });
-        tableBody.appendChild(rowColumns);
+        newTBody.appendChild(rowColumns);
         select.appendChild(createOption(currencyName, currencyName));
     });
 
     select.addEventListener('change', handleSelectChange);
+
+    // Replace old tbody with new tbody
+    table.replaceChild(newTBody, tableBody);
 }
+
 function initializeBalance(balanceData) {
     const balanceSpan = document.querySelector('.bitcoin--balance');
     balanceSpan.textContent = balanceData.confirmed_balance;
@@ -84,10 +97,28 @@ con los datos necesarios. Una vez ocurrido esto, le decimos
 a la función "apiRequest" que "luego que" (then)
 ocurra lo que tenga que suceder con la petición al servidor ejecute la función "initialize"
 */
-ApiRequest()
-    .getCurrenciesValues
-    .then(initializeTable);
 
-ApiRequest()
-    .getBalance
-    .then(initializeBalance);
+let nIntervalCurrencyId; 
+let nIntervalBalanceId; 
+const oneMinute = 60000;
+
+function setApiRequest() {
+    apiRequestCurrencies();
+    apiRequestBalance();
+    nIntervalCurrencyId = setInterval(apiRequestCurrencies, oneMinute);
+    nIntervalBalanceId = setInterval(apiRequestBalance, oneMinute);
+}
+
+function apiRequestCurrencies() {
+    ApiRequest()
+        .getCurrenciesValues
+        .then(initializeTable);
+}
+
+function apiRequestBalance() {
+    ApiRequest()
+        .getBalance
+        .then(initializeBalance);
+}
+
+setApiRequest();

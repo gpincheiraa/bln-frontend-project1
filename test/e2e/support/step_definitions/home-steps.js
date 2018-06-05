@@ -22,6 +22,29 @@ const btcTickerResponse = {
     "symbol": "R$"
   }
 };
+const btcTickerResponseAfter = {
+  "USD": {
+    "15m": 90610.4272472882,
+    "last": 90610.4272472882,
+    "buy": 90610.4272472882,
+    "sell": 90610.4272472882,
+    "symbol": "$"
+  },
+  "AUD": {
+    "15m": 116900.5836637,
+    "last": 116900.5836637,
+    "buy": 116900.5836637,
+    "sell": 116900.5836637,
+    "symbol": "$"
+  },
+  "BRL": {
+    "15m": 325296680.8295,
+    "last": 325296680.8295,
+    "buy": 325296680.8295,
+    "sell": 325296680.8295,
+    "symbol": "R$"
+  }
+};
 const btcBalanceResponse = {
   "status" : "success",
   "data" : {
@@ -31,6 +54,27 @@ const btcBalanceResponse = {
     "unconfirmed_balance" : "2.25000"
   }
 };
+
+const btcBalanceResponseAfter = {
+  "status" : "success",
+  "data" : {
+    "network" : "BTC",
+    "address" : "1PJXd9572EDU7i1k2QD9WBujwpuy8pXqyV",
+    "confirmed_balance" : "60.25000",
+    "unconfirmed_balance" : "60.25000"
+  }
+};
+
+const btcBalanceResponseAfterMin = {
+  "status" : "success",
+  "data" : {
+    "network" : "BTC",
+    "address" : "1PJXd9572EDU7i1k2QD9WBujwpuy8pXqyV",
+    "confirmed_balance" : "120.25000",
+    "unconfirmed_balance" : "120.25000"
+  }
+};
+
 const currencyNamesList = Object.keys(btcTickerResponse);
 const currencyNameSample = currencyNamesList[1];
 const currencyTypeFormatter = name => `${name[0].toUpperCase()}${name.slice(1)}`;
@@ -41,6 +85,7 @@ const expectedColumnNames = [
 ];
 let actualViewport = 'macbook-15';
 let numberFormatter;
+let bitcoinAddress;
 
 beforeEach(() => {
   cy.getBitcoinInfo()
@@ -49,12 +94,14 @@ beforeEach(() => {
       cy.server();
       cy.route('https://blockchain.info/es/ticker', btcTickerResponse);
       cy.route(`https://chain.so/api/v2/get_address_balance/BTC/${bitcoinInfo.address}`, btcBalanceResponse);
+      bitcoinAddress = bitcoinInfo.address;
     });
   cy.getNumberFormatter()
     .should(formatter => numberFormatter = formatter);
 });
 
 given('I open Home page', () => {
+  cy.clock();
   cy.visit(url);
 });
 
@@ -151,4 +198,64 @@ then(`I see the data response currency values in the table within {string} forma
         });
     });
   });
-})
+});
+
+then(`I see BTC balance with a different value after a minute`, () => {
+  const balanceSelector = '.bitcoin--balance';
+  const oneMinute = 60000;
+
+  cy.tick(oneMinute)
+  cy.get(balanceSelector).should('have.text', '2.25000'); 
+
+  cy.route(`https://chain.so/api/v2/get_address_balance/BTC/${bitcoinAddress}`, btcBalanceResponseAfter);
+
+  cy.tick(oneMinute)
+  cy.get(balanceSelector).should('have.text', '60.25000');
+    
+  cy.route(`https://chain.so/api/v2/get_address_balance/BTC/${bitcoinAddress}`, btcBalanceResponseAfterMin);
+
+  cy.tick(oneMinute)
+  cy.get(balanceSelector).should('have.text', '120.25000');
+});
+
+then(`I see currency values with differents values after a minute`, () => {
+  const rowsSelector = '.home__table tbody tr';
+  const oneMinute = 60000;
+
+  const checkTickerResponse = btcTickerResponses => {
+    let btcTicker = btcTickerResponses;
+    cy.get(rowsSelector).should($trList => {
+      const rowsList = $trList.toArray();
+      currencyNamesList.forEach((currencyName, index) => {
+        const columnElements = rowsList[index].querySelectorAll('td');
+        const nonNumericColumns = {
+          CURRENCY: 0,
+          SYMBOL: expectedColumnNames.length - 1
+        };
+        Array.from(columnElements)
+          .forEach((tdElement, index) => {
+            let targetValue;
+            if(index === nonNumericColumns['CURRENCY']) {
+              targetValue = currencyName;
+              expect(tdElement.textContent).to.eq(targetValue);
+            } else if(index === nonNumericColumns['SYMBOL']) {
+              targetValue = btcTicker[currencyName][currencyPropsList[index - 1]];
+              expect(tdElement.textContent).to.eq(targetValue);
+            } else {
+              targetValue = btcTicker[currencyName][currencyPropsList[index - 1]];
+              expect(tdElement.textContent).to.eq(numberFormatter(targetValue));
+            }
+          });
+      });
+    });
+  }
+
+  cy.tick(oneMinute)
+  checkTickerResponse(btcTickerResponse);
+  
+  cy.route('https://blockchain.info/es/ticker', btcTickerResponseAfter);
+
+  cy.tick(oneMinute)
+  checkTickerResponse(btcTickerResponseAfter);
+  
+});
