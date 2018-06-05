@@ -41,6 +41,16 @@ const btcBalanceResponseAfter = {
     "unconfirmed_balance" : "60.25000"
   }
 };
+
+const btcBalanceResponseAfterMin = {
+  "status" : "success",
+  "data" : {
+    "network" : "BTC",
+    "address" : "1PJXd9572EDU7i1k2QD9WBujwpuy8pXqyV",
+    "confirmed_balance" : "120.25000",
+    "unconfirmed_balance" : "120.25000"
+  }
+};
 const currencyNamesList = Object.keys(btcTickerResponse);
 const currencyNameSample = currencyNamesList[1];
 const currencyTypeFormatter = name => `${name[0].toUpperCase()}${name.slice(1)}`;
@@ -167,6 +177,12 @@ then(`I see the data response currency values in the table within {string} forma
 then(`I see BTC balance with a different value after 60 seconds`, () => {
   const balanceSelector = '.bitcoin--balance';
   const oneMinute = 60000;
+
+  cy.clock().then((clock) => {
+    clock.tick(oneMinute)
+    cy.get(balanceSelector).should('have.text', '2.25000');
+  });
+
   cy.getBitcoinInfo()
     .should(bitcoinInfo => {
       cy.route(`https://chain.so/api/v2/get_address_balance/BTC/${bitcoinInfo.address}`, btcBalanceResponseAfter);
@@ -175,5 +191,15 @@ then(`I see BTC balance with a different value after 60 seconds`, () => {
   cy.clock().then((clock) => {
     clock.tick(oneMinute)
     cy.get(balanceSelector).should('have.text', '60.25000');
+  });
+
+  cy.getBitcoinInfo()
+    .should(bitcoinInfo => {
+      cy.route(`https://chain.so/api/v2/get_address_balance/BTC/${bitcoinInfo.address}`, btcBalanceResponseAfterMin);
+  });
+
+  cy.clock().then((clock) => {
+    clock.tick(oneMinute)
+    cy.get(balanceSelector).should('have.text', '120.25000');
   });
 });
