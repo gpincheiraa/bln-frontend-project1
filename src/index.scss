@@ -79,7 +79,7 @@ body {
               margin: 2rem 0 3rem;
               flex-basis: 50%;
               box-sizing: border-box;
-              background: #f7f7f7;
+              background: $lightgray;
           }
           .select-container {
 
@@ -92,7 +92,7 @@ body {
 
           table {
               // margin: 0 1rem;
-              background: #f7f7f7;
+              background: $lightgray;
               box-sizing: border-box;
               padding: 0.3em;
               flex-basis: 100%;
