@@ -2,8 +2,7 @@ function formatColumnName(name) {
     return `${name[0].toUpperCase()}${name.slice(1)}`;
 }
 function createHeaders(columnNames) {
-    const table = document.querySelector('.home__table');
-    const tableHead = table.querySelector('thead');
+    const tableHead = document.querySelector('.home__table thead');
     const row = tableHead.insertRow(0); 
     let thead;
     ['Currency', ...columnNames].forEach(name => {
@@ -38,7 +37,7 @@ function handleSelectChange(event) {
         }
     });
 }
-function initializeTable(tableData) {
+export const initializeTable = (tableData) => {
     const table = document.querySelector('.home__table');
     const tableBody = table.querySelector('tbody');
     const tableHead = table.querySelector('thead');
@@ -80,4 +79,6 @@ function initializeTable(tableData) {
 
     // Replace old tbody with new tbody
     table.replaceChild(newTBody, tableBody);
+    
+    select.addEventListener('change', handleSelectChange); 
 }
