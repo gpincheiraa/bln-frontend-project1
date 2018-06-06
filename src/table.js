@@ -1,3 +1,8 @@
+const currencySelectedClassName = 'row__currency--selected'
+let pageState = {
+    currencySelected: null
+};
+
 function formatColumnName(name) {
     return `${name[0].toUpperCase()}${name.slice(1)}`;
 }
@@ -16,7 +21,8 @@ function createOption(label, value) {
     const option = document.createElement('option');
     option.textContent = label;
     if(value) {
-        option.value = value;
+        option.value = value;     
+        option.selected = pageState.currencySelected === value;
     }
     return option;
 }
@@ -24,18 +30,28 @@ function handleSelectChange(event) {
     const select = event.target;
     const selectedIndex = select.selectedIndex;
     const optionValue = select.options[selectedIndex].getAttribute('value');
-
     const tableRows = document.querySelectorAll('.home__table tbody tr');
-    const selectedClass = 'row__currency--selected'
     
     Array.from(tableRows).forEach(row => {
         const currencyColumn = row.querySelector('td:nth-child(1)')
         if(currencyColumn.textContent === optionValue) { 
-            row.classList.add(selectedClass);
-        } else if(row.classList.contains(selectedClass)) {
-            row.classList.remove(selectedClass);
+            row.classList.add(currencySelectedClassName);
+        } else if(row.classList.contains(currencySelectedClassName)) {
+            row.classList.remove(currencySelectedClassName);
         }
     });
+    pageState = {
+        ...pageState,
+        currencySelected : optionValue
+    };
+}
+function getFilterCurrencies() {
+    const select = document.querySelector('.home__select--currency');
+    select.innerHTML = '';
+    select.appendChild(createOption('TODOS'));
+    select.addEventListener('change', handleSelectChange);
+
+    return select;
 }
 export const initializeTable = (tableData) => {
     const table = document.querySelector('.home__table');
@@ -45,6 +61,7 @@ export const initializeTable = (tableData) => {
     const sampleKey = currencyNames[0];
     const columnNames = Object.keys(tableData[sampleKey]).map(formatColumnName);
     const select = getFilterCurrencies();
+
     // Create empty tbody and thead
     let newTBody = document.createElement('tbody');
     let newTHead = document.createElement('thead');
@@ -68,17 +85,15 @@ export const initializeTable = (tableData) => {
             columnDataValue = document.createElement('td');
             columnDataValue.textContent = rowData[currencyType];
             rowCurrencyData.appendChild(columnDataValue);
+            if(currencyName === pageState.currencySelected) {
+                rowCurrencyData.classList.add(currencySelectedClassName);
+            }
         });
         newTBody.appendChild(rowCurrencyData);
         select.appendChild(createOption(currencyName, currencyName));
-
-        if(currencyName === pageState.currencySelected) {
-            row.classList.add(currencySelectedClassName);
-        }
     });
 
     // Replace old tbody with new tbody
     table.replaceChild(newTBody, tableBody);
-    
-    select.addEventListener('change', handleSelectChange); 
+
 }

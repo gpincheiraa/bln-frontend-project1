@@ -11,9 +11,9 @@ function callGets () {
     .then(initializeBalance)
     getCurrenciesValues()
     .then(initializeTable)
-    setInterval(callGets, globalsDefinitions.ONE_MINUTE);
 }
 
 callGets();
+setInterval(callGets, globalsDefinitions.ONE_MINUTE);
 
 offlinePlugin.install();
