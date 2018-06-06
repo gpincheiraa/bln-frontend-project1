@@ -1,6 +1,6 @@
 {
   "name": "frontend-project-1",
-  "version": "0.7.2",
+  "version": "0.8.1",
   "author": {
     "name": "Gonzalo Pincheira",
     "email": "g.pincheira.a@gmail.com"
@@ -47,7 +47,7 @@
     "style-loader": "^0.21.0",
     "wait-on": "^2.1.0",
     "webpack": "^4.10.2",
-    "webpack-cli": "^2.1.4",
+    "webpack-cli": "^3.0.2",
     "webpack-dev-server": "^3.1.4"
   }
 }

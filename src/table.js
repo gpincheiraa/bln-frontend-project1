@@ -2,7 +2,9 @@ function formatColumnName(name) {
     return `${name[0].toUpperCase()}${name.slice(1)}`;
 }
 function createHeaders(columnNames) {
-    const row = document.createDocumentFragment();
+    const table = document.querySelector('.home__table');
+    const tableHead = table.querySelector('thead');
+    const row = tableHead.insertRow(0); 
     let thead;
     ['Currency', ...columnNames].forEach(name => {
         thead = document.createElement('th');
@@ -36,37 +38,46 @@ function handleSelectChange(event) {
         }
     });
 }
-export const initializeTable = (tableData) => {
+function initializeTable(tableData) {
     const table = document.querySelector('.home__table');
-    const select = document.querySelector('.home__select--currency');
     const tableBody = table.querySelector('tbody');
-    const theadRow = table.querySelector('thead tr');
+    const tableHead = table.querySelector('thead');
     const currencyNames = Object.keys(tableData);
     const sampleKey = currencyNames[0];
     const columnNames = Object.keys(tableData[sampleKey]).map(formatColumnName);
-
+    const select = getFilterCurrencies();
+    // Create empty tbody and thead
+    let newTBody = document.createElement('tbody');
+    let newTHead = document.createElement('thead');
 
     // Populate table headers and select
-    theadRow.appendChild(createHeaders(columnNames));
-    select.appendChild(createOption('TODOS'));
+    newTHead.appendChild(createHeaders(columnNames));
+    
+    // Replace old thead with new thead
+    table.replaceChild(newTHead, tableHead);
 
     // Populate table
     currencyNames.forEach(currencyName => {
         const rowData = tableData[currencyName];
-        const rowColumns = document.createElement('tr');
+        const rowCurrencyData = document.createElement('tr');
 
         let columnDataValue = document.createElement('td');
         columnDataValue.textContent = currencyName;
-        rowColumns.appendChild(columnDataValue);
+        rowCurrencyData.appendChild(columnDataValue);
         
         Object.keys(rowData).forEach(currencyType => {
             columnDataValue = document.createElement('td');
             columnDataValue.textContent = rowData[currencyType];
-            rowColumns.appendChild(columnDataValue);
+            rowCurrencyData.appendChild(columnDataValue);
         });
-        tableBody.appendChild(rowColumns);
+        newTBody.appendChild(rowCurrencyData);
         select.appendChild(createOption(currencyName, currencyName));
+
+        if(currencyName === pageState.currencySelected) {
+            row.classList.add(currencySelectedClassName);
+        }
     });
 
-    select.addEventListener('change', handleSelectChange);
+    // Replace old tbody with new tbody
+    table.replaceChild(newTBody, tableBody);
 }
