@@ -1,54 +1,53 @@
-/*
-    source: https://css-tricks.com/responsive-data-tables/
-*/
+// source: https://css-tricks.com/responsive-data-tables/
+
 @import 'variables';
-@media (max-width: $breakpoint-small-tablet) {
-	/* Force table to not be like tables anymore */
-	table, thead, tbody, th {
+@media (max-width: $small-tablet) {
+	// Force table to not be like tables anymore
+	table,
+	thead,
+	tbody,
+	th {
 		display: flex;
 		flex-direction: column;
 	}
-
-	/* Hide table headers (but not display: none;, for accessibility) */
-	thead tr {
-		position: absolute;
+	tr {
+		background: $light-gray;
+		display: grid;
+		margin-bottom: 1.5rem;
+		position: absolute; /* Hide table headers (but not display: none;, for accessibility) */
 		top: -9999px;
 		left: -9999px;
 	}
-
-	tr {
-		// border: 1px solid #ccc;
-		background: #f7f7f7;
-		display: grid;
-		margin-bottom: 1.5rem;
-	}
-
-	td {
-		/* Behave  like a "row" */
+	td {	/* Behave  like a "row" */
 		border: none;
 		border-bottom: 1px solid #eee;
 		position: relative;
 		padding-left: 50%;
+		&:nth-of-type(1)::before {
+			content: "Currency";
+		}
+		&:nth-of-type(2)::before {
+			content: "15m";
+		}
+		&:nth-of-type(3)::before {
+			content: "Last";
+		}
+		&:nth-of-type(4)::before {
+			content: "Buy";
+		}
+		&:nth-of-type(5)::before {
+			content: "Sell";
+		}
+		&:nth-of-type(6)::before {
+			content: "Symbol";
+		}
+		&::before {
+			position: absolute; /* Now like a table header */
+			top: 6px;/* Top/left values mimic padding */
+			left: 6px;
+			width: 45%;
+			padding-right: 10px;
+			white-space: nowrap;
+		}
 	}
-
-	td:before {
-		/* Now like a table header */
-		position: absolute;
-		/* Top/left values mimic padding */
-		top: 6px;
-		left: 6px;
-		width: 45%;
-		padding-right: 10px;
-		white-space: nowrap;
-	}
-
-	/*
-	Label the data
-	*/
-	td:nth-of-type(1):before { content: "Currency"; }
-	td:nth-of-type(2):before { content: "15m"; }
-	td:nth-of-type(3):before { content: "Last"; }
-	td:nth-of-type(4):before { content: "Buy"; }
-  td:nth-of-type(5):before { content: "Sell"; }
-  td:nth-of-type(6):before { content: "Symbol"; }
 }

@@ -2,23 +2,21 @@
 @import 'font';
 @import url('https://fonts.googleapis.com/css?family=Space+Mono');
 
-
 // Colours
-$lightgray: #f7f7f7;
+$light-gray: #F7F7F7;
 $black: #151E6B;
-$darkblue: #1A2BC4;
+$dark-blue: #1A2BC4;
 $blue: #158AFF;
-$lightblue: #21DBF9;
+$light-blue: #21DBF9;
 $purple: #B143FF;
 $pink: #FD7DA1;
 $cream: #FCBA9E;
 $yellow: #FFF162;
 
-
 // Fonts
 $mono: 'Space Mono', monospace;
+$mark: 'Mark', Helvetica, Arial, sans-serif;
 
-
-$breakpoint-tablet: 991px;
-$breakpoint-small-tablet: 767px;
-$breakpoint-phone: 479px;
+$tablet: 991px;
+$small-tablet: 767px;
+$phone: 479px;

@@ -1,167 +1,161 @@
 @import 'variables';
 @import 'table-transform';
+@import 'globals';
 
-html {
-  box-sizing: border-box;
-}
-*, *:before, *:after {
-  box-sizing: inherit;
-  margin: 0;
-  padding: 0;
-}
-
-.mono {
-  font-family: $mono;
-}
-body {
-  background: $lightgray;
-  font-family: 'Mark';
-}
 .row__currency--selected {
-    background-color: rgba( $cream, .3 );
+  background-color: fade( $cream, 30% );
 }
 .home {
-    &__version--fixed {
-        position: fixed;
-        top: 0;
-        right: 0;
-        background: $black;
-        padding: 0 .5rem;
-        color: white;
-        font-size: 0.8rem;
-        font-weight: normal;
-        z-index: 9;
-    }
-    &__dashboard {
-        background: white;
-        // border: 1px dotted royalblue;
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-    }
+  &__version--fixed {
+    position: fixed;
+    top: 0;
+    right: 0;
+    background: $black;
+    padding: 0 .5rem;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: normal;
+    z-index: 9;
+  }
+  &__dashboard {
+    background: white;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
 }
 .dashboard {
-    &__header {
-      display: flex;
+  &__header {
+  display: flex;
+  justify-content: center;
+  background: $blue;
+  padding: 2rem 0;
+  border-radius: 3px 3px 0 0;
+    &.center {
       justify-content: center;
-      background: $blue;
-      padding: 2rem 0;
-      border-radius: 3px 3px 0 0;
+    }
+    h3 {
+      color: white;
+      font-size: 2rem;
+    }
+  }
+  &__panel {
+    padding: 1rem;
+    margin-bottom: 2rem;
+    max-width: 1280px;
+    display: flex;
+    flex-flow: row wrap;
+    flex-grow: 1;
+    .header {
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
       h3 {
-        color: white;
-        font-size: 2rem;
-      }
+				text-align: center;
+				flex-basis: 50%;
+			}
+      form {
+				display: flex;
+				padding: 1em;
+				margin: 2rem 0 3rem;
+				flex-basis: 50%;
+				box-sizing: border-box;
+				background: $light-gray;
+			}
     }
-    &__panel {
-        // margin: 0 1rem;
-        padding: 1rem;
-        margin-bottom: 2rem;
-        max-width: 1280px;
-        display: flex;
-        flex-flow: row wrap;
-        flex-grow: 1;
-        &.center {
-            justify-content: center;
-        }
-        .header {
-          width: 100%;
-          // padding: 2rem;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          h3 {
-              text-align: center;
-              flex-basis: 50%;
-          }
-          form {
-              display: flex;
-              padding: 1em;
-              margin: 2rem 0 3rem;
-              flex-basis: 50%;
-              box-sizing: border-box;
-              background: $lightgray;
-          }
-          .select-container {
-
-          }
-
-        }
-        .content {
-          display: flex;
-          flex-basis: 100%;
-
-          table {
-              // margin: 0 1rem;
-              background: $lightgray;
-              box-sizing: border-box;
-              padding: 0.3em;
-              flex-basis: 100%;
-              border-collapse: collapse;
-              thead {
-                border-bottom: 1px solid #c7c7c7;
-              }
-
-              td {
-                  text-align: right;
-                  font-family: $mono;
-                  font-size: 0.9rem;
-                  padding: 0.15rem 1rem;
-
-              }
-
-              th {
-                  font-weight: normal;
-                  text-align: right;
-                  height: 3em;
-                  width: 25%;
-                  padding: 0 1rem;
-                  &:nth-of-type(1),
-                  &:nth-of-type(6) {
-                    width: auto;
-                  }
-              }
-          }
-        }
-    }
-}
-
-.bitcoin {
-    &--balance{
-        font-size: 2.5rem;
-        text-align: center;
-
-        &:after{ content: "BTC"; font-size: 1.7rem; }
-    }
-}
-
-@media (max-width: $breakpoint-tablet) {
-  .dashboard__panel {
     .content {
+      display: flex;
+      flex-basis: 100%;
       table {
-        td {
-          padding: 0.15rem 0.7rem;
-        }
-        th {
-          padding: 0 0.7rem;
+				background: $light-gray;
+				box-sizing: border-box;
+				padding: 0.3em;
+				flex-basis: 100%;
+				border-collapse: collapse;
+      }
+      thead {
+        border-bottom: 1px solid darken( $light-gray, 20% );
+      }
+      td {
+        text-align: right;
+        font-family: $mono;
+        font-size: 0.9rem;
+        padding: 0.2rem 1rem;
+      }
+      th {
+        font-weight: normal;
+        text-align: right;
+        height: 3em;
+        width: 25%;
+        padding: 0 1rem;
+        &:nth-of-type(1),
+        &:nth-of-type(6) {
+          width: auto;
         }
       }
     }
   }
 }
-
-@media (max-width: $breakpoint-small-tablet) {
-  .dashboard__panel {
-    flex-direction: column;
-    .content {
-      table {
-        background: white;
-        thead {
-          border: none;
+.bitcoin {
+  &--balance {
+    font-size: 2.5rem;
+    text-align: center;
+    &::after {
+      content: "BTC";
+      font-size: 1.7rem;
+    }
+  }
+}
+@media (max-width: $tablet) {
+	.dashboard__panel {
+		.content {
+      td {
+        padding: 0.2rem 0.7rem;
+      }
+      th {
+        padding: 0 0.7rem;
+      }
+		}
+	}
+}
+@media (max-width: $small-tablet) {
+	.dashboard__panel {
+		flex-direction: column;
+		.content {
+			table {
+				background: white;
+			}
+      thead {
+        border: none;
+      }
+      tbody {
+        flex-direction: column;
+      }
+      tr {
+        width: 49%;
+        &:nth-child(2n) {
+          align-self: flex-end;
+        }
+        &:nth-child(2n+1) {
+          margin-bottom: -160.5px;
         }
       }
-      form {
+			form {
         flex-basis: 100%;
       }
-    }
-  }
+		}
+	}
+}
+@media (max-width: $phone) {
+  .dashboard__panel {
+		.content {
+      tr {
+        width: 100%;
+        &:nth-child(2n+1) {
+          margin-bottom: 24px;
+        }
+      }
+		}
+	}
 }
