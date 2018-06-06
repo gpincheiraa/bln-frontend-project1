@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.org/gpincheiraa/proyecto_1.svg?branch=master)](https://travis-ci.org/gpincheiraa/proyecto_1)
+[![Build Status](https://travis-ci.org/gpincheiraa/proyecto_1.svg?branch=master)](https://travis-ci.org/gpincheiraa/proyecto_1) 
+[![Greenkeeper badge](https://badges.greenkeeper.io/gpincheiraa/bln-frontend-project1.svg)](https://greenkeeper.io/)
 
 ### Proyecto 1 Curso FrontEnd Básico
 
@@ -75,6 +76,7 @@ La aplicación posee una funcionalidad ya desarrollada que utiliza la siguiente 
 
 - [Parte 6: Formateo de valor](docs/part6/part6.md)
 
+// @TODO: Agregar nota y tests que corroboren que los datos en la tabla y selectbox no se duplican, así como el caso borde que exista una moneda seleccionada y se mantenga así al actualizarse la tabla.
 - [Parte 7: Actualización cada 1 minuto](docs/part7/part7.md)
 
 - [Parte 8: Manejo offline guardando en caché las últimas peticiones exitosas](docs/part8/part8.md)
