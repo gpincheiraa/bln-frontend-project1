@@ -1,2 +1,2 @@
 echo '{ "address": "1FwJk" }' > btc-config.json
-npm start & (wait-on http://localhost:3000 && cypress run --record --key 854933f0-a2a1-4d5f-b996-7fc4e875554b)
+npm start & (wait-on http://localhost:3000 && cypress run --record --key 27df0bb4-b483-4074-9299-def2f76ff852)
