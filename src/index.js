@@ -1,5 +1,6 @@
 import 'whatwg-fetch';
 import { ApiRequest } from './dataRequest';
+import { globalsDefinitions } from './utils'
 
 function formatColumnName(name) {
     return `${name[0].toUpperCase()}${name.slice(1)}`;
@@ -42,7 +43,6 @@ function handleSelectChange(event) {
     });
 }
 function initializeTable(tableData) {
-    
     const table = document.querySelector('.home__table');
     const select = document.querySelector('.home__select--currency');
     const tableBody = table.querySelector('tbody');
@@ -85,36 +85,21 @@ function initializeTable(tableData) {
     // Replace old tbody with new tbody
     table.replaceChild(newTBody, tableBody);
 }
-
 function initializeBalance(balanceData) {
     const balanceSpan = document.querySelector('.bitcoin--balance');
     balanceSpan.textContent = balanceData.confirmed_balance;
 }
-/*
-Ayuda 1:
-En este trozo de código estamos ejecutando la petición al servidor, obteniendo la respuesta
-con los datos necesarios. Una vez ocurrido esto, le decimos
-a la función "apiRequest" que "luego que" (then)
-ocurra lo que tenga que suceder con la petición al servidor ejecute la función "initialize"
-*/
-
-let nIntervalCurrencyId; 
-let nIntervalBalanceId; 
-const oneMinute = 60000;
-
 function setApiRequest() {
     apiRequestCurrencies();
     apiRequestBalance();
-    nIntervalCurrencyId = setInterval(apiRequestCurrencies, oneMinute);
-    nIntervalBalanceId = setInterval(apiRequestBalance, oneMinute);
+    setInterval(apiRequestCurrencies, globalsDefinitions.oneMinute);
+    setInterval(apiRequestBalance, globalsDefinitions.oneMinute);
 }
-
 function apiRequestCurrencies() {
     ApiRequest()
         .getCurrenciesValues
         .then(initializeTable);
 }
-
 function apiRequestBalance() {
     ApiRequest()
         .getBalance

@@ -1,3 +1,6 @@
+export const globalsDefinitions = {
+  ONE_MINUTE: 60000
+};
 export const numberFormatter = number => {
   const numberSplitted = parseFloat(number.toString()).toFixed(2).split('.');
   const replaceChunksRegex = /[0-9](?=(?:[0-9]{3})+(?![0-9]))/g;
