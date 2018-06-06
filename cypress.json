@@ -1,12 +1,12 @@
 {
-    "fileServerFolder": "./test/e2e",
-    "fixturesFolder": "./test/e2e/fixtures",
-    "integrationFolder": "./test/e2e/features",
-    "pluginsFile": "./test/e2e/plugins/index.js",
-    "screenshotsFolder": "./test/e2e/screenshots",
-    "supportFile": "./test/e2e/support/index.js",
-    "videosFolder": "./test/e2e/videos",
-  
-    "baseUrl": "http://localhost:3000",
-    "reporter": "reporters/custom.js"
-  }
+  "fileServerFolder": "./test/e2e",
+  "fixturesFolder": "./test/e2e/fixtures",
+  "integrationFolder": "./test/e2e/features",
+  "pluginsFile": "./test/e2e/plugins/index.js",
+  "screenshotsFolder": "./test/e2e/screenshots",
+  "supportFile": "./test/e2e/support/index.js",
+  "videosFolder": "./test/e2e/videos",
+  "baseUrl": "http://localhost:3000",
+  "reporter": "reporters/custom.js",
+  "projectId": "kh9puw"
+}
