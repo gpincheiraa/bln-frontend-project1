@@ -6,14 +6,14 @@ import { globalsDefinitions } from './utils';
 
 const offlinePlugin = require('offline-plugin/runtime');
 
-function offlineBalance(data) {
-    let variable = JSON.parse(localStorage.getItem("balanceData"));
-    initializeBalance(variable);
-}
-
 function onlineBalance(data) {
     localStorage.setItem("balanceData", JSON.stringify(data))
     initializeBalance(data);
+}
+
+function offlineBalance(data) {
+    let variable = JSON.parse(localStorage.getItem("balanceData"));
+    initializeBalance(variable);
 }
 
 function onlineTable(data) {
