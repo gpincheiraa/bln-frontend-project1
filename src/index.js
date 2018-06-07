@@ -7,12 +7,7 @@ import { globalsDefinitions } from './utils';
 const offlinePlugin = require('offline-plugin/runtime');
 
 function offlineBalance(data) {
-
-    let variable;
-    variable = JSON.parse(localStorage.getItem("balanceData"));
-    
-    console.log(localStorage.getItem("balanceData") + 'original: ' + data);
-     
+    let variable = JSON.parse(localStorage.getItem("balanceData"));
     initializeBalance(variable);
 }
 
@@ -27,10 +22,7 @@ function onlineTable(data) {
 }
 
 function offlineTable(data) {
-
-    let variable;
-    variable = JSON.parse(localStorage.getItem("tableData"));
-     
+    let variable = JSON.parse(localStorage.getItem("tableData"));  
     initializeTable(variable);
 }
 
@@ -41,12 +33,9 @@ function callGets () {
     getCurrenciesValues()
     .then(onlineTable)
     .catch(offlineTable);
-    console.log(localStorage.getItem("tableData"));
 }
 
 callGets();
 setInterval(callGets, globalsDefinitions.ONE_MINUTE);
-
-
 
 offlinePlugin.install();

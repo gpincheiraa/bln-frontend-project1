@@ -27,6 +27,7 @@ module.exports = {
 }
 ```
 
+Instalar el plugin en el código de `index.js`:
 ```js
 // ./src/index.js
 
@@ -46,21 +47,28 @@ offlinePlugin.install();
 
 ## **Utilización**
 
-`localStorage` tiene dos métodos, `.setItem(Key, Value)`, `.getItem(Key)` y se pueden utilizar de las siguientes maneras:
+`localStorage` tiene dos métodos `.setItem(Key, Value)` y `.getItem(Key)`, estos se pueden utilizar de las siguientes maneras:
 
 ## Asignar
 
 ```js
-localStorage.colorSetting = '#a4509b';
-localStorage['colorSetting'] = '#a4509b';
-localStorage.setItem('colorSetting', '#a4509b');
+localStorage.Key = 'Value';
+localStorage['Key'] = 'Value';
+localStorage.setItem('Key', 'Value');
 ```
 
 ## Retornar valor
 
-```es6
+```js
 localStorage.getItem("Key")
-="Key"
+="Value"
 
 let variable = localStorage.getItem("Key");
+console.log(variable);
+="Value"
 ```
+
+### Nota
+
+Algunos valores para que mantengan su estructura deben pasar por `JSON.stringify(variable)`
+para almacenar y `JSON.parse(variable)` para retornar el valor.
