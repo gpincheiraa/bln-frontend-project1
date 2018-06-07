@@ -52,6 +52,7 @@ module.exports = {
         }),
         new OfflinePlugin({
             version: '[hash]',
+            caches: 'all',
             responseStrategy: 'network-first',
             safeToUseOptionalCaches: true,
             ServiceWorker: {

@@ -18,8 +18,9 @@ export const getCurrenciesValues = () => fetch(currenciesUrl)
 			'sell': numberFormatter(data[currency]['sell'])
 		}
 		}),
-		{})
+		{}) 
 	);
+
 export const getBalance = () => fetch(balanceUrl)
 	.then(response => response.text())
-	.then(response => JSON.parse(response).data);
+	.then(response => JSON.parse(response).data)
