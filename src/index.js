@@ -96,7 +96,7 @@ function initializeTable(tableData) {
         select.appendChild(createOption(currencyName, currencyName));
 
         if(currencyName === pageState.currencySelected) {
-            row.classList.add(currencySelectedClassName);
+            rowCurrencyData.classList.add(currencySelectedClassName);
         }
     });
 

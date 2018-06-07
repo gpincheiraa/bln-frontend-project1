@@ -75,6 +75,7 @@ const btcBalanceResponseAfterMin = {
   }
 };
 
+const oneMinute = 60000;
 const currencyNamesList = Object.keys(btcTickerResponse);
 const currencyNameSample = currencyNamesList[1];
 const currencyTypeFormatter = name => `${name[0].toUpperCase()}${name.slice(1)}`;
@@ -202,25 +203,23 @@ then(`I see the data response currency values in the table within {string} forma
 
 then(`I see BTC balance with a different value after a minute`, () => {
   const balanceSelector = '.bitcoin--balance';
-  const oneMinute = 60000;
 
-  cy.tick(oneMinute)
+  cy.tick(oneMinute);
   cy.get(balanceSelector).should('have.text', '2.25000'); 
 
   cy.route(`https://chain.so/api/v2/get_address_balance/BTC/${bitcoinAddress}`, btcBalanceResponseAfter);
 
-  cy.tick(oneMinute)
+  cy.tick(oneMinute);
   cy.get(balanceSelector).should('have.text', '60.25000');
     
   cy.route(`https://chain.so/api/v2/get_address_balance/BTC/${bitcoinAddress}`, btcBalanceResponseAfterMin);
 
-  cy.tick(oneMinute)
+  cy.tick(oneMinute);
   cy.get(balanceSelector).should('have.text', '120.25000');
 });
 
 then(`I see currency values with differents values after a minute`, () => {
   const rowsSelector = '.home__table tbody tr';
-  const oneMinute = 60000;
 
   const checkTickerResponse = btcTickerResponses => {
     let btcTicker = btcTickerResponses;
@@ -250,12 +249,46 @@ then(`I see currency values with differents values after a minute`, () => {
     });
   }
 
-  cy.tick(oneMinute)
+  cy.tick(oneMinute);
   checkTickerResponse(btcTickerResponse);
   
   cy.route('https://blockchain.info/es/ticker', btcTickerResponseAfter);
 
-  cy.tick(oneMinute)
+  cy.tick(oneMinute);
   checkTickerResponse(btcTickerResponseAfter);
   
+});
+
+then(`I see the right row {string} with the class in the table after one minute`, currencySelected => {
+  const rowsSelector = '.home__table tbody tr';
+
+  cy.route('https://blockchain.info/es/ticker', btcTickerResponseAfter);
+  cy.tick(oneMinute);
+  
+  cy.get(rowsSelector).should($trList => {
+    const rowsList = $trList.toArray();
+    currencyNamesList.forEach((currencyName, index) => {
+      const columnElements = rowsList[index].querySelectorAll('td');
+      const nonNumericColumns = {
+        CURRENCY: 0,
+        SYMBOL: expectedColumnNames.length - 1
+      };
+      Array.from(columnElements)
+        .forEach((tdElement, index) => {
+          let targetValue;
+          if(index === nonNumericColumns['CURRENCY']) {
+            targetValue = currencyName;
+            expect(tdElement.textContent).to.eq(targetValue);
+          } else if(index === nonNumericColumns['SYMBOL']) {
+            targetValue = btcTickerResponseAfter[currencyName][currencyPropsList[index - 1]];
+            expect(tdElement.textContent).to.eq(targetValue);
+          } else {
+            targetValue = btcTickerResponseAfter[currencyName][currencyPropsList[index - 1]];
+            expect(tdElement.textContent).to.eq(numberFormatter(targetValue));
+          }
+        });
+    });
+  });
+  cy.get('.row__currency--selected td:nth-child(1)')
+    .should($row => expect($row[0].textContent).to.eq(currencySelected));
 });
