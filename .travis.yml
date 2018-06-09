@@ -10,7 +10,7 @@ install:
 stages:
   - name: functional-test
   - name: deploy
-    if: branch = master
+    if: branch IN (master, feature/exercise8)
 jobs:
   include:
     - stage: functional-test
@@ -23,3 +23,7 @@ jobs:
         app: $HEROKU_APP_NAME
         api_key:
           secure: "$HEROKU_KEY"
+        on:
+          branches:
+            - master
+            - feature/exercise8

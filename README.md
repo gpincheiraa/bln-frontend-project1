@@ -86,7 +86,7 @@ La aplicación posee una funcionalidad ya desarrollada que utiliza la siguiente 
 ## Nivel Intermedio
 
 - Guardar en caché la última petición exitosa
-- Aplicar patrones de diseño para reutilizar clases como number formater, modularizar, etc
+- Aplicar patrones de diseño para reutilizar código como number formater, modularizar, crear componentes, etc
 - Aplicar linter y buenas prácticas
 - Medir performance
 - aplicar TAD a todo el proyecto
