@@ -1,9 +1,11 @@
 import { numberFormatter } from './utils';
 
-const currenciesUrl = 'https://blockchain.info/es/ticker';
+const exchangeUrl = {
+	BLOCKCHAIN_LUXEMBOURG: 'https://blockchain.info/es/ticker'
+};
 const balanceUrl = `https://chain.so/api/v2/get_address_balance/BTC/${BITCOIN_CONFIG.address}`;
 
-export const getCurrenciesValues = () => fetch(currenciesUrl)
+export const getCurrenciesValues = () => fetch(exchangeUrl.BLOCKCHAIN_LUXEMBOURG)
 	.then(response => response.text())
 	.then(data => JSON.parse(data))
 	.then(data => Object.keys(data)

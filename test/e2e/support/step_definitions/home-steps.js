@@ -1,104 +1,48 @@
 const url = '/';
-const btcTickerResponse = {
-  "USD": {
-    "15m": 9061.4272472882,
-    "last": 9061.4272472882,
-    "buy": 9061.4272472882,
-    "sell": 9061.4272472882,
-    "symbol": "$"
-  },
-  "AUD": {
-    "15m": 11690.5836637,
-    "last": 11690.5836637,
-    "buy": 11690.5836637,
-    "sell": 11690.5836637,
-    "symbol": "$"
-  },
-  "BRL": {
-    "15m": 32529668.8295,
-    "last": 32529668.8295,
-    "buy": 32529668.8295,
-    "sell": 32529668.8295,
-    "symbol": "R$"
-  }
-};
-const btcTickerResponseAfter = {
-  "USD": {
-    "15m": 90610.4272472882,
-    "last": 90610.4272472882,
-    "buy": 90610.4272472882,
-    "sell": 90610.4272472882,
-    "symbol": "$"
-  },
-  "AUD": {
-    "15m": 116900.5836637,
-    "last": 116900.5836637,
-    "buy": 116900.5836637,
-    "sell": 116900.5836637,
-    "symbol": "$"
-  },
-  "BRL": {
-    "15m": 325296680.8295,
-    "last": 325296680.8295,
-    "buy": 325296680.8295,
-    "sell": 325296680.8295,
-    "symbol": "R$"
-  }
-};
-const btcBalanceResponse = {
-  "status" : "success",
-  "data" : {
-    "network" : "BTC",
-    "address" : "1PJXd9572EDU7i1k2QD9WBujwpuy8pXqyV",
-    "confirmed_balance" : "2.25000",
-    "unconfirmed_balance" : "2.25000"
-  }
-};
-
-const btcBalanceResponseAfter = {
-  "status" : "success",
-  "data" : {
-    "network" : "BTC",
-    "address" : "1PJXd9572EDU7i1k2QD9WBujwpuy8pXqyV",
-    "confirmed_balance" : "60.25000",
-    "unconfirmed_balance" : "60.25000"
-  }
-};
-
-const btcBalanceResponseAfterMin = {
-  "status" : "success",
-  "data" : {
-    "network" : "BTC",
-    "address" : "1PJXd9572EDU7i1k2QD9WBujwpuy8pXqyV",
-    "confirmed_balance" : "120.25000",
-    "unconfirmed_balance" : "120.25000"
-  }
-};
-
 const oneMinute = 60000;
-const currencyNamesList = Object.keys(btcTickerResponse);
-const currencyNameSample = currencyNamesList[1];
-const currencyTypeFormatter = name => `${name[0].toUpperCase()}${name.slice(1)}`;
-const currencyPropsList = Object.keys(btcTickerResponse[currencyNameSample]);
-const expectedColumnNames = [
-  'Currency',
-  ...currencyPropsList.map(currencyTypeFormatter)
-];
-let actualViewport = 'macbook-15';
+
 let numberFormatter;
 let bitcoinAddress;
+let fixturesData;
+let currencyNamesList;
+let currencyNameSample;
+let currencyTypeFormatter;
+let currencyPropsList;
+let expectedColumnNames;
+let actualViewport = 'macbook-15';
+
+before(() => {
+  cy.getFixturesData()
+    .then(data => {
+      fixturesData = {
+        btcTickerResponse : data.btcTickerResponse,
+        btcTickerResponseAfter: data.btcTickerResponseAfter,
+        btcBalanceResponse: data.btcBalanceResponse,
+        btcBalanceResponseAfter: data.btcBalanceResponseAfter,
+        btcBalanceResponseAfterMin:  data.btcBalanceResponseAfterMin
+      };
+      currencyNamesList = Object.keys(fixturesData.btcTickerResponse);
+      currencyNameSample = currencyNamesList[1];
+      currencyTypeFormatter = name => `${name[0].toUpperCase()}${name.slice(1)}`;
+      currencyPropsList = Object.keys(fixturesData.btcTickerResponse[currencyNameSample]);
+      expectedColumnNames = [
+        'Currency',
+        ...currencyPropsList.map(currencyTypeFormatter)
+      ];
+    }); 
+  cy.getNumberFormatter()
+    .then(formatter => numberFormatter = formatter);
+});
 
 beforeEach(() => {
   cy.getBitcoinInfo()
-    .should(bitcoinInfo => {
+    .then(bitcoinInfo => {
       cy.viewport(actualViewport);
       cy.server();
-      cy.route('https://blockchain.info/es/ticker', btcTickerResponse);
-      cy.route(`https://chain.so/api/v2/get_address_balance/BTC/${bitcoinInfo.address}`, btcBalanceResponse);
+      cy.route('https://blockchain.info/es/ticker', fixturesData.btcTickerResponse);
+      cy.route(`https://chain.so/api/v2/get_address_balance/BTC/${bitcoinInfo.address}`, fixturesData.btcBalanceResponse);
       bitcoinAddress = bitcoinInfo.address;
     });
-  cy.getNumberFormatter()
-    .should(formatter => numberFormatter = formatter);
 });
 
 given('I open Home page', () => {
@@ -142,10 +86,10 @@ then(`I see the data response rendered as row on the table`, () => {
             targetValue = currencyName;
             expect(tdElement.textContent).to.eq(targetValue);
           } else if(index === nonNumericColumns['SYMBOL']) {
-            targetValue = btcTickerResponse[currencyName][currencyPropsList[index - 1]];
+            targetValue = fixturesData.btcTickerResponse[currencyName][currencyPropsList[index - 1]];
             expect(tdElement.textContent).to.eq(targetValue);
           } else {
-            targetValue = btcTickerResponse[currencyName][currencyPropsList[index - 1]];
+            targetValue = fixturesData.btcTickerResponse[currencyName][currencyPropsList[index - 1]];
             expect(tdElement.textContent).to.eq(numberFormatter(targetValue));
           }
         });
@@ -205,17 +149,17 @@ then(`I see BTC balance with a different value after a minute`, () => {
   const balanceSelector = '.bitcoin--balance';
 
   cy.tick(oneMinute);
-  cy.get(balanceSelector).should('have.text', '2.25000'); 
+  cy.get(balanceSelector).should('have.text', `${fixturesData.btcBalanceResponse.data.confirmed_balance}`); 
 
-  cy.route(`https://chain.so/api/v2/get_address_balance/BTC/${bitcoinAddress}`, btcBalanceResponseAfter);
+  cy.route(`https://chain.so/api/v2/get_address_balance/BTC/${bitcoinAddress}`, fixturesData.btcBalanceResponseAfter);
 
   cy.tick(oneMinute);
-  cy.get(balanceSelector).should('have.text', '60.25000');
+  cy.get(balanceSelector).should('have.text', `${fixturesData.btcBalanceResponseAfter.data.confirmed_balance}`);
     
-  cy.route(`https://chain.so/api/v2/get_address_balance/BTC/${bitcoinAddress}`, btcBalanceResponseAfterMin);
+  cy.route(`https://chain.so/api/v2/get_address_balance/BTC/${bitcoinAddress}`, fixturesData.btcBalanceResponseAfterMin);
 
   cy.tick(oneMinute);
-  cy.get(balanceSelector).should('have.text', '120.25000');
+  cy.get(balanceSelector).should('have.text', `${fixturesData.btcBalanceResponseAfterMin.data.confirmed_balance}`);
 });
 
 then(`I see currency values with differents values after a minute`, () => {
@@ -250,19 +194,19 @@ then(`I see currency values with differents values after a minute`, () => {
   }
 
   cy.tick(oneMinute);
-  checkTickerResponse(btcTickerResponse);
+  checkTickerResponse(fixturesData.btcTickerResponse);
   
-  cy.route('https://blockchain.info/es/ticker', btcTickerResponseAfter);
+  cy.route('https://blockchain.info/es/ticker', fixturesData.btcTickerResponseAfter);
 
   cy.tick(oneMinute);
-  checkTickerResponse(btcTickerResponseAfter);
+  checkTickerResponse(fixturesData.btcTickerResponseAfter);
   
 });
 
 then(`I see the right row {string} with the class in the table after one minute`, currencySelected => {
   const rowsSelector = '.home__table tbody tr';
 
-  cy.route('https://blockchain.info/es/ticker', btcTickerResponseAfter);
+  cy.route('https://blockchain.info/es/ticker', fixturesData.btcTickerResponseAfter);
   cy.tick(oneMinute);
   
   cy.get(rowsSelector).should($trList => {
@@ -280,10 +224,10 @@ then(`I see the right row {string} with the class in the table after one minute`
             targetValue = currencyName;
             expect(tdElement.textContent).to.eq(targetValue);
           } else if(index === nonNumericColumns['SYMBOL']) {
-            targetValue = btcTickerResponseAfter[currencyName][currencyPropsList[index - 1]];
+            targetValue = fixturesData.btcTickerResponseAfter[currencyName][currencyPropsList[index - 1]];
             expect(tdElement.textContent).to.eq(targetValue);
           } else {
-            targetValue = btcTickerResponseAfter[currencyName][currencyPropsList[index - 1]];
+            targetValue = fixturesData.btcTickerResponseAfter[currencyName][currencyPropsList[index - 1]];
             expect(tdElement.textContent).to.eq(numberFormatter(targetValue));
           }
         });

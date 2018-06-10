@@ -10,7 +10,7 @@ install:
 stages:
   - name: functional-test
   - name: deploy
-    if: branch IN (master, feature/exercise8)
+    if: branch IN (master)
 jobs:
   include:
     - stage: functional-test
@@ -26,4 +26,3 @@ jobs:
         on:
           branches:
             - master
-            - feature/exercise8
