@@ -41,7 +41,7 @@ module.exports = {
     },
     plugins: [
         new webpack.DefinePlugin({ 
-            BITCOIN_CONFIG: JSON.stringify({ address: process.env.BITCOIN_ADDRESS || address })
+            BITCOIN_CONFIG: JSON.stringify({ address })
         }),
         new HtmlWebpackPlugin({
             template: 'index.html',

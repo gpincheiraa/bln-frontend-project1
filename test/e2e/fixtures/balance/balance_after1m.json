@@ -1,0 +1,9 @@
+{
+    "status" : "success",
+    "data" : {
+      "network" : "BTC",
+      "address" : "1PJXd9572EDU7i1k2QD9WBujwpuy8pXqyV",
+      "confirmed_balance" : "120.25000",
+      "unconfirmed_balance" : "120.25000"
+    }
+  }
