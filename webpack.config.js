@@ -52,12 +52,11 @@ module.exports = {
         }),
         new OfflinePlugin({
             version: '[hash]',
-            caches: 'all',
             responseStrategy: 'network-first',
             safeToUseOptionalCaches: true,
             ServiceWorker: {
                 events: true,
-                output: 'static/js/sw.js'
+                output: 'sw.js'
             }
         })
     ],
