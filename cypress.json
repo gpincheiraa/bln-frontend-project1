@@ -7,6 +7,5 @@
   "supportFile": "./test/e2e/support/index.js",
   "videosFolder": "./test/e2e/videos",
   "baseUrl": "http://localhost:3000",
-  "reporter": "reporters/custom.js",
-  "projectId": "kh9puw"
+  "reporter": "reporters/custom.js"
 }
