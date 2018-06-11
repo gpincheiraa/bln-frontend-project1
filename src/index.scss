@@ -3,7 +3,7 @@
 @import 'globals';
 
 .row__currency--selected {
-  background-color: fade( $cream, 30% );
+  // background-color: fade($cream, 30%);
 }
 .home {
   &__version--fixed {
@@ -26,17 +26,21 @@
 }
 .dashboard {
   &__header {
-  display: flex;
-  justify-content: center;
-  background: $blue;
-  padding: 2rem 0;
-  border-radius: 3px 3px 0 0;
-    &.center {
-      justify-content: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    background: $light-gray;
+    padding: 2rem 1rem;
+    margin: 0 1rem;
+    &--balance {
+      h3 {
+        font-weight: 300;
+      }
     }
-    h3 {
-      color: white;
-      font-size: 2rem;
+    &--dropdown {
+      label {
+        margin-left: 1rem;
+      }
     }
   }
   &__panel {
@@ -46,24 +50,6 @@
     display: flex;
     flex-flow: row wrap;
     flex-grow: 1;
-    .header {
-			width: 100%;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-      h3 {
-				text-align: center;
-				flex-basis: 50%;
-			}
-      form {
-				display: flex;
-				padding: 1em;
-				margin: 2rem 0 3rem;
-				flex-basis: 50%;
-				box-sizing: border-box;
-				background: $light-gray;
-			}
-    }
     .content {
       display: flex;
       flex-basis: 100%;
@@ -99,11 +85,21 @@
 }
 .bitcoin {
   &--balance {
-    font-size: 2.5rem;
+    position: relative;
+    font-size: 2rem;
     text-align: center;
+    color: $blue;
     &::after {
+      position: absolute;
       content: "BTC";
-      font-size: 1.7rem;
+      font-size: 0.7rem;
+      background: $blue;
+      color: white;
+      letter-spacing: 0.1rem;
+      padding: 0.17rem 0.4rem 0.1rem 0.4rem;
+      margin-left: 0.5rem;
+      bottom: 7px;
+      border-radius: 0.1rem;
     }
   }
 }
@@ -111,7 +107,8 @@
 	.dashboard__panel {
 		.content {
       td {
-        padding: 0.2rem 0.7rem;
+        padding: 0.3rem 0.7rem;
+        // color: lighten(black, 40%);
       }
       th {
         padding: 0 0.7rem;
@@ -120,42 +117,68 @@
 	}
 }
 @media (max-width: $small-tablet) {
-	.dashboard__panel {
-		flex-direction: column;
-		.content {
-			table {
-				background: white;
-			}
-      thead {
-        border: none;
-      }
-      tbody {
-        flex-direction: column;
-      }
-      tr {
-        width: 49%;
-        &:nth-child(2n) {
-          align-self: flex-end;
-        }
-        &:nth-child(2n+1) {
-          margin-bottom: -160.5px;
+	.dashboard {
+    &__header {
+      flex-direction: column;
+      align-items: start;
+      &--dropdown {
+        margin-top: 0.8rem;
+        label:first-child {
+          margin-left: 0;
         }
       }
-			form {
-        flex-basis: 100%;
-      }
-		}
-	}
+    }
+    &__panel {
+  		flex-direction: column;
+  		.content {
+  			table {
+  				background: white;
+  			}
+        thead {
+          border: none;
+        }
+        tr {
+          width: calc(50% - 0.5rem);
+          float: left;
+          margin-left: 0.5rem;
+          background: $light-gray;
+          display: grid;
+          margin-bottom: 1rem;
+          &:nth-child(2n+1) {
+            margin-left: auto;
+            margin-right: 0.5rem;
+          }
+        }
+  		}
+  	}
+  }
 }
 @media (max-width: $phone) {
-  .dashboard__panel {
-		.content {
-      tr {
+  .dashboard {
+    &__header {
+      &--dropdown {
         width: 100%;
-        &:nth-child(2n+1) {
-          margin-bottom: 24px;
+        label,
+        select {
+          width: 100%;
+        }
+        #currency {
+          margin-bottom: 1rem;
+        }
+        label {
+          margin: 0;
         }
       }
-		}
-	}
+    }
+    &__panel {
+  		.content {
+        tr {
+          width: 100%;
+          float: none;
+          margin: 0;
+          margin-bottom: 1rem;
+        }
+  		}
+  	}
+  }
 }
