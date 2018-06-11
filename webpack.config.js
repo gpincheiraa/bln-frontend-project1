@@ -55,8 +55,7 @@ module.exports = {
             responseStrategy: 'network-first',
             safeToUseOptionalCaches: true,
             ServiceWorker: {
-                events: true,
-                output: 'sw.js'
+                events: true
             }
         })
     ],
