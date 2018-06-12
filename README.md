@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/gpincheiraa/proyecto_1.svg?branch=master)](https://travis-ci.org/gpincheiraa/proyecto_1) 
+[![Build Status](https://travis-ci.org/gpincheiraa/bln-frontend-project1.svg?branch=master)](https://travis-ci.org/gpincheiraa/bln-frontend-project1) 
 [![Greenkeeper badge](https://badges.greenkeeper.io/gpincheiraa/bln-frontend-project1.svg)](https://greenkeeper.io/)
 
 ### Proyecto 1 Curso FrontEnd Básico
