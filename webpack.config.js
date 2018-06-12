@@ -53,10 +53,7 @@ module.exports = {
         new OfflinePlugin({
             version: '[hash]',
             responseStrategy: 'network-first',
-            safeToUseOptionalCaches: true,
-            ServiceWorker: {
-                events: true
-            }
+            safeToUseOptionalCaches: true
         })
     ],
     devtool: 'eval-source-map',
