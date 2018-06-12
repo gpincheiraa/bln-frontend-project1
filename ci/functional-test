@@ -1,4 +1,4 @@
-echo '{ "address": "1FwJk" }' > btc-config.json
-npm start & (wait-on http://localhost:3000 && cypress run)
+#!/bin/sh
 
-kill $(jobs -p) || true
+echo '{ "address": "1FwJk" }' > btc-config.json
+concurrently 'npm start' 'wait-on http://localhost:3000 && cypress run --record false'
