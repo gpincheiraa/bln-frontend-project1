@@ -10,7 +10,9 @@ install:
 stages:
   - name: functional-test
   - name: deploy
-    if: branch IN (master)
+    if: branch = master
+  - name: autotag
+    if: branch = master
 jobs:
   include:
     - stage: functional-test
@@ -26,3 +28,6 @@ jobs:
         on:
           branches:
             - master
+    - stage: autotag
+      script: ./ci/autotag
+   
