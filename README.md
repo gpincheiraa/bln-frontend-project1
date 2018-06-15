@@ -25,9 +25,6 @@ La aplicación posee una funcionalidad ya desarrollada que utiliza la siguiente 
 
 ### Instalación
 - ejecutar `npm i`
-- ejecutar `npm start`
-- abrir `http://localhost:3000/` en el navegador
-
 
 ## Parte 0: Configurar proyecto
 
@@ -45,12 +42,6 @@ La aplicación posee una funcionalidad ya desarrollada que utiliza la siguiente 
     },
     ...
  ```
-
-- Escribir la información de git asociada al proyecto
-- Cambiarse a la rama dev utilizando `git checkout dev` ya que seguimos [gitflow]()
-- Crear version 0.0.0 utilizando el siguiente comando `npm version 0.0.0`
-- Ejecutar el siguiente comando `git push origin {--tags,dev}`
-
 *Resultado esperado:*
 
 // **@TODO**: <Foto tab de github mostrando head en 1 respecto de la rama master>
@@ -62,6 +53,10 @@ La aplicación posee una funcionalidad ya desarrollada que utiliza la siguiente 
   "address": ""
 }
 ```
+Una vez seguido el paso 0, ejecutar `npm start` y abrir `http://localhost:3000/` en el navegador.
+
+//  **@TODO**: FOTO PRIMER PANTALLAZO
+
 ## Índice Curso
 
 - [Parte 1: Crear las columnas de la tabla basado en data proveniente de una petición HTTP](docs/part1/part1.md)
@@ -86,7 +81,7 @@ La aplicación posee una funcionalidad ya desarrollada que utiliza la siguiente 
 ## Nivel Intermedio
 
 - Guardar en caché la última petición exitosa
-- Aplicar patrones de diseño para reutilizar clases como number formater, modularizar, etc
+- Aplicar patrones de diseño para reutilizar código como number formater, modularizar, crear componentes, etc
 - Aplicar linter y buenas prácticas
 - Medir performance
 - aplicar TAD a todo el proyecto
