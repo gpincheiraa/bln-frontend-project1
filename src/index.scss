@@ -2,147 +2,183 @@
 @import 'table-transform';
 @import 'globals';
 
-.row__currency--selected { background-color: rgba( $cream, .3 ); }
+.row__currency--selected {
+  // background-color: fade($cream, 30%);
+}
 .home {
-    &__version--fixed {
-        position: fixed;
-        top: 0;
-        right: 0;
-        background: $black;
-        padding: 0 .5rem;
-        color: white;
-        font-size: 0.8rem;
-        font-weight: normal;
-        z-index: 9;
-    }
-    &__dashboard {
-        background: white;
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-    }
+  &__version--fixed {
+    position: fixed;
+    top: 0;
+    right: 0;
+    background: $black;
+    padding: 0 .5rem;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: normal;
+    z-index: 9;
+  }
+  &__dashboard {
+    background: white;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
 }
 .dashboard {
-    &__header {
-		display: flex;
-		justify-content: center;
-		background: $blue;
-		padding: 2rem 0;
-		border-radius: 3px 3px 0 0;
-		
-		h3 {
-			color: white;
-			font-size: 2rem;
-		}
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    background: $light-gray;
+    padding: 2rem 1rem;
+    margin: 0 1rem;
+    &--balance {
+      h3 {
+        font-weight: 300;
+      }
     }
-    &__panel {
-        padding: 1rem;
-        margin-bottom: 2rem;
-        max-width: 1280px;
-        display: flex;
-        flex-flow: row wrap;
-        flex-grow: 1;
-		
-		&.center { justify-content: center; }
-        .header {
-			width: 100%;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			
-			h3 {
-				text-align: center;
-				flex-basis: 50%;
-			}
-			form {
-				display: flex;
-				padding: 1em;
-				margin: 2rem 0 3rem;
-				flex-basis: 50%;
-				box-sizing: border-box;
-				background: #f7f7f7;
-			}
-        }
-        .content {
-			display: flex;
-			flex-basis: 100%;
-
-			table {
-				background: #f7f7f7;
+    &--dropdown {
+      label {
+        margin-left: 1rem;
+      }
+    }
+  }
+  &__panel {
+    padding: 1rem;
+    margin-bottom: 2rem;
+    max-width: 1280px;
+    display: flex;
+    flex-flow: row wrap;
+    flex-grow: 1;
+    .content {
+      display: flex;
+      flex-basis: 100%;
+      table {
+				background: $light-gray;
 				box-sizing: border-box;
 				padding: 0.3em;
 				flex-basis: 100%;
 				border-collapse: collapse;
-				
-				thead { border-bottom: 1px solid #c7c7c7; }
-				td {
-					text-align: right;
-					font-family: $mono;
-					font-size: 0.9rem;
-					padding: 0.15rem 1rem;
-				}
-				th {
-					font-weight: normal;
-					text-align: right;
-					height: 3em;
-					width: 25%;
-					padding: 0 1rem;
-					
-					&:nth-of-type(1),
-					&:nth-of-type(6) { width: auto; }
-				}
-			}
+      }
+      thead {
+        border-bottom: 1px solid darken( $light-gray, 20% );
+      }
+      td {
+        text-align: right;
+        font-family: $mono;
+        font-size: 0.9rem;
+        padding: 0.2rem 1rem;
+      }
+      th {
+        font-weight: normal;
+        text-align: right;
+        height: 3em;
+        width: 25%;
+        padding: 0 1rem;
+        &:nth-of-type(1),
+        &:nth-of-type(6) {
+          width: auto;
         }
+      }
     }
+  }
 }
 .bitcoin {
-    &--balance{
-        font-size: 2.5rem;
-        text-align: center;
-
-        &:after{ content: "BTC"; font-size: 1.7rem; }
+  &--balance {
+    position: relative;
+    font-size: 2rem;
+    text-align: center;
+    color: $blue;
+    &::after {
+      position: absolute;
+      content: "BTC";
+      font-size: 0.7rem;
+      background: $blue;
+      color: white;
+      letter-spacing: 0.1rem;
+      padding: 0.17rem 0.4rem 0.1rem 0.4rem;
+      margin-left: 0.5rem;
+      bottom: 7px;
+      border-radius: 0.1rem;
     }
+  }
 }
-@media (max-width: $breakpoint-tablet) {
+@media (max-width: $tablet) {
 	.dashboard__panel {
 		.content {
-			table {
-				td { padding: 0.15rem 0.7rem; }
-				th { padding: 0 0.7rem; }
-			}
+      td {
+        padding: 0.3rem 0.7rem;
+        // color: lighten(black, 40%);
+      }
+      th {
+        padding: 0 0.7rem;
+      }
 		}
 	}
 }
-@media (max-width: $breakpoint-small-tablet) {
-	.dashboard__panel {
-		flex-direction: column;
-
-		.content {
-			table {
-				background: white;
-				
-				thead { border: none; }
-				tbody {
-					flex-direction: column;
-					
-					tr { width: 49%; }
-					tr:nth-child(2n) { align-self: flex-end; }
-					tr:nth-child(2n+1) { margin-bottom: -160.5px; }
-				}
-			}
-			form { flex-basis: 100%; }
-		}
-	}
+@media (max-width: $small-tablet) {
+	.dashboard {
+    &__header {
+      flex-direction: column;
+      align-items: start;
+      &--dropdown {
+        margin-top: 0.8rem;
+        label:first-child {
+          margin-left: 0;
+        }
+      }
+    }
+    &__panel {
+  		flex-direction: column;
+  		.content {
+  			table {
+  				background: white;
+  			}
+        thead {
+          border: none;
+        }
+        tr {
+          width: calc(50% - 0.5rem);
+          float: left;
+          margin-left: 0.5rem;
+          background: $light-gray;
+          display: grid;
+          margin-bottom: 1rem;
+          &:nth-child(2n+1) {
+            margin-left: auto;
+            margin-right: 0.5rem;
+          }
+        }
+  		}
+  	}
+  }
 }
-@media (max-width: $breakpoint-phone) {
-	.dashboard__panel {
-		.content {
-			table {
-				tbody {
-					tr { width: 100% }
-					tr:nth-child(2n+1) { margin-bottom: 24px; }
-				}
-			}
-		}
-	}
+@media (max-width: $phone) {
+  .dashboard {
+    &__header {
+      &--dropdown {
+        width: 100%;
+        label,
+        select {
+          width: 100%;
+        }
+        #currency {
+          margin-bottom: 1rem;
+        }
+        label {
+          margin: 0;
+        }
+      }
+    }
+    &__panel {
+  		.content {
+        tr {
+          width: 100%;
+          float: none;
+          margin: 0;
+          margin-bottom: 1rem;
+        }
+  		}
+  	}
+  }
 }

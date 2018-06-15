@@ -11,21 +11,22 @@
     <pre class="mono"><%= htmlWebpackPlugin.options.version %></pre>
   </span>
   <div class="home__dashboard">
-    <div class="dashboard__header center">
-      <h3>My bitcoins</h3>
-      <span class="bitcoin--balance"></span>
-    </div>
-    <div class="dashboard__panel">
-      <div class="header">
-        <h3>BTC value for Country</h3>
+    <div class="dashboard__header">
+      <div class="dashboard__header--balance">
+        <h3>Your balance:</h3>
+        <span class="bitcoin--balance"></span>
+      </div>
+      <div class="dashboard__header--dropdown">
         <form>
           <label for="currency">Currency</label>
           <select id="currency" class="home__select--currency" name="currency"></select>
-          
-          <label for="other">Some other</label>
-          <select id="other" class="home__select--other" name="other"></select>
+          <label for="other">Exchange</label>
+          <select id="exchange" class="home__select--other" name="other"></select>
         </form>
       </div>
+    </div>
+
+    <div class="dashboard__panel">
       <div class="content">
         <table class="home__table">
           <thead>
