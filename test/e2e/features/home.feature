@@ -36,3 +36,16 @@ Feature: Home
   Scenario: Currency values are showed in the right language currency format
     Given I open Home page
     Then I see the data response currency values in the table within "CLP" format
+
+  Scenario: BTC balance should update data each minute
+    Given I open Home page
+    Then I see BTC balance with a different value after a minute
+
+  Scenario: Currency values should update data each minute
+    Given I open Home page
+    Then I see currency values with differents values after a minute
+  
+  Scenario: Table row related to currency selected keep selected when the table data is updated
+    Given I open Home page
+    When select the "USD" in the currency selector
+    Then I see the right row "USD" with the class in the table after one minute

@@ -2,8 +2,6 @@
 @import 'font';
 @import url('https://fonts.googleapis.com/css?family=Space+Mono');
 
-$breakpoint-table-desktop: 640px;
-
 // Colours
 $lightgray: #f4f4f4;
 $black: #151E6B;
@@ -15,6 +13,9 @@ $pink: #FD7DA1;
 $cream: #FCBA9E;
 $yellow: #FFF162;
 
-
 // Fonts
 $mono: 'Space Mono', monospace;
+
+$breakpoint-tablet: 991px;
+$breakpoint-small-tablet: 767px;
+$breakpoint-phone: 479px;

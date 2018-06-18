@@ -1,30 +1,30 @@
-[![Build Status](https://travis-ci.org/gpincheiraa/proyecto_1.svg?branch=master)](https://travis-ci.org/gpincheiraa/proyecto_1)
+[![Build Status](https://travis-ci.org/gpincheiraa/proyecto_1.svg?branch=master)](https://travis-ci.org/gpincheiraa/proyecto_1) 
+[![Greenkeeper badge](https://badges.greenkeeper.io/gpincheiraa/bln-frontend-project1.svg)](https://greenkeeper.io/)
 
 ### Proyecto 1 Curso FrontEnd Básico
 
 # Monitor de valor del Bitcoin
 
 ### Objetivo:
-Contruir una pequeña aplicación que es capaz de de consultar el precio del bitcoin en distintas monedas y desplegar una tabla con la lista de monedas. Tambien contempla un filtro. En esta primera versión debemos contruir un prototipo como el de la siguiente imagen:
+Contruir una pequeña aplicación que es capaz de consultar el precio del Bitcoin en distintas monedas y desplegar una tabla con la lista de monedas. También contempla un filtro. En esta primera versión debemos contruir un prototipo similar a la siguiente imagen:
 
-// **@TODO**: diagrama prototipo
+// **@TODO**: Diagrama prototipo
 
-Como se puede observar en el diagrama también necesitamos incluir el balance de nuestra billetera bitcoin. Para esto el proyecto ya cuenta con un mecanismo que realiza este trabajo en el cual solo con configurar nuestra dirección bitcoin podemos logar este objetivo. Más adelante se explica como realizar esta configuración.
+Como se puede observar en el diagrama también necesitamos incluir el balance de nuestra billetera Bitcoin. Para esto el proyecto ya cuenta con un mecanismo que realiza este trabajo en el cual solo con configurar nuestra dirección Bitcoin podemos lograr este objetivo. Más adelante se explica como realizar esta configuración.
 
 ### Requerimientos:
-- NodeJS >= 8.4 instalado a través de NVM. Instrucciones [acá](docs/nvm-install.md)
+- NodeJS >= 8.4 instalado a través de NVM. Instrucciones [click acá](docs/nvm-install.md)
 - Git
-- Crear un proyecto en [GITHUB](https://github.com). Instrucciones [acá]
-- Crear una cuenta [TRAVIS](https://travis-ci.org) y linkear el repositorio al proyecto github. Instrucciones [acá]
+- Crear un proyecto en [GITHUB](https://github.com). 
+// **@TODO**: Instrucciones [click acá]
+- Crear una cuenta [TRAVIS](https://travis-ci.org) y linkear el repositorio al proyecto github. 
+// **@TODO**: Instrucciones [click acá]
 
 ### Contexto
 La aplicación posee una funcionalidad ya desarrollada que utiliza la siguiente url para obtener una lista `https://blockchain.info/es/ticker` y devuelve un objeto JSON el cual utilizaremos en este proyecto.
 
 ### Instalación
 - ejecutar `npm i`
-- ejecutar `npm start`
-- abrir `http://localhost:3000/` en el navegador
-
 
 ## Parte 0: Configurar proyecto
 
@@ -42,20 +42,22 @@ La aplicación posee una funcionalidad ya desarrollada que utiliza la siguiente 
     },
     ...
  ```
-
-- Escribir la información de git asociada al proyecto
-- Cambiarse a la rama dev utilizando `git checkout dev` ya que seguimos [gitflow]()
-- Crear version 0.0.0 utilizando el siguiente comando `npm version 0.0.0`
-- Ejecutar el siguiente comando `git push origin {--tags,dev}`
-
 *Resultado esperado:*
 
-<Foto tab de github mostrando head en 1 respecto de la rama master>
+// **@TODO**: <Foto tab de github mostrando head en 1 respecto de la rama master>
 
 // **@TODO**: Página de introducción a las Bitcoin Wallets
-- Crear archivo `btc-config.json` 
+- Crear archivo `btc-config.json` con la siguiente estructura: 
+```
+{
+  "address": ""
+}
+```
+Una vez seguido el paso 0, ejecutar `npm start` y abrir `http://localhost:3000/` en el navegador.
 
-## Indice Curso
+//  **@TODO**: FOTO PRIMER PANTALLAZO
+
+## Índice Curso
 
 - [Parte 1: Crear las columnas de la tabla basado en data proveniente de una petición HTTP](docs/part1/part1.md)
 
@@ -69,8 +71,17 @@ La aplicación posee una funcionalidad ya desarrollada que utiliza la siguiente 
 
 - [Parte 6: Formateo de valor](docs/part6/part6.md)
 
+// @TODO: Agregar nota y tests que corroboren que los datos en la tabla y selectbox no se duplican, así como el caso borde que exista una moneda seleccionada y se mantenga así al actualizarse la tabla.
 - [Parte 7: Actualización cada 1 minuto](docs/part7/part7.md)
 
 - [Parte 8: Manejo offline guardando en caché las últimas peticiones exitosas](docs/part8/part8.md)
 
 // @TODO: Pauta puntajes
+
+## Nivel Intermedio
+
+- Guardar en caché la última petición exitosa
+- Aplicar patrones de diseño para reutilizar código como number formater, modularizar, crear componentes, etc
+- Aplicar linter y buenas prácticas
+- Medir performance
+- aplicar TAD a todo el proyecto

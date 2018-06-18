@@ -5,13 +5,12 @@ node_js:
 cache:
   directories:
     - node_modules
-install: 
-  - npm i -g npm@5.7.1
+install:
   - npm ci
 stages:
   - name: functional-test
   - name: deploy
-    if: branch = master
+    if: branch IN (master)
 jobs:
   include:
     - stage: functional-test
@@ -24,3 +23,6 @@ jobs:
         app: $HEROKU_APP_NAME
         api_key:
           secure: "$HEROKU_KEY"
+        on:
+          branches:
+            - master
