@@ -1,4 +1,4 @@
 #!/bin/sh
 
 echo '{ "address": "1FwJk" }' > btc-config.json
-concurrently 'npm start' 'wait-on http://localhost:3000 && DEBUG=cypress:* cypress run'
+npm start & (wait-on http://localhost:3000 && DEBUG=cypress:* cypress run)
