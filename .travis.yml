@@ -4,7 +4,8 @@ node_js:
   - "node"
 cache:
   directories:
-    - node_modules
+    - ~/.npm
+    - ~/.cache
 install:
   - npm ci
 stages:
