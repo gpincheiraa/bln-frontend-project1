@@ -4,13 +4,14 @@ node_js:
   - "node"
 cache:
   directories:
-    - node_modules
+    - ~/.npm
+    - ~/.cache
 install:
   - npm ci
 stages:
   - name: functional-test
   - name: deploy
-    if: branch IN (master)
+    if: branch = master
 jobs:
   include:
     - stage: functional-test
@@ -26,3 +27,4 @@ jobs:
         on:
           branches:
             - master
+   
