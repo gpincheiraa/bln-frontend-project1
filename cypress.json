@@ -6,6 +6,7 @@
   "screenshotsFolder": "./test/e2e/screenshots",
   "supportFile": "./test/e2e/support/index.js",
   "videosFolder": "./test/e2e/videos",
+  "videoCompression": false,
   "baseUrl": "http://localhost:3000",
   "reporter": "reporters/custom.js"
 }
