@@ -21,8 +21,9 @@ module.exports = function(runner) {
 
     runner.on('end', function(){
         // console.log('end: %d/%d', passes, passes + failures);
-        console.log(`Your score is ${score}`);
-        console.log(`passes: ${passes} , failures: ${failures}`);
+        console.log('----------------------------------------------');
+        console.log(`|          Your score is ${score}            |`);
+        console.log('----------------------------------------------')
         process.exit();
     });
 };

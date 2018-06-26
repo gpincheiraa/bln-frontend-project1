@@ -18,6 +18,8 @@ jobs:
       script: ./ci/functional-test
     - stage: deploy 
       script: ./ci/deploy
+      env:
+        - NPM_CONFIG_PRODUCTION=true
       deploy: &heroku
         provider: heroku
         skip_cleanup: true
