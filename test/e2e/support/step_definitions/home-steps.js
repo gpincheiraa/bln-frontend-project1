@@ -13,23 +13,29 @@ let actualViewport = 'macbook-15';
 
 before(() => {
   cy.getFixturesData()
-    .then(data => {
-      fixturesData = {
-        btcTickerResponse : data.btcTickerResponse,
-        btcTickerResponseAfter: data.btcTickerResponseAfter,
-        btcBalanceResponse: data.btcBalanceResponse,
-        btcBalanceResponseAfter: data.btcBalanceResponseAfter,
-        btcBalanceResponseAfterMin:  data.btcBalanceResponseAfterMin
-      };
-      currencyNamesList = Object.keys(fixturesData.btcTickerResponse);
+    .then(({
+      btcTickerResponse,
+      btcTickerResponseAfter,
+      btcBalanceResponse,
+      btcBalanceResponseAfter,
+      btcBalanceResponseAfterMin
+    }) => {
+      currencyNamesList = Object.keys(btcTickerResponse);
       currencyNameSample = currencyNamesList[1];
       currencyTypeFormatter = name => `${name[0].toUpperCase()}${name.slice(1)}`;
-      currencyPropsList = Object.keys(fixturesData.btcTickerResponse[currencyNameSample]);
+      currencyPropsList = Object.keys(btcTickerResponse[currencyNameSample]);
       expectedColumnNames = [
         'Currency',
         ...currencyPropsList.map(currencyTypeFormatter)
       ];
-    }); 
+      fixturesData = {
+        btcTickerResponse,
+        btcTickerResponseAfter,
+        btcBalanceResponse,
+        btcBalanceResponseAfter,
+        btcBalanceResponseAfterMin
+      };
+    });
   cy.getNumberFormatter()
     .then(formatter => numberFormatter = formatter);
 });
@@ -37,10 +43,11 @@ before(() => {
 beforeEach(() => {
   cy.getBitcoinInfo()
     .then(bitcoinInfo => {
+      const { btcTickerResponse, btcBalanceResponse } = fixturesData;
       cy.viewport(actualViewport);
       cy.server();
-      cy.route('https://blockchain.info/es/ticker', fixturesData.btcTickerResponse);
-      cy.route(`https://chain.so/api/v2/get_address_balance/BTC/${bitcoinInfo.address}`, fixturesData.btcBalanceResponse);
+      cy.route('https://blockchain.info/es/ticker', btcTickerResponse);
+      cy.route(`https://chain.so/api/v2/get_address_balance/BTC/${bitcoinInfo.address}`, btcBalanceResponse);
       bitcoinAddress = bitcoinInfo.address;
     });
 });
@@ -102,9 +109,9 @@ then(`I see the currency selector with the currencies given in the data requeste
   cy.get(selectBoxSelector).should($select => {
     const selectBoxElement = $select[0];
     const optionElements = Array.from(selectBoxElement.querySelectorAll('option'));
-    
+
     expect(optionElements[0].textContent).to.eq('TODOS');
-    
+
     optionElements.slice(1).forEach(optionEl => {
       expect(currencyNamesList).to.include(optionEl.textContent);
       expect(currencyNamesList).to.include(optionEl.getAttribute('value'));
@@ -149,13 +156,13 @@ then(`I see BTC balance with a different value after a minute`, () => {
   const balanceSelector = '.bitcoin--balance';
 
   cy.tick(oneMinute);
-  cy.get(balanceSelector).should('have.text', `${fixturesData.btcBalanceResponse.data.confirmed_balance}`); 
+  cy.get(balanceSelector).should('have.text', `${fixturesData.btcBalanceResponse.data.confirmed_balance}`);
 
   cy.route(`https://chain.so/api/v2/get_address_balance/BTC/${bitcoinAddress}`, fixturesData.btcBalanceResponseAfter);
 
   cy.tick(oneMinute);
   cy.get(balanceSelector).should('have.text', `${fixturesData.btcBalanceResponseAfter.data.confirmed_balance}`);
-    
+
   cy.route(`https://chain.so/api/v2/get_address_balance/BTC/${bitcoinAddress}`, fixturesData.btcBalanceResponseAfterMin);
 
   cy.tick(oneMinute);
@@ -195,12 +202,12 @@ then(`I see currency values with differents values after a minute`, () => {
 
   cy.tick(oneMinute);
   checkTickerResponse(fixturesData.btcTickerResponse);
-  
+
   cy.route('https://blockchain.info/es/ticker', fixturesData.btcTickerResponseAfter);
 
   cy.tick(oneMinute);
   checkTickerResponse(fixturesData.btcTickerResponseAfter);
-  
+
 });
 
 then(`I see the right row {string} with the class in the table after one minute`, currencySelected => {
@@ -208,7 +215,7 @@ then(`I see the right row {string} with the class in the table after one minute`
 
   cy.route('https://blockchain.info/es/ticker', fixturesData.btcTickerResponseAfter);
   cy.tick(oneMinute);
-  
+
   cy.get(rowsSelector).should($trList => {
     const rowsList = $trList.toArray();
     currencyNamesList.forEach((currencyName, index) => {
