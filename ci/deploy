@@ -1,5 +1,14 @@
 #!/bin/bash
 echo "============================================================="
+echo "          ESTRUCTURA DE TRAVIS Y DIRECTORIOS                 "
+echo "============================================================="
+ls -lha ..
+echo "..."
+ls -lha ../.cache
+echo "..."
+ls -lha $HOME/.cache
+
+echo "============================================================="
 echo "          ESTRUCTURA APLICACIÓN FRONTEND                     "
 echo "============================================================="
 ls -lha dist
