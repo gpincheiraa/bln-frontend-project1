@@ -12,6 +12,8 @@ stages:
   - name: functional-test
   - name: deploy
     if: branch = master
+  - name: smoke-test
+    if: branch = master
 jobs:
   include:
     - stage: functional-test
@@ -29,4 +31,6 @@ jobs:
         on:
           branches:
             - master
-   
+    - stage: smoke-test
+      script: ./ci/smoke-test
+ 
