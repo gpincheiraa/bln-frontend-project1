@@ -2,12 +2,12 @@
 echo "============================================================="
 echo "          ESTRUCTURA APLICACIÓN FRONTEND                     "
 echo "============================================================="
-ls -lha dist | grep
+ls -lha dist
 
 echo "============================================================="
 echo "      GENERAR ESTRUCTURA APLICACIÓN BACKEND                  "
 echo "============================================================="
-mkdir -p public && cp -r dist/* ./public/
+mkdir -p public && cp -r dist/ ./public/
 cp server/server.js .
 ls -lha
 
