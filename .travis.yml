@@ -6,7 +6,7 @@ cache:
   directories:
     - ~/.npm
     - ~/.cache
-    - ./dist
+    - .dist
 install:
   - npm ci
 stages:
