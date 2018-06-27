@@ -1,12 +1,15 @@
 #!/bin/bash
+
 echo "============================================================="
-echo "          ESTRUCTURA DE TRAVIS Y DIRECTORIOS                 "
+echo "          CONFIGURANDO DATOS BILLETERA BITCOIN               "
 echo "============================================================="
-ls -lha ..
-echo "ls -lha $HOME"
-ls -lha $HOME
-echo "ls -lha $HOME/.cache"
-ls -lha $HOME/.cache
+echo '{ "address": "'$BITCOIN_ADDRESS'" }' > btc-config.json
+echo ls -lha | grep btc-config.json
+
+echo "============================================================="
+echo "          CONSTRUYENDO APLICACIÓN                            "
+echo "============================================================="
+npm run build
 
 echo "============================================================="
 echo "          ESTRUCTURA APLICACIÓN FRONTEND                     "
