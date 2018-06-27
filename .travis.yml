@@ -6,18 +6,22 @@ cache:
   directories:
     - ~/.npm
     - ~/.cache
+    - ./dist
 install:
   - npm ci
 stages:
   - name: functional-test
+  - name: build
   - name: deploy
     if: branch = master
 jobs:
   include:
     - stage: functional-test
-      script: ./ci/functional-test
-    - stage: deploy 
-      script: ./ci/deploy
+      script: bash ./ci/functional-test
+    - stage: build
+      script: npm run build
+    - stage: deploy
+      script: bash ./ci/deploy
       env:
         - NPM_CONFIG_PRODUCTION=true
       deploy: &heroku
