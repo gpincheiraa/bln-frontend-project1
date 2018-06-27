@@ -5,12 +5,6 @@ echo "============================================================="
 ls -lha dist | grep
 
 echo "============================================================="
-echo "          CONFIGURANDO DATOS BILLETERA BITCOIN               "
-echo "============================================================="
-echo '{ "address": "'$BITCOIN_ADDRESS'" }' > btc-config.json
-echo ls -lha | grep btc-config.json
-
-echo "============================================================="
 echo "      GENERAR ESTRUCTURA APLICACIÓN BACKEND                  "
 echo "============================================================="
 mkdir -p public && cp -r dist/* ./public/

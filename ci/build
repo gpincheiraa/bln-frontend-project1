@@ -1,0 +1,12 @@
+#!/bin/bash
+
+echo "============================================================="
+echo "          CONFIGURANDO DATOS BILLETERA BITCOIN               "
+echo "============================================================="
+echo '{ "address": "'$BITCOIN_ADDRESS'" }' > btc-config.json
+echo ls -lha | grep btc-config.json
+
+echo "============================================================="
+echo "          CONSTRUYENDO APLICACIÓN                            "
+echo "============================================================="
+npm run build
