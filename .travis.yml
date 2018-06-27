@@ -4,19 +4,26 @@ node_js:
   - "node"
 cache:
   directories:
-    - node_modules
+    - ~/.npm
+    - ~/.cache
+    - ./dist
 install:
   - npm ci
 stages:
   - name: functional-test
+  - name: build
   - name: deploy
-    if: branch IN (master)
+    if: branch = master
 jobs:
   include:
     - stage: functional-test
-      script: ./ci/functional-test
-    - stage: deploy 
-      script: ./ci/deploy
+      script: bash ./ci/functional-test
+    - stage: build
+      script: bash ./ci/build
+    - stage: deploy
+      script: bash ./ci/deploy
+      env:
+        - NPM_CONFIG_PRODUCTION=true
       deploy: &heroku
         provider: heroku
         skip_cleanup: true
@@ -26,3 +33,4 @@ jobs:
         on:
           branches:
             - master
+   
