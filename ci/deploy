@@ -3,9 +3,9 @@ echo "============================================================="
 echo "          ESTRUCTURA DE TRAVIS Y DIRECTORIOS                 "
 echo "============================================================="
 ls -lha ..
-echo "..."
-ls -lha ../.cache
-echo "..."
+echo "ls -lha $HOME"
+ls -lha $HOME
+echo "ls -lha $HOME/.cache"
 ls -lha $HOME/.cache
 
 echo "============================================================="
