@@ -6,16 +6,16 @@ cache:
   directories:
     - ~/.npm
     - ~/.cache
-    - ./dist
+    - ./public
+    - server.js
+install:
+  - npm ci
 stages:
-  - name: prepare cache
   - name: functional-test
   - name: build
   - name: deploy
 jobs:
   include:
-    - stage: prepare cache
-      script: npm ci
     - stage: functional-test
       script: bash ./ci/functional-test
     - stage: build
