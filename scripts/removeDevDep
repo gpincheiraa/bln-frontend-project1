@@ -3,4 +3,5 @@
 sed -i '30s/.*/}}/' package.json
 sed -i '31,53d' package.json
 rm -f package-lock.json
+rm -rf node_modules
 cat package.json
