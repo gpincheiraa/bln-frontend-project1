@@ -9,6 +9,9 @@ cache:
 stages:
   - name: functional-test
   - name: deploy
+    if: branch = master
+  - name: smoke-test
+    if: branch = master
 jobs:
   include:
     - stage: functional-test
@@ -22,4 +25,5 @@ jobs:
         app: $HEROKU_APP_NAME
         api_key:
           secure: "$HEROKU_KEY"
-   
+    - stage: smoke-test
+      script: bash ./ci/smoke-test
