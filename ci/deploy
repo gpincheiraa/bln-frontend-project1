@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo "============================================================="
 echo "          CONFIGURANDO DATOS BILLETERA BITCOIN               "
 echo "============================================================="
@@ -5,14 +7,19 @@ echo '{ "address": "'$BITCOIN_ADDRESS'" }' > btc-config.json
 echo ls -lha | grep btc-config.json
 
 echo "============================================================="
-echo "          CONSTRUYENDO APLICACIÓN FRONTEND                   "
+echo "          CONSTRUYENDO APLICACIÓN                            "
 echo "============================================================="
 npm run build
 
 echo "============================================================="
+echo "          ESTRUCTURA APLICACIÓN FRONTEND                     "
+echo "============================================================="
+ls -lha dist
+
+echo "============================================================="
 echo "      GENERAR ESTRUCTURA APLICACIÓN BACKEND                  "
 echo "============================================================="
-mkdir -p public && cp dist/* ./public/
+mkdir -p public && cp -R dist/. ./public/
 cp server/server.js .
 ls -lha
 

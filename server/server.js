@@ -9,10 +9,10 @@ const port = process.env.PORT || 8080;
 app.use(express.static(`${__dirname}/public`));
 
 // set the home page route
-app.get('/', function(req, res) {
+app.get('/', (req, res) =>{
     res.render(`${__dirname}/public/index.html`);
 });
 
-app.listen(port, function() {
+app.listen(port, () => {
     console.log(`Our app is running on http://localhost:${port}`);
 });

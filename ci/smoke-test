@@ -1,0 +1,22 @@
+#!/bin/bash
+
+echo "============================================================="
+echo "      Corroborando si la página responde en producción       "
+echo "============================================================="
+
+if [[ -n "$HEROKU_APP_NAME" ]]; then 
+    url="https://$HEROKU_APP_NAME.herokuapp.com"
+    status_code=`echo $(curl --write-out %{http_code} --silent -S --output /dev/null $url)`
+
+    echo "Corroborando estado del sistema en $url ..."
+
+    case $status_code in
+        400|404|500|503)
+            echo "ERROR: Se obtuvo el código HTTP de error $status_code"
+            exit 1
+            ;;
+        200)
+            echo "La página esta ok. Código HTTP $status_code"
+            ;;
+    esac;
+fi
