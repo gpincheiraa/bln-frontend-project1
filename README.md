@@ -1,3 +1,4 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/cb0cb18f821f44d4b3cb85e4c51442e8)](https://app.codacy.com/app/gpincheiraa/bln-frontend-project1?utm_source=github.com&utm_medium=referral&utm_content=gpincheiraa/bln-frontend-project1&utm_campaign=badger)
 [![Build Status](https://travis-ci.org/gpincheiraa/bln-frontend-project1.svg?branch=master)](https://travis-ci.org/gpincheiraa/bln-frontend-project1) 
 [![Greenkeeper badge](https://badges.greenkeeper.io/gpincheiraa/bln-frontend-project1.svg)](https://greenkeeper.io/)
 
