@@ -18,8 +18,7 @@ jobs:
       script: bash ./ci/functional-test
     - stage: deploy
       script: bash ./ci/deploy
-      before_deploy: "npm install"
-      deploy: &heroku
+      deploy:
         provider: heroku
         skip_cleanup: true
         app: $HEROKU_APP_NAME
