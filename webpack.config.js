@@ -56,6 +56,10 @@ module.exports = {
             safeToUseOptionalCaches: true
         })
     ],
+    node: {
+        __dirname: false,
+        __filename: false,
+    },
     devtool: 'eval-source-map',
     devServer: {
         filename: 'index.bundle.js',
