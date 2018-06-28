@@ -6,8 +6,6 @@ cache:
   directories:
     - ~/.npm
     - ~/.cache
-install:
-  - npm ci
 stages:
   - name: functional-test
   - name: deploy
@@ -17,11 +15,9 @@ stages:
 jobs:
   include:
     - stage: functional-test
-      script: ./ci/functional-test
-    - stage: deploy 
-      script: ./ci/deploy
-      env:
-        - NPM_CONFIG_PRODUCTION=true
+      script: bash ./ci/functional-test
+    - stage: deploy
+      script: bash ./ci/deploy
       deploy: &heroku
         provider: heroku
         skip_cleanup: true
