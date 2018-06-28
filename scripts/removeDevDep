@@ -1,4 +1,6 @@
 #!/bin/bash
 
-sed -i '31s/.*/"extra": {/' package.json
+sed -i '30s/.*/}}/' package.json
+sed -i '31,53d' package.json
+rm -f package-lock.json
 cat package.json
