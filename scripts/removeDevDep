@@ -1,0 +1,3 @@
+#!/bin/bash
+
+sed -i '31s/.*/"dddevDependencies": {/' package.json

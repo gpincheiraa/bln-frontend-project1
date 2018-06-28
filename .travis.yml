@@ -18,6 +18,7 @@ jobs:
       script: bash ./ci/functional-test
     - stage: deploy
       script: bash ./ci/deploy
+      before_deploy: bash ./scripts/removeDevDep
       deploy:
         provider: heroku
         skip_cleanup: true
