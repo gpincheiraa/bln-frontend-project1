@@ -19,7 +19,7 @@ ls -lha dist
 echo "============================================================="
 echo "      GENERAR ESTRUCTURA APLICACIÓN BACKEND                  "
 echo "============================================================="
-mkdir -p public && cp -r dist/ ./public/
+mkdir -p public && cp -R dist/. ./public/
 cp server/server.js .
 ls -lha
 
