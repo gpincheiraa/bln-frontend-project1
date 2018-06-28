@@ -9,11 +9,14 @@ if [[ -n "$HEROKU_APP_NAME" ]]; then
     status_code=`echo $(curl --write-out %{http_code} --silent -S --output /dev/null $url)`
 
     echo "Corroborando estado del sistema en $url ..."
+
     case $status_code in
-        400|500|503)
-            echo "ERROR: Se obtuvo el código HTTP de error $status_code" ;;
+        400|404|500|503)
+            echo "ERROR: Se obtuvo el código HTTP de error $status_code"
             exit 1
+            ;;
         200)
             echo "La página esta ok. Código HTTP $status_code"
+            ;;
     esac;
 fi
