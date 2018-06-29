@@ -1,7 +1,13 @@
 #!/bin/bash
 
-sed -i '30s/.*/}}/' package.json
-sed -i '31,53d' package.json
+#Leer todo el archivo, luego reemplazar toda la linea y la linea de abajo con "devDependencies": {
+#Así quitar la coma
+sed -i ':a;N;$!ba;s/,\n.."devDependencies":.{/\n"devDependencies": {/g' package.json
+#Se elimina devDependencies hasta que choque con el caracter }
+sed -i '/"devDependencies": {/,/}/d' package.json
+#estrategia alternativa, elimina /},\n}/
+#sed ':a;N;$!ba;s/},\n}/}\n}/g' package.json
+
 rm -f package-lock.json
 rm -rf node_modules
 cat package.json
