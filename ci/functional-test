@@ -1,2 +1,4 @@
+#!/bin/bash
+
 echo '{ "address": "1FwJk" }' > btc-config.json
-npm start & (wait-on http://localhost:3000 && cypress run)
+npm start & (wait-on http://localhost:3000 && cypress run --config video=false)

@@ -1,31 +1,37 @@
-[![Build Status](https://travis-ci.org/gpincheiraa/proyecto_1.svg?branch=master)](https://travis-ci.org/gpincheiraa/proyecto_1)
-
-### Proyecto 1 Curso FrontEnd Básico
-
 # Monitor de valor del Bitcoin
 
-### Objetivo:
-Contruir una pequeña aplicación que es capaz de de consultar el precio del bitcoin en distintas monedas y desplegar una tabla con la lista de monedas. Tambien contempla un filtro. En esta primera versión debemos contruir un prototipo como el de la siguiente imagen:
+[![Build Status](https://travis-ci.org/gpincheiraa/bln-frontend-project1.svg?branch=master)](https://travis-ci.org/gpincheiraa/bln-frontend-project1) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/cb0cb18f821f44d4b3cb85e4c51442e8)](https://app.codacy.com/app/gpincheiraa/bln-frontend-project1?utm_source=github.com&utm_medium=referral&utm_content=gpincheiraa/bln-frontend-project1&utm_campaign=badger) [![Greenkeeper badge](https://badges.greenkeeper.io/gpincheiraa/bln-frontend-project1.svg)](https://greenkeeper.io/)
 
-// @TODO: diagrama prototipo
+### Objetivo:
+Contruir una pequeña aplicación que es capaz de consultar el precio del Bitcoin en distintas monedas y desplegar una tabla con la lista de monedas. También contempla un filtro. En esta primera versión debemos contruir un prototipo similar a la siguiente imagen:
+
+// **@TODO**: Diagrama prototipo
+
+Como se puede observar en el diagrama también necesitamos incluir el balance de nuestra billetera Bitcoin. Para esto el proyecto ya cuenta con un mecanismo que realiza este trabajo en el cual solo con configurar nuestra dirección Bitcoin podemos lograr este objetivo. Más adelante se explica como realizar esta configuración.
 
 ### Requerimientos:
-- NodeJS >= 8.4 instalado a través de NVM. Instrucciones [acá](docs/nvm-install.md)
+- NodeJS >= 8.11.2 instalado a través de NVM. Instrucciones [click acá](docs/nvm-install.md)
 - Git
-- Crear un proyecto en [GITHUB](https://github.com). Instrucciones [acá]
-- Crear una cuenta [TRAVIS](https://travis-ci.org) y linkear el repositorio al proyecto github. Instrucciones [acá]
-
-### Contexto
-La aplicación posee una funcionalidad ya desarrollada que utiliza la siguiente url para obtener una lista `https://blockchain.info/es/ticker` y devuelve un objeto JSON el cual utilizaremos en este proyecto.
+- Crear una copia de este en proyecto (click en fork).
+// **@TODO**: Instrucciones [click acá]
+- Crear una cuenta [TRAVIS](https://travis-ci.org) y linkear el repositorio al proyecto github. 
+// **@TODO**: Instrucciones [click acá]
 
 ### Instalación
-- ejecutar `npm i`
-- ejecutar `npm start`
-- abrir `http://localhost:3000/` en el navegador
+- `npm install`
+
+### Antes de empezar
+
+Construiremos una aplicación de manera incremental agregando la funcionalidad básica que nos permita cotizar el valor del bitcoin en la moneda que nosotros seleccionemos y en la bolsa seleccionada. No partiremos desde cero: archivos de estilo, la estructura HTML y la implementación para mostrar un balance en bitcoins ya están listas. Sólo hay que intervenir el código demarcado en los archivos indicados en cada una de las intrucciones.
+
+Antes de resolver los primeros 5 ejercicios, incluiremos información del alumno en el archivo `package.json` y 
+agregaremos la metadata necesaria para que el proyecto sea capaz de ejecutarse.
+
+Antes de realizar la publicación de la aplicación (después de resolver la 5ta parte del proyecto) configuraremos una dirección válida que corresponderá a una dirección con el pozo total de Bitcoins disponible como parte del [programa de recompensas Boolean]() (@TODO link a sección en página web)
 
 ## Parte 0: Configurar proyecto
 
-- En al archivo `package.json` agregar o modificar las propiedades que cumplan con este formato:
+1.  En al archivo `package.json` agregar o modificar las propiedades que cumplan con este formato:
 
  ```
     ...
@@ -39,143 +45,47 @@ La aplicación posee una funcionalidad ya desarrollada que utiliza la siguiente 
     },
     ...
  ```
-
-- Escribir la información de git asociada al proyecto
-- Cambiarse a la rama dev utilizando `git checkout dev` ya que seguimos [gitflow]()
-- Crear version 0.0.0 utilizando el siguiente comando `npm version 0.0.0`
-- Ejecutar el siguiente comando `git push origin {--tags,dev}`
-
 *Resultado esperado:*
 
-<Foto tab de github mostrando head en 1 respecto de la rama master>
+// **@TODO**: <Foto tab de github mostrando head en 1 respecto de la rama master>
 
+// **@TODO**: Página de introducción a las Bitcoin Wallets
 
-### Parte 1: Crear las columnas de la tabla basado en data proveniente de una petición HTTP
-
-En el archivo `./src/index.js` hay una función llamada `createTable()`. Implementar el código que sea capaz de dibujar las columnas de una tabla basada en la data provista en la variable `tableData`.
-
-- En el archivo `index.html` escribir el código HTML necesario. La tabla debe estar estructurada siguiendo la estructura recomendada en [este link](https://www.w3schools.com/tags/tag_thead.asp) utilizando los elementos `<thead>` y `<th>`. Se debe agregar una clase al tag `<table></table>` llamada `home__table`. El agregar esta clase es sumamente importante ya que los test automatizados se basarán en esto para corroborar que la tabla cumple con los requisitos de esta tarea.
-
-- Los nombres de las columnas de la tabla deben estar basados en la estructura del objeto que representa el valor del Bitcoin para una divisa. Adicionalmente debe agregarse una columna extra al inicio de nombre "Currency"
-
-- Los nombres de las columnas deben comenzar con la primera letra en mayúscula
-
-*Resultado esperado:*
-
-![Alt text](docs/part1/img.png?raw=true "Column names")
-
-### Parte 2: Crear las filas de la tabla basado en data proveniente de una petición HTTP
-
-En el archivo `./src/index.js` hay una función llamada `createTable()`. Implementar el código que sea capaz de dibujar los datos de una tabla basada en la data provista en la variable `tableData`.
-
-- Escribir el código que sea capaz de dibujar los datos de la tabla siguiendo la estructura recomendada en el ejercicio anterior, por lo tanto las filas y columnas deberían estar contenidas dentro de la etiqueta `<tbody></tbody>`
-
-- Dado que la petición HTTP responde un objeto con la siguiente estructura:
-
+2. Crear archivo `btc-config.json` con la siguiente estructura: 
 ```
-    {
-        "<CÓDIGO_MONEDA>": { 
-            // PROPIEDADES MONEDA
-        },
-        "<CÓDIGO_MONEDA>": { 
-            // PROPIEDADES MONEDA
-        },
-        ....
-    }
+{
+  "address": ""
+}
 ```
+Una vez seguido el paso 0, ejecutar `npm start` y abrir `http://localhost:3000/` en el navegador.
 
-utilizar la primera columna para escribir el código de la moneda y en las siguiente las propiedades de la moneda.
+//  **@TODO**: FOTO PRIMER PANTALLAZO
 
-*Resultado esperado:*
+## Índice Curso
 
-![Alt text](docs/part2/img.png?raw=true "Table data")
+- [Parte 1: Crear las columnas de la tabla basado en data proveniente de una petición HTTP](docs/part1/part1.md)
 
+- [Parte 2: Crear las filas de la tabla basado en data proveniente de una petición HTTP](docs/part2/part2.md)
 
-**Opcional:** Las columnas de la tabla deben ser capaces de reaccionar a un "cambio de contrato". Esto es: si las propiedades de los objetos provistos para cada tipo de moneda cambian en el futuro, (ejemplo: se agrega un nuevo campo o se quita uno) la tabla debe ser capaz de dibujar las columnas basado en las propiedades.
+- [Parte 3: Selector de moneda](docs/part3/part3.md)
 
+- [Parte 4: Agregar una clase a la fila de la tabla que contiene la moneda seleccionada en el select](docs/part4/part4.md)
 
-// @TODO: Pauta puntajes items anteriores
+// @TODO: Agregar instrucciones, código y tests
+- [Parte 5: Calcular valor respecto a la moneda y bolsa seleccionadas]()
 
-## Parte 3: Selector de moneda
-
-En el archivo `./src/index.js` hay una función llamada `createTable()`. Implementar el código que sea capaz de crear una lista de tags `<option>` y `<select>` utilizando la estructura recomendada en [este link](https://www.w3schools.com/tags/tag_select.asp).
-Cada option debe contener el texto con el código de la moneda. Adicionalmente, tal y como está descrito en el link de referencia, cada `<option>` debe tener el atributo `value` también con el código de la moneda.
-Agregar al select una nueva opción que contenga el texto `TODOS` y que no tenga el atributo `value`. Esta opción debe ser la primera de la lista.
-Se debe agregar una clase al tag `<select>` llamada `home__select--currency`. El agregar esta clase es sumamente importante ya que los test automatizados se basarán en esto para corroborar que el selector de moneda cumple con los requisitos de esta tarea.
-
-*Resultado esperado:*
-
-*Selector de moneda cerrado*
-![Alt text](docs/part3/img1.png?raw=true "select closed")
-
-*Selector de moneda abierto*
-![Alt text](docs/part3/img2.png?raw=true "select opened")
-
-## Parte 4: Agregar una clase a la fila de la tabla que contiene la moneda seleccionada en el select
-
-El selector debe ser capaz de agregar la clase `row__currency--selected` a la fila correspondiente a la moneda seleccionada por el usuario en el selector.
-Esta funcionalidad debe seguir las siguientes reglas:
--  Solo una fila puede contener la clase `row__currency--selected`
-- Al seleccionar la opción `TODOS`, ninguna fila puede contener la clase `row__currency--selected`
-
-*Resultado esperado:*
-
-*Selector de moneda opción **CNY***
-![Alt text](docs/part4/img1.png?raw=true "select closed")
-
-*Selector de moneda opción **CLP***
-![Alt text](docs/part4/img2.png?raw=true "select opened")
-
-*Selector de moneda opción **TODOS**. (opción por defecto)*
-![Alt text](docs/part4/img3.png?raw=true "select opened")
-
-## Parte 5: Agregar estilos utilizando las ventajas de SASS y flexbox a través del estándar BEM
-
-***5.a Crear paneles del dashboard***
-Crear un `<div>` con la clase `home__dashboard`, luego en su interior crear otro `div` con la clase `dashboard__panel` que servirá para envolver la tabla y el selector de moneda.
-A modo de maquetación incluiremos la propiedade `border` para demarcar el área de los elementos y reconocer las distintas secciones de la página. 
-Ambos div deben cumplir la siguientes reglas de estilo para la propiedad `border`:
-
--   `home__dashboard`: tamaño `1.5px`, color `salmon` y estilo de borde `dashed`.
--   `dashboard__panel`: tamaño `1.5px`, color `salmon` y estilo de borde `dotted`. 
-
-Seguir como referencia [este link](https://www.w3schools.com/css/css_border.asp)
-
-*Resultado esperado:*
+- [Parte 6: Agregar estilos utilizando las ventajas de SASS y flexbox a través del estándar BEM](docs/part6/part6.md)
 
 
-***5.b Ordernar los paneles con flexbox***
+-----
+- [Publicar en producción](docs/release-process.md)
+---
 
+- [Parte 7: Formateo de valor](docs/part6/part6.md)
 
-***5.c Reordenar paneles colapsados***
-Utilizar las propiedad order cuando flexbox colapsa los elementos
-En el archivo `./src/index.scss` utilizar la propiedad `order` en la clase https://www.w3schools.com/cssref/css3_pr_order.asp
+// @TODO: Agregar nota y tests que corroboren que los datos en la tabla y selectbox no se duplican
+- [Parte 8: Actualización cada 1 minuto](docs/part7/part7.md)
 
+- [Parte 9: Manejo offline guardando en caché las últimas peticiones exitosas](docs/part8/part8.md)
 
-Para mejor referencia del porque del nombre de las clases utilizados en todos los ejercicios de esta tarea revisar [este link que explica la metodología BEM](http://getbem.com/introduction/)
-Para mejor referencia del porque de las unidades utilizadas en esta tarea revisar [este link con un artículo que habla de ello](https://gist.github.com/basham/2175a16ab7c60ce8e001)
-
-## Primer release
----------------------------------------------------------------------------------------------
-
-
-Ya tenemos nuestra primera funcionalidad: Somos capaces de dibujar una lista de monedas provenientes de una API REST y somos capaces de darle la posibilidad al usuario a que encuentre dentro de la lista la moneda que más le interese. 
-Ahora estamos en condiciones de entregar al usuario una version de nuestra aplicación y lo que haremos será publicar en un servidor nuestra aplicación. No veremos los detalles de este proceso por ahora, solo explicaremos cuales son los requisitos para concretar esto.
-
-El 1er requisito será crear una cuenta en HEROKU, una plataforma que permite publicar de manera gratuita una aplicación. Instrucciones [acá]
-
-El 2do requisito será ir a nuestra cuenta Travis y crear 2 variable de ambiente.
-    - HEROKU_APP_NAME: debe ser el nombre de la aplicación creada en Heroku
-    - HEROKU_KEY: debe ser la key generada por heroku para nuestra app de la cuál hablamos en las instrucciones anteriores.
-    - BITCOIN_ADDRESS: tu dirección Bitcoin
-
-
-## Feedback, Issues, Changelog, Roadmap
-
-## Parte 6: Formateo de valor
-
-## Parte 7: Actualización cada 1 minuto
-
-## Parte 8: Guardar en caché la última petición exitosa
-
-
+// @TODO: Link a pauta puntajes

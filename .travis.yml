@@ -4,23 +4,26 @@ node_js:
   - "node"
 cache:
   directories:
-    - node_modules
-install: 
-  - npm i -g npm@5.7.1
-  - npm ci
+    - ~/.npm
+    - ~/.cache
 stages:
   - name: functional-test
   - name: deploy
     if: branch = master
+  - name: smoke-test
+    if: branch = master
 jobs:
   include:
     - stage: functional-test
-      script: ./ci/functional-test
-    - stage: deploy 
-      script: ./ci/deploy
-      deploy: &heroku
+      script: bash ./ci/functional-test
+    - stage: deploy
+      script: bash ./ci/deploy
+      before_deploy: bash ./scripts/removeDevDep
+      deploy:
         provider: heroku
         skip_cleanup: true
         app: $HEROKU_APP_NAME
         api_key:
           secure: "$HEROKU_KEY"
+    - stage: smoke-test
+      script: bash ./ci/smoke-test
