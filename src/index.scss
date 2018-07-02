@@ -2,113 +2,120 @@
 @import 'table-transform';
 @import 'globals';
 
-.row__currency--selected { background-color: rgba( $cream, .3 ); }
+.row__currency--selected {
+  background-color: rgba( $cream, .3 );
+}
 .home {
-    &__version--fixed {
-        position: fixed;
-        top: 0;
-        right: 0;
-        background: $black;
-        padding: 0 .5rem;
-        color: white;
-        font-size: 0.8rem;
-        font-weight: normal;
-        z-index: 9;
-    }
-    &__dashboard {
-        background: white;
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-    }
+  &__version--fixed {
+    position: fixed;
+    top: 0;
+    right: 0;
+    background: $black;
+    padding: 0 .5rem;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: normal;
+    z-index: 9;
+  }
+  &__dashboard {
+    background: white;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
 }
 .dashboard {
-    &__header {
-		display: flex;
-		justify-content: center;
-		background: $blue;
-		padding: 2rem 0;
-		border-radius: 3px 3px 0 0;
-		
-		h3 {
-			color: white;
-			font-size: 2rem;
-		}
+  &__header {
+    display: flex;
+    justify-content: center;
+    background: $blue;
+    padding: 2rem 0;
+    border-radius: 3px 3px 0 0;
+    h3 {
+      color: white;
+      font-size: 2rem;
     }
-    &__panel {
-        padding: 1rem;
-        margin-bottom: 2rem;
-        max-width: 1280px;
+  }
+  &__panel {
+    padding: 1rem;
+    margin-bottom: 2rem;
+    max-width: 1280px;
+    display: flex;
+    flex-flow: row wrap;
+    flex-grow: 1;
+    &.center {
+      justify-content: center;
+    }
+    .header {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      h3 {
+        text-align: center;
+        flex-basis: 50%;
+      }
+      form {
         display: flex;
-        flex-flow: row wrap;
-        flex-grow: 1;
-		
-		&.center { justify-content: center; }
-        .header {
-			width: 100%;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			
-			h3 {
-				text-align: center;
-				flex-basis: 50%;
-			}
-			form {
-				display: flex;
-				padding: 1em;
-				margin: 2rem 0 3rem;
-				flex-basis: 50%;
-				box-sizing: border-box;
-				background: #f7f7f7;
-			}
-        }
-        .content {
-			display: flex;
-			flex-basis: 100%;
-
-			table {
-				background: #f7f7f7;
-				box-sizing: border-box;
-				padding: 0.3em;
-				flex-basis: 100%;
-				border-collapse: collapse;
-				
-				thead { border-bottom: 1px solid #c7c7c7; }
-				td {
-					text-align: right;
-					font-family: $mono;
-					font-size: 0.9rem;
-					padding: 0.15rem 1rem;
-				}
-				th {
-					font-weight: normal;
-					text-align: right;
-					height: 3em;
-					width: 25%;
-					padding: 0 1rem;
-					
-					&:nth-of-type(1),
-					&:nth-of-type(6) { width: auto; }
-				}
-			}
-        }
+        padding: 1em;
+        margin: 2rem 0 3rem;
+        flex-basis: 50%;
+        box-sizing: border-box;
+        background: $gray;
+      }
     }
+    .content {
+      display: flex;
+      flex-basis: 100%;
+      table {
+        background: $gray;
+        box-sizing: border-box;
+        padding: 0.3em;
+        flex-basis: 100%;
+        border-collapse: collapse;
+        thead {
+          border-bottom: 1px solid $darkgray;
+        }
+        td {
+          text-align: right;
+          font-family: $mono;
+          font-size: 0.9rem;
+          padding: 0.15rem 1rem;
+        }
+        th {
+          font-weight: normal;
+          text-align: right;
+          height: 3em;
+          width: 25%;
+          padding: 0 1rem;
+          &:nth-of-type(1),
+          &:nth-of-type(6) {
+            width: auto;
+          }
+        }
+      }
+    }
+  }
 }
 .bitcoin {
-    &--balance{
-        font-size: 2.5rem;
-        text-align: center;
-
-        &:after{ content: "BTC"; font-size: 1.7rem; }
+  &--balance{
+    font-size: 2.5rem;
+    text-align: center;
+    &:after{
+      content: "BTC"; font-size: 1.7rem;
     }
+  }
 }
 @media (max-width: $breakpoint-tablet) {
 	.dashboard__panel {
 		.content {
 			table {
-				td { padding: 0.15rem 0.7rem; }
-				th { padding: 0 0.7rem; }
+				td {
+          padding: 0.15rem 0.7rem;
+        }
+				th {
+          padding: 0 0.7rem;
+        }
 			}
 		}
 	}
@@ -116,21 +123,28 @@
 @media (max-width: $breakpoint-small-tablet) {
 	.dashboard__panel {
 		flex-direction: column;
-
 		.content {
 			table {
 				background: white;
-				
-				thead { border: none; }
+				thead {
+          border: none;
+        }
 				tbody {
 					flex-direction: column;
-					
-					tr { width: 49%; }
-					tr:nth-child(2n) { align-self: flex-end; }
-					tr:nth-child(2n+1) { margin-bottom: -160.5px; }
+					tr {
+            width: 49%;
+            &:nth-child(2n) {
+              align-self: flex-end;
+            }
+            &:nth-child(2n+1) {
+              margin-bottom: -160.5px;
+            }
+          }
 				}
 			}
-			form { flex-basis: 100%; }
+			form {
+        flex-basis: 100%;
+      }
 		}
 	}
 }
@@ -139,8 +153,12 @@
 		.content {
 			table {
 				tbody {
-					tr { width: 100% }
-					tr:nth-child(2n+1) { margin-bottom: 24px; }
+					tr {
+            width: 100%;
+            &:nth-child(2n+1) {
+              margin-bottom: 24px;
+            }
+          }
 				}
 			}
 		}

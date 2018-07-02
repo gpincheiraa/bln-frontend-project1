@@ -4,14 +4,14 @@ html {
     box-sizing: border-box;
 }
 *, *:before, *:after {
-    box-sizing: inherit;
-    margin: 0;
-    padding: 0;
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
 }
 .mono {
-    font-family: $mono;
+  font-family: $mono;
 }
 body {
-    background: $lightgray;
-    font-family: 'Mark';
+  background: $lightgray;
+  font-family: 'Mark';
 }
