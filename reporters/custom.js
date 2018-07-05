@@ -20,10 +20,11 @@ module.exports = function(runner) {
     });
 
     runner.on('end', function(){
-        // console.log('end: %d/%d', passes, passes + failures);
+        /* eslint-disable no-console */
         console.log('----------------------------------------------');
         console.log(`|          Your score is ${score}            |`);
-        console.log('----------------------------------------------')
+        console.log('----------------------------------------------');
+        /* eslint-disable */
         process.exit();
     });
 };

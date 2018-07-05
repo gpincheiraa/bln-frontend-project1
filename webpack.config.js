@@ -25,11 +25,11 @@ module.exports = {
             {
                 test: /\.scss$/,
                 use: [
-                    "style-loader", // creates style nodes from JS strings
-                    "css-loader", // translates CSS into CommonJS
-                    "resolve-url-loader", // load files on sass files like eot font files
-                    "sass-loader", // compiles Sass to CSS
-                    "postcss-loader" // add vendor prefixes (see postcss.config.js file)
+                    'style-loader', // creates style nodes from JS strings
+                    'css-loader', // translates CSS into CommonJS
+                    'resolve-url-loader', // load files on sass files like eot font files
+                    'sass-loader', // compiles Sass to CSS
+                    'postcss-loader' // add vendor prefixes (see postcss.config.js file)
                 ],
             },
             { 
