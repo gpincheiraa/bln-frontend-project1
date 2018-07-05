@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const OfflinePlugin = require('offline-plugin');
 
-const { author, config , version } = require('./package.json');
+const { author, config, version } = require('./package.json');
 const { address } = require('./btc-config.json');
 
 const filesLocal = 'file-loader?name=[name].[ext]';
