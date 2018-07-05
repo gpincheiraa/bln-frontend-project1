@@ -1,3 +1,5 @@
+#!/bin/bash
+
 npm run build
 
 mkdir -p public && cp dist/* ./public/
