@@ -63,11 +63,11 @@ given('I open Home page on {string}', viewport => {
   cy.visit(url);
 });
 
-when(`select the {string} in the currency selector`, currencySelected => {
+when('select the {string} in the currency selector', currencySelected => {
   cy.get('.home__select--currency').select(currencySelected);
 });
 
-then(`I see Currency, 15m, Last, Sell and Buy column names on the table`, () => {
+then('I see Currency, 15m, Last, Sell and Buy column names on the table', () => {
   const columnNamesSelector = '.home__table thead tr th';
   cy.get(columnNamesSelector).should($th => {
     expectedColumnNames.forEach((currencyTypeName, index) => {
@@ -76,7 +76,7 @@ then(`I see Currency, 15m, Last, Sell and Buy column names on the table`, () => 
   });
 });
 
-then(`I see the data response rendered as row on the table`, () => {
+then('I see the data response rendered as row on the table', () => {
   const rowsSelector = '.home__table tbody tr';
   cy.get(rowsSelector).should($trList => {
     const rowsList = $trList.toArray();
@@ -104,7 +104,7 @@ then(`I see the data response rendered as row on the table`, () => {
   });
 });
 
-then(`I see the currency selector with the currencies given in the data requested`, () => {
+then('I see the currency selector with the currencies given in the data requested', () => {
   const selectBoxSelector = '.home__select--currency';
   cy.get(selectBoxSelector).should($select => {
     const selectBoxElement = $select[0];
@@ -119,12 +119,12 @@ then(`I see the currency selector with the currencies given in the data requeste
   });
 });
 
-then(`I see the right row {string} with the class in the table`, currencySelected => {
+then('I see the right row {string} with the class in the table', currencySelected => {
   cy.get('.row__currency--selected td:nth-child(1)')
     .should($row => expect($row[0].textContent).to.eq(currencySelected));
 });
 
-then(`I see that the class is not applied to neither row`, () => {
+then('I see that the class is not applied to neither row', () => {
   const rowSelectedClass = 'row__currency--selected';
   cy.get('table tbody')
     .should($tBody => {
@@ -133,7 +133,7 @@ then(`I see that the class is not applied to neither row`, () => {
     });
 });
 
-then(`I see the data response currency values in the table within {string} format`, currency => {
+then('I see the data response currency values in the table within {string} format', currency => {
   const rowsSelector = '.home__table tbody tr';
   cy.get(rowsSelector).should($trList => {
     const rowsList = $trList.toArray();
@@ -152,7 +152,7 @@ then(`I see the data response currency values in the table within {string} forma
   });
 });
 
-then(`I see BTC balance with a different value after a minute`, () => {
+then('I see BTC balance with a different value after a minute', () => {
   const balanceSelector = '.bitcoin--balance';
 
   cy.tick(oneMinute);
@@ -169,7 +169,7 @@ then(`I see BTC balance with a different value after a minute`, () => {
   cy.get(balanceSelector).should('have.text', `${fixturesData.btcBalanceResponseAfterMin.data.confirmed_balance}`);
 });
 
-then(`I see currency values with differents values after a minute`, () => {
+then('I see currency values with differents values after a minute', () => {
   const rowsSelector = '.home__table tbody tr';
 
   const checkTickerResponse = btcTickerResponses => {
@@ -198,7 +198,7 @@ then(`I see currency values with differents values after a minute`, () => {
           });
       });
     });
-  }
+  };
 
   cy.tick(oneMinute);
   checkTickerResponse(fixturesData.btcTickerResponse);
@@ -210,7 +210,7 @@ then(`I see currency values with differents values after a minute`, () => {
 
 });
 
-then(`I see the right row {string} with the class in the table after one minute`, currencySelected => {
+then('I see the right row {string} with the class in the table after one minute', currencySelected => {
   const rowsSelector = '.home__table tbody tr';
 
   cy.route('https://blockchain.info/es/ticker', fixturesData.btcTickerResponseAfter);

@@ -14,5 +14,6 @@ app.get('/', (req, res) =>{
 });
 
 app.listen(port, () => {
+    /* eslint-disable-next-line no-console */
     console.log(`Our app is running on http://localhost:${port}`);
 });

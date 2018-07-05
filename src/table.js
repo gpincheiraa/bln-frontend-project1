@@ -1,4 +1,4 @@
-const currencySelectedClassName = 'row__currency--selected'
+const currencySelectedClassName = 'row__currency--selected';
 let pageState = {
     currencySelected: null
 };
@@ -33,7 +33,7 @@ function handleSelectChange(event) {
     const tableRows = document.querySelectorAll('.home__table tbody tr');
     
     Array.from(tableRows).forEach(row => {
-        const currencyColumn = row.querySelector('td:nth-child(1)')
+        const currencyColumn = row.querySelector('td:nth-child(1)');
         if(currencyColumn.textContent === optionValue) { 
             row.classList.add(currencySelectedClassName);
         } else if(row.classList.contains(currencySelectedClassName)) {
@@ -53,7 +53,7 @@ function getFilterCurrencies() {
 
     return select;
 }
-export const initializeTable = (tableData) => {
+export const initializeTable = tableData => {
     const table = document.querySelector('.home__table');
     const tableBody = table.querySelector('tbody');
     const tableHead = table.querySelector('thead');
@@ -96,4 +96,4 @@ export const initializeTable = (tableData) => {
     // Replace old tbody with new tbody
     table.replaceChild(newTBody, tableBody);
 
-}
+};

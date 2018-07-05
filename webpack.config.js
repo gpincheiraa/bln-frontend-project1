@@ -1,8 +1,8 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const OfflinePlugin = require('offline-plugin')
+const OfflinePlugin = require('offline-plugin');
 
-const { author, config , version } = require('./package.json');
+const { author, config, version } = require('./package.json');
 const { address } = require('./btc-config.json');
 
 const filesLocal = 'file-loader?name=[name].[ext]';
@@ -25,11 +25,11 @@ module.exports = {
             {
                 test: /\.scss$/,
                 use: [
-                    "style-loader", // creates style nodes from JS strings
-                    "css-loader", // translates CSS into CommonJS
-                    "resolve-url-loader", // load files on sass files like eot font files
-                    "sass-loader", // compiles Sass to CSS
-                    "postcss-loader" // add vendor prefixes (see postcss.config.js file)
+                    'style-loader', // creates style nodes from JS strings
+                    'css-loader', // translates CSS into CommonJS
+                    'resolve-url-loader', // load files on sass files like eot font files
+                    'sass-loader', // compiles Sass to CSS
+                    'postcss-loader' // add vendor prefixes (see postcss.config.js file)
                 ],
             },
             { 

@@ -32,10 +32,10 @@ const btcBalanceResponse = require('../fixtures/balance/balance_base.json');
 const btcBalanceResponseAfter = require('../fixtures/balance/balance_after1m.json');
 const btcBalanceResponseAfterMin = require('../fixtures/balance/balance_after2m.json');
 
-Cypress.Commands.add("getProjectInfo", () => packageJson);
-Cypress.Commands.add("getBitcoinInfo", () => bitcoinConfig);
-Cypress.Commands.add("getNumberFormatter", () => numberFormatter);
-Cypress.Commands.add("getFixturesData", () => ({
+Cypress.Commands.add('getProjectInfo', () => packageJson);
+Cypress.Commands.add('getBitcoinInfo', () => bitcoinConfig);
+Cypress.Commands.add('getNumberFormatter', () => numberFormatter);
+Cypress.Commands.add('getFixturesData', () => ({
     btcTickerResponse,
     btcTickerResponseAfter,
     btcBalanceResponse,

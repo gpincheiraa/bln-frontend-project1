@@ -9,20 +9,18 @@ export const getCurrenciesValues = () => fetch(exchangeUrl.BLOCKCHAIN_LUXEMBOURG
 	.then(response => response.text())
 	.then(data => JSON.parse(data))
 	.then(data => Object.keys(data)
-	.reduce((formatedData, currency) => 
-		({
-		...formatedData,
-		[currency]: {
-			...data[currency],
-			'15m': numberFormatter(data[currency]['15m']),
-			'last': numberFormatter(data[currency]['last']),
-			'buy': numberFormatter(data[currency]['buy']),
-			'sell': numberFormatter(data[currency]['sell'])
-		}
-		}),
-		{}) 
+		.reduce((formatedData, currency) => ({
+			...formatedData,
+			[currency]: {
+				...data[currency],
+				'15m': numberFormatter(data[currency]['15m']),
+				'last': numberFormatter(data[currency]['last']),
+				'buy': numberFormatter(data[currency]['buy']),
+				'sell': numberFormatter(data[currency]['sell'])
+			}
+		}), {}) 
 	);
 
 export const getBalance = () => fetch(balanceUrl)
 	.then(response => response.text())
-	.then(response => JSON.parse(response).data)
+	.then(response => JSON.parse(response).data);
