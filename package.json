@@ -13,7 +13,8 @@
     "start": "webpack-dev-server --hot --mode development",
     "dev": "npm start -- --watch",
     "build": "webpack --mode production",
-    "test:e2e": "cypress open"
+    "test:e2e": "cypress open",
+    "release": "standard-version"
   },
   "config": {
     "title": "Monitor de Precio del Bitcoin"
