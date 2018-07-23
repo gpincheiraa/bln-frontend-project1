@@ -16,7 +16,7 @@ if [[ -n "$HEROKU_APP_NAME" ]]; then
             exit 1
             ;;
         200)
-            echo "La página esta ok. Código HTTP $status_code"
+            echo "La página está ok. Código HTTP $status_code"
             ;;
     esac;
 fi

@@ -1,6 +1,6 @@
 # Parte 8: Manejo offline guardando en caché las últimas peticiones exitosas
 
-Existe un plugin de webpack que permite guardar la información de las peticiones sin necesidad de tener una conexión a internet, se llama `offline-plugin`, se puede encontrar en el siguiente link: [aquí](https://github.com/NekR/offline-plugin)
+Existe un plugin de webpack que permite guardar la información de las peticiones sin necesidad de tener una conexión a internet, se llama `offline-plugin`, se puede encontrar en el siguiente link: [aquí](https://github.com/NekR/offline-plugin).
 
 ## **Instalar**
 

@@ -1,15 +1,20 @@
 {
   "name": "frontend-project-1",
-  "version": "0.8.6",
+  "version": "0.8.7",
   "author": {
     "name": "Gonzalo Pincheira",
     "email": "g.pincheira.a@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gpincheiraa/bln-frontend-project1.git"
   },
   "scripts": {
     "start": "webpack-dev-server --hot --mode development",
     "dev": "npm start -- --watch",
     "build": "webpack --mode production",
-    "test:e2e": "cypress open"
+    "test:e2e": "cypress open",
+    "release": "standard-version"
   },
   "config": {
     "title": "Monitor de Precio del Bitcoin"
@@ -44,6 +49,7 @@
     "postcss-loader": "^2.1.5",
     "resolve-url-loader": "^2.3.0",
     "sass-loader": "^7.0.1",
+    "standard-version": "^4.4.0",
     "style-loader": "^0.21.0",
     "wait-on": "^2.1.0",
     "webpack": "^4.10.2",
