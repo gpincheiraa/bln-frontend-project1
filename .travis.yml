@@ -9,7 +9,7 @@ cache:
 stages:
   - name: functional-test
   - name: deploy
-    if: branch = master
+    if: branch =~ /(master|^\d*\.\d*\.\d*$|^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$)/
   - name: smoke-test
     if: branch = master
 jobs:
@@ -20,10 +20,19 @@ jobs:
       script: bash ./ci/deploy
       before_deploy: bash ./scripts/removeDevDep
       deploy:
-        provider: heroku
+      - provider: heroku
         skip_cleanup: true
-        app: $HEROKU_APP_NAME
         api_key:
           secure: "$HEROKU_KEY"
+        app: $HEROKU_APP_NAME
+        on:
+          branch: master
+      - provider: heroku
+        skip_cleanup: true
+        api_key:
+          secure: "$HEROKU_KEY"
+        app: $HEROKU_APP_NAME_STAGING
+        on:
+          all_branches: true
     - stage: smoke-test
       script: bash ./ci/smoke-test
