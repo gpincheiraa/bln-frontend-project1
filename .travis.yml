@@ -8,31 +8,35 @@ cache:
     - ~/.cache
 stages:
   - name: functional-test
-  - name: deploy
+  - name: deploy-to-staging
     if: branch =~ /(master|^\d*\.\d*\.\d*$|^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$)/
-  - name: smoke-test
+  - name: smoke-test-staging
+    if: branch =~ /(master|^\d*\.\d*\.\d*$|^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$)/
+  - name: deploy-to-production
+    if: branch = master
+  - name: smoke-test-production
     if: branch = master
 jobs:
   include:
     - stage: functional-test
       script: bash ./ci/functional-test
-    - stage: deploy
+    - stage: deploy-to-staging
       script: bash ./ci/deploy
       before_deploy: bash ./scripts/removeDevDep
-      deploy:
-      - provider: heroku
+      deploy: &heroku
+        provider: heroku
         skip_cleanup: true
-        api_key:
-          secure: "$HEROKU_KEY"
-        app: $HEROKU_APP_NAME
-        on:
-          branch: master
-      - provider: heroku
-        skip_cleanup: true
-        api_key:
-          secure: "$HEROKU_KEY"
+        api_key: $HEROKU_KEY
         app: $HEROKU_APP_NAME_STAGING
         on:
           all_branches: true
-    - stage: smoke-test
-      script: bash ./ci/smoke-test
+    - stage: smoke-test-staging
+      script: bash ./ci/smoke-test "staging"
+    - stage: deploy-to-production
+      script: bash ./ci/deploy
+      before_deploy: bash ./scripts/removeDevDep
+      deploy: 
+        <<: *heroku
+        app: $HEROKU_APP_NAME
+    - stage: smoke-test-production
+script: bash ./ci/smoke-test "production"
