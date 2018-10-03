@@ -51,7 +51,7 @@
     "sass-loader": "^7.0.1",
     "standard-version": "^4.4.0",
     "style-loader": "^0.21.0",
-    "wait-on": "^2.1.0",
+    "wait-on": "^3.1.0",
     "webpack": "^4.10.2",
     "webpack-cli": "^3.0.2",
     "webpack-dev-server": "^3.1.4"
