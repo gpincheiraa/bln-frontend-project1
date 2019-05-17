@@ -30,7 +30,7 @@
     "node": ">=8.11.2"
   },
   "dependencies": {
-    "express": "^4.16.3",
+    "express": "4.16.4",
     "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
