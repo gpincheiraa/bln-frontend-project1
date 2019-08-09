@@ -48,7 +48,7 @@
     "offline-plugin": "^5.0.5",
     "postcss-loader": "^2.1.5",
     "resolve-url-loader": "^2.3.0",
-    "sass-loader": "^7.0.1",
+    "sass-loader": "7.1.0",
     "standard-version": "^4.4.0",
     "style-loader": "^0.21.0",
     "wait-on": "^2.1.0",
